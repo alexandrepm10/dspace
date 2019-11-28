@@ -1,0 +1,32 @@
+<main role="main" class="container">
+
+  <div class="my-3 p-3 bg-white rounded shadow-sm" *ngIf="communities">
+    <table id="tableSortExample" mdbTable class="z-depth-1">
+      <thead>
+      <tr>
+        <th [mdbTableSort]="communities" sortBy="uuid">UUID</th>
+        <th [mdbTableSort]="communities" sortBy="name">Name</th>
+        <th [mdbTableSort]="communities" sortBy="handle">Handle</th>
+        <th [mdbTableSort]="communities" sortBy="type">Type</th>
+        <th [mdbTableSort]="communities" sortBy="countItems">Nº Items</th>
+      </tr>
+      <!--      <tr>-->
+      <!--        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="communities" [sortBy]="headElements[i]">{{head | titlecase}}-->
+      <!--      </tr>-->
+      </thead>
+      <tbody>
+      <tr *ngFor="let el of communities; let i = index">
+        <!--      <tr mdbTableCol *ngFor="let el of communities">-->
+        <th scope="row">{{el.uuid}}</th>
+        <td>
+          <a [routerLink]="['/collections', el.uuid]">{{el.name}}</a>
+        </td>
+        <td>{{el.handle}}</td>
+        <td>{{el.type}}</td>
+        <td>{{el.countItems}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</main>

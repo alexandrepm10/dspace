@@ -1,0 +1,40 @@
+<main role="main" class="container">
+
+  <div class="my-3 p-3 bg-white rounded shadow-sm" *ngIf="collections">
+    <table id="tableSortExample" mdbTable class="z-depth-1">
+      <thead>
+      <tr>
+        <th [mdbTableSort]="collections" sortBy="uuid">UUID</th>
+        <th [mdbTableSort]="collections" sortBy="name">Name</th>
+        <th [mdbTableSort]="collections" sortBy="handle">Handle</th>
+        <th [mdbTableSort]="collections" sortBy="type">Type</th>
+        <th [mdbTableSort]="collections" sortBy="countItems">Nº Items</th>
+      </tr>
+      <!--      <tr>-->
+      <!--        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="collections" [sortBy]="headElements[i]">{{head | titlecase}}-->
+      <!--      </tr>-->
+      </thead>
+      <tbody>
+      <tr *ngFor="let el of collections; let i = index">
+        <!--      <tr mdbTableCol *ngFor="let el of collections">-->
+        <th scope="row">{{el.uuid}}</th>
+        <td>
+          <a [routerLink]="['/items-list', el.uuid]">{{el.name}}</a>
+        </td>
+        <td>{{el.handle}}</td>
+        <td>{{el.type}}</td>
+        <td>{{el.countItems}}</td>
+      </tr>
+      </tbody>
+      <div>
+        <button mdbBtn type="button" color="primary" mdbWavesEffect>
+          <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>
+        </button>
+        <button mdbBtn type="button" color="default" mdbWavesEffect>
+          <mdb-icon fas icon="arrow-right" class="ml-1"></mdb-icon>
+        </button>
+      </div>
+    </table>
+  </div>
+
+</main>

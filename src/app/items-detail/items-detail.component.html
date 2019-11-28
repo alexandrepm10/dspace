@@ -1,0 +1,66 @@
+<main role="main" class="container">
+
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12" *ngFor="let el of itemsDetails;">
+          <div *ngIf=" el.key==='dc.title'">Titulo: {{el.value}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" *ngFor="let el of itemsDetails;">
+          <div *ngIf=" el.key==='dc.description'">Descrição: {{el.value}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" *ngFor="let el of itemsDetails;">
+          <div *ngIf=" el.key==='dc.description.abstract'">Descrição: {{el.value}}</div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" *ngFor="let el of itemsDetails;">
+          <div *ngIf=" el.key==='dc.date.issued'">Data: {{el.value}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<!--
+
+<div class="my-3 p-3 bg-white rounded shadow-sm" *ngIf="itemsDetails">
+  <table id="tableSortExample" mdbTable class="z-depth-1">
+    <thead>
+    <tr>
+      <th [mdbTableSort]="itemsDetails" sortBy="uuid">UUID</th>
+      <th [mdbTableSort]="itemsDetails" sortBy="name">Name</th>
+      <th [mdbTableSort]="itemsDetails" sortBy="handle">Handle</th>
+      <th [mdbTableSort]="itemsDetails" sortBy="type">Type</th>
+      <th [mdbTableSort]="itemsDetails" sortBy="countItems">Nº Items</th>
+    </tr>
+    &lt;!&ndash;      <tr>&ndash;&gt;
+    &lt;!&ndash;        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="collections" [sortBy]="headElements[i]">{{head | titlecase}}&ndash;&gt;
+    &lt;!&ndash;      </tr>&ndash;&gt;
+    </thead>
+    <tbody>
+    <tr *ngFor="let el of itemsDetails; let i = index">
+      &lt;!&ndash;      <tr mdbTableCol *ngFor="let el of collections">&ndash;&gt;
+      <th scope="row">{{el.uuid}}</th>
+      <td>
+        <a [routerLink]="['/items-list', el.uuid]">{{el.name}}</a>
+      </td>
+      <td>{{el.handle}}</td>
+      <td>{{el.type}}</td>
+      <td>{{el.countItems}}</td>
+    </tr>
+    </tbody>
+    <div>
+      <button mdbBtn type="button" color="primary" mdbWavesEffect>
+        <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>
+      </button>
+      <button mdbBtn type="button" color="default" mdbWavesEffect>
+        <mdb-icon fas icon="arrow-right" class="ml-1"></mdb-icon>
+      </button>
+    </div>
+  </table>
+</div>
+-->
