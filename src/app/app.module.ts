@@ -1,6 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
+import {FormsModule} from '@angular/forms';
+
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -11,6 +13,7 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {ItemsDetailComponent} from './items-detail/items-detail.component';
 import {CommunitiesComponent} from './communities/communities.component';
 import {CollectionsComponent} from './collections/collections.component';
+import {ItemSearchComponent} from './item-search/item-search.component';
 
 @NgModule({
   declarations: [
@@ -20,13 +23,15 @@ import {CollectionsComponent} from './collections/collections.component';
     ItemsListComponent,
     ItemsDetailComponent,
     CommunitiesComponent,
-    CollectionsComponent
+    CollectionsComponent,
+    ItemSearchComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -6,6 +6,7 @@ import {ItemsDetailComponent} from './items-detail/items-detail.component';
 import {CommunitiesComponent} from './communities/communities.component';
 import {Collections} from './core/collections.model';
 import {CollectionsComponent} from './collections/collections.component';
+import {ItemSearchComponent} from './item-search/item-search.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
   {path: 'itemsdetail/:uuid', component: ItemsDetailComponent},
   {path: 'communities', component: CommunitiesComponent},
   {path: 'collections/:uuid', component: CollectionsComponent},
-  {path: 'collections', component: CollectionsComponent}
+  {path: 'collections', component: CollectionsComponent},
+  {path: 'searchitem', component: ItemSearchComponent}
 ];
 
 @NgModule({

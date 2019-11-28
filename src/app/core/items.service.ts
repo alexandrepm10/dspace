@@ -1,14 +1,21 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {catchError, map, max, retry} from 'rxjs/operators';
+import {retry} from 'rxjs/operators';
 import {Communities} from './communities.model';
 import {Collections} from './collections.model';
 import {Items} from './items.model';
 import {ItemsDetail} from './item-detail.model';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/xml',
+    Authorization: 'jwt-token'
+  })
+};
+
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ItemsService {
 
@@ -50,5 +57,10 @@ export class ItemsService {
     // this.maxOffset = countItems / 25;
     const url = `${this.baseUrl + 'items/' + uuid + '/metadata'}`;
     return this.http.get<ItemsDetail[]>(url).pipe(retry(1));
+  }
+
+  searchItems(obj): Observable<Items[]> {
+    const url = `${this.baseUrl + 'items/find-by-metadata-field/'}`;
+    return this.http.post<Items[]>(url, obj).pipe();
   }
 }

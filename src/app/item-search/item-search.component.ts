@@ -1,0 +1,28 @@
+import {Component, OnInit} from '@angular/core';
+import {ItemsService} from '../core/items.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Items} from '../core/items.model';
+
+
+@Component({
+  selector: 'app-item-search',
+  templateUrl: './item-search.component.html',
+  styleUrls: ['./item-search.component.css']
+})
+export class ItemSearchComponent implements OnInit {
+
+  constructor(private itemsService: ItemsService, public actRoute: ActivatedRoute, public router: Router) {
+    this.items = [];
+  }
+
+  items: Items[];
+
+  ngOnInit() {
+    this.items = history.state.data;
+    // User data which we have received from the registration form.
+    this.itemsService.searchItems(this.items).subscribe((items: Items[]) => {
+      this.items = items;
+    });
+  }
+
+}
