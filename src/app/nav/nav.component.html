@@ -37,10 +37,10 @@
     <!-- Links -->
 
     <!-- Search form -->
-    <form #search="ngForm" class="form-inline waves-light form" mdbWavesEffect (ngSubmit)="onClickSubmit(search)">
+    <form #search="ngForm" class="form-inline waves-light form" mdbWavesEffect (ngSubmit)="onClickSubmit(search.value)">
       <div class="md-form my-0">
         <div class="form-field">
-          <input class="form-control mr-sm-2, form-input" type="text" name="data" placeholder="Search">
+          <input class="form-control mr-sm-2, form-input" type="text" name="data" placeholder="Search" ngModel>
         </div>
       </div>
     </form>

@@ -1,12 +1,25 @@
 export class ItemsDetail {
+  public key: string;
+  public value: string;
+  public language: string;
+  public element: string;
+  public quantifier: string;
+  public schema: string;
+
   constructor(
-    public key: string,
-    public value: string,
-    public language: string,
-    public element: string,
-    public quantifier: string,
-    public schema: string,
+    key: string,
+    value: string,
+    language?: string,
+    element?: string,
+    quantifier?: string,
+    schema?: string
   ) {
+    this.schema = schema;
+    this.quantifier = quantifier;
+    this.element = element;
+    this.language = language;
+    this.value = value;
+    this.key = key;
   }
 }
 

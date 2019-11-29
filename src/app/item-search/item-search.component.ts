@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ItemsService} from '../core/items.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Items} from '../core/items.model';
+import {ItemsDetail} from '../core/item-detail.model';
 
 
 @Component({
@@ -16,9 +17,15 @@ export class ItemSearchComponent implements OnInit {
   }
 
   items: Items[];
+  data: ItemsDetail[];
+
 
   ngOnInit() {
     this.items = history.state.data;
+    this.data.push(new ItemsDetail('dc.description', history.state.data));
+    this.data.push(new ItemsDetail('dc.title', history.state.data));
+    this.data.push(new ItemsDetail('dc.creator', history.state.data));
+    this.data.push(new ItemsDetail('dc.description', history.state.data));
     // User data which we have received from the registration form.
     this.itemsService.searchItems(this.items).subscribe((items: Items[]) => {
       this.items = items;

@@ -1,13 +1,29 @@
 export class Items {
+  public uuid: string;
+
+  public name: string;
+
+  public handle: string;
+
+  public type: string;
+
+  public link: string;
+
   constructor(
-    public uuid: string,
-    public name: string,
-    public handle: string,
-    public type: string,
-    public link: string,
+    uuid: string,
+    name: string,
+    handle: string,
+    type: string,
+    link: string,
   ) {
+    this.link = link;
+    this.type = type;
+    this.handle = handle;
+    this.name = name;
+    this.uuid = uuid;
   }
 }
+
 
 /*
 "uuid": "01ea13a4-086c-413d-9a7c-6e4b20da9fbf",

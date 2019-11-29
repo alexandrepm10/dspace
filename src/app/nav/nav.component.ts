@@ -15,18 +15,12 @@ export class NavComponent implements OnInit {
   }
 
   items: ItemsDetail[];
-  itemsData: ItemsDetail[];
 
   ngOnInit() {
   }
 
   onClickSubmit(form) {
-    console.log(form.value);
-    // this.itemsData[0].value = searchData.value;
-    // this.itemsData[1].value = searchData.value;
-    // // this.itemsService.searchItems(this.itemsData).subscribe((items: ItemsDetail[]) => {
-    // //   this.items = items;
-    // // });
-    // this.router.navigate(['searchitem'], {state: {data: this.itemsData}});
+    console.log(form.data);
+    this.router.navigate(['searchitem'], {state: {data: form.data}});
   }
 }
