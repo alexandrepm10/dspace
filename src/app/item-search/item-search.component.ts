@@ -14,6 +14,7 @@ export class ItemSearchComponent implements OnInit {
 
   constructor(private itemsService: ItemsService, public actRoute: ActivatedRoute, public router: Router) {
     this.items = [];
+    this.data = [];
   }
 
   items: Items[];
@@ -25,9 +26,11 @@ export class ItemSearchComponent implements OnInit {
     this.data.push(new ItemsDetail('dc.description', history.state.data));
     this.data.push(new ItemsDetail('dc.title', history.state.data));
     this.data.push(new ItemsDetail('dc.creator', history.state.data));
-    this.data.push(new ItemsDetail('dc.description', history.state.data));
+    this.data.push(new ItemsDetail('dc.type', history.state.data));
+    console.log(this.data);
     // User data which we have received from the registration form.
-    this.itemsService.searchItems(this.items).subscribe((items: Items[]) => {
+    console.log(new ItemsDetail('dc.type', history.state.data));
+    this.itemsService.searchItems(new ItemsDetail('dc.type', history.state.data)).subscribe((items: Items[]) => {
       this.items = items;
     });
   }

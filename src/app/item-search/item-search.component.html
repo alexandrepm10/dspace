@@ -6,7 +6,6 @@
       <tr>
         <th [mdbTableSort]="items" sortBy="uuid">UUID</th>
         <th [mdbTableSort]="items" sortBy="name">Name</th>
-        <th [mdbTableSort]="items" sortBy="handle">Handle</th>
         <th [mdbTableSort]="items" sortBy="type">Type</th>
       </tr>
       <!--      <tr>-->
@@ -20,7 +19,6 @@
         <td>
           <a [routerLink]="['/itemsdetail', el.uuid]">{{el.name}}</a>
         </td>
-        <td>{{el.handle}}</td>
         <td>{{el.type}}</td>
       </tr>
       </tbody>
