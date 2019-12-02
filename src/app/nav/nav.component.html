@@ -25,11 +25,13 @@
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light">
           Categorias<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Antropologia Cultural</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Etnografia</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Antropologia da Religião</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect (click)="onClickSubmit('Antropologia Cultural')">Antropologia
+            Cultural</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect (click)="onClickSubmit('Etnografia')">Etnografia</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect (click)="onClickSubmit('Antropologia da Religião')">Antropologia
+            da Religião</a>
           <div class="divider dropdown-divider"></div>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Separated link</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="">Separated link</a>
         </div>
       </li>
 
