@@ -17,8 +17,14 @@ export class HomeComponent implements OnInit {
 
   categories: Category[];
   item: string;
+  form: any;
 
   constructor(public fb: FormBuilder, public actRoute: ActivatedRoute, public router: Router) {
+
+    this.form = this.fb.group({
+      category: ['']
+    });
+
     this.categories = [
       {value: 'Antropologia Cultural', viewValue: 'Antropologia Cultural'},
       {value: 'Etnografia', viewValue: 'Etnografia'},
@@ -29,9 +35,9 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
-  onClickSubmit(form) {
-    console.log(form.data);
-    // this.router.navigate(['searchitem'], {state: {data: form.data}});
+  onClickSubmit() {
+    console.log(this.form.value.category.value);
+    this.router.navigate(['searchitem'], {state: {data: this.form.value.category.value}});
   }
 
 }

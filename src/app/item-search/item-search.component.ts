@@ -22,15 +22,15 @@ export class ItemSearchComponent implements OnInit {
 
 
   ngOnInit() {
-    this.items = history.state.data;
-    this.data.push(new ItemsDetail('dc.description', history.state.data));
-    this.data.push(new ItemsDetail('dc.title', history.state.data));
-    this.data.push(new ItemsDetail('dc.creator', history.state.data));
-    this.data.push(new ItemsDetail('dc.type', history.state.data));
+    // this.items = history.state.data;
+    // this.data.push(new ItemsDetail('dc.description', history.state.data));
+    // this.data.push(new ItemsDetail('dc.title', history.state.data));
+    // this.data.push(new ItemsDetail('dc.creator', history.state.data));
+    // this.data.push(new ItemsDetail('dc.type', history.state.data));
     console.log(this.data);
     // User data which we have received from the registration form.
-    console.log(new ItemsDetail('dc.type', history.state.data));
-    this.itemsService.searchItems(new ItemsDetail('dc.type', history.state.data)).subscribe((items: Items[]) => {
+    console.log(new ItemsDetail('local.theme', history.state.data));
+    this.itemsService.searchItems(new ItemsDetail('local.theme', history.state.data)).subscribe((items: Items[]) => {
       this.items = items;
     });
   }

@@ -1,18 +1,17 @@
 <main role="main">
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     <div class="container">
-      <form #form="ngForm" class="form-inline waves-light form" mdbWavesEffect (ngSubmit)="onClickSubmit(form.value )">
+      <form [formGroup]="form" class="form-inline waves-light form" mdbWavesEffect (ngSubmit)="onClickSubmit()">
 
         <h4>Escolha a categoria: </h4>
         <mat-form-field>
           <mat-label>Selecione uma categoria</mat-label>
-          <mat-select [(value)]="item">
+          <mat-select formControlName="category" [(value)]="item">
             <mat-option *ngFor="let category of categories" [value]="category">
               {{category.viewValue}}
             </mat-option>
           </mat-select>
         </mat-form-field>
-
         <button>Submit</button>
       </form>
     </div>
