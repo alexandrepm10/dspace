@@ -13,12 +13,12 @@ import {CommunitiesComponent} from './communities/communities.component';
 import {CollectionsComponent} from './collections/collections.component';
 import {ItemSearchComponent} from './item-search/item-search.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {AccordionModule} from 'primeng/accordion';
-import {MenuItem} from 'primeng/api';
 import {CodeHighlighterModule, DropdownModule, TabViewModule} from 'primeng';
 import {CommonModule} from '@angular/common';
 import {MatFormFieldModule, MatSelectModule} from '@angular/material';
-
+import {BackofficeHomeComponent} from './backoffice/home/home.component';
+import { NewsComponent } from './news/news.component';
+import { LoginComponent } from './backoffice/login/login.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +29,10 @@ import {MatFormFieldModule, MatSelectModule} from '@angular/material';
     ItemsDetailComponent,
     CommunitiesComponent,
     CollectionsComponent,
-    ItemSearchComponent
+    ItemSearchComponent,
+    BackofficeHomeComponent,
+    NewsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
