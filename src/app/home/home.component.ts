@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
 
   onClickSubmit() {
     console.log(this.selectedValue);
-    //this.router.navigate(['searchitem'], {state: {data: this.selectedValue}});
+    this.router.navigate(['searchitem'], {state: {data: this.selectedValue}});
   }
 
 }

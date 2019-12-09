@@ -18,16 +18,20 @@ export class ItemsListComponent implements OnInit {
   }
 
   items: Items[];
+  loading = true;
 
   ngOnInit() {
     if (this.actRoute.snapshot.params['uuid']) {
       // this.maxOffSet = this.actRoute.snapshot.params['countItems'] / 10;
       this.itemsService.listSingleItem(this.actRoute.snapshot.params['uuid']).subscribe((items: Items[]) => {
         this.items = items;
+        this.loading = false;
+      });
+    } else {
+      this.itemsService.listItems().subscribe((items: Items[]) => {
+        this.items = items;
+        this.loading = false;
       });
     }
-    this.itemsService.listItems().subscribe((items: Items[]) => {
-      this.items = items;
-    });
   }
 }

@@ -17,17 +17,17 @@ export class CollectionsComponent implements OnInit {
   }
 
   collections: Collections[];
-  headElements = ['UUID', 'Name', 'Handle', 'Type', 'CountItems'];
+  loading = true;
 
   ngOnInit() {
 
     if (this.actRoute.snapshot.params['uuid']) {
       this.itemsService.listSingleCollection(this.actRoute.snapshot.params['uuid']).subscribe((collections: Collections[]) => {
         this.collections = collections;
+        this.loading = false;
       });
+    } else {
+      console.log('Erro: nenhum \'UUID\'');
     }
-    this.itemsService.listCollections().subscribe((collections: Collections[]) => {
-      this.collections = collections;
-    });
   }
 }

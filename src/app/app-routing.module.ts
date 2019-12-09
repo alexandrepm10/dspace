@@ -21,7 +21,8 @@ const routes: Routes = [
   {path: 'searchitem', component: ItemSearchComponent},
   {path: 'admin', component: BackofficeHomeComponent},
   {path: 'adminlogin', component: LoginComponent},
-  {path: 'noticias', component: NewsComponent}
+  {path: 'noticias', component: NewsComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({

@@ -15,11 +15,12 @@ export class CommunitiesComponent implements OnInit {
   }
 
   communities: Communities[];
-  headElements = ['UUID', 'Name', 'Handle', 'Type', 'CountItems'];
+  loading = true;
 
   ngOnInit() {
     this.itemsService.listCommunities().subscribe((communities: Communities[]) => {
       this.communities = communities;
+      this.loading = false;
     });
   }
 }

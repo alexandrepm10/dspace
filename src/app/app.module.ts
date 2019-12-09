@@ -15,10 +15,11 @@ import {ItemSearchComponent} from './item-search/item-search.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CodeHighlighterModule, DropdownModule, TabViewModule} from 'primeng';
 import {CommonModule} from '@angular/common';
-import {MatFormFieldModule, MatSelectModule} from '@angular/material';
 import {BackofficeHomeComponent} from './backoffice/home/home.component';
-import { NewsComponent } from './news/news.component';
-import { LoginComponent } from './backoffice/login/login.component';
+import {NewsComponent} from './news/news.component';
+import {LoginComponent} from './backoffice/login/login.component';
+import {MatFormFieldModule, MatProgressSpinnerModule, MatSelectModule} from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -32,6 +33,9 @@ import { LoginComponent } from './backoffice/login/login.component';
     ItemSearchComponent,
     BackofficeHomeComponent,
     NewsComponent,
+    LoginComponent,
+    AppComponent,
+    HomeComponent,
     LoginComponent
   ],
   imports: [
@@ -51,7 +55,11 @@ import { LoginComponent } from './backoffice/login/login.component';
     TabViewModule,
     CodeHighlighterModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    MatProgressSpinnerModule,
+    BrowserModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
