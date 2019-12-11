@@ -21,6 +21,12 @@
     padding-bottom: 3rem;
     color: #5a5a5a;
   }
+  .card {
+    margin-bottom:30px;
+    width:100%;
+    max-height:450px;    
+    overflow:hidden;
+  }
   
   
   /* CUSTOMIZE THE CAROUSEL
