@@ -19,6 +19,7 @@ import {BackofficeHomeComponent} from './backoffice/home/home.component';
 import {NewsComponent} from './news/news.component';
 import {LoginComponent} from './backoffice/login/login.component';
 import {MatFormFieldModule, MatProgressSpinnerModule, MatSelectModule} from '@angular/material';
+import {ItemsSearchComponent} from './items-search/items-search.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {MatFormFieldModule, MatProgressSpinnerModule, MatSelectModule} from '@an
     LoginComponent,
     AppComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ItemsSearchComponent
   ],
   imports: [
     BrowserModule,

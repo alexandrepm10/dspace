@@ -6,6 +6,9 @@ import {Communities} from './communities.model';
 import {Collections} from './collections.model';
 import {Items} from './items.model';
 import {ItemsDetail} from './item-detail.model';
+import {Search} from './search.model';
+import {ItemsFromSearch} from './items-from-search.model';
+import {ResultFromSearch} from './result-from-search.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -63,4 +66,19 @@ export class ItemsService {
     const url = `${this.baseUrl + 'items/find-by-metadata-field/'}`;
     return this.http.post<Items[]>(url, obj).pipe();
   }
+
+  searchWildItems(map): Observable<ResultFromSearch[]> {
+    const url = `${this.baseUrl +
+    'filtered-items?query_field%5B%5D=' + map.get('queryField') +
+    '&query_op%5B%5D=' + map.get('queryVop') +
+    '&query_val%5B%5D=' + map.get('queryVal') +
+    '&collSel%5B%5D=' +
+    '&limit=' + map.get('limit') +
+    '&offset=' + map.get('offset') +
+    '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
+    // http://localhost:8080/rest/filtered-items?query_field%5B%5D=dc.title&query_op%5B%5D=contains&
+    // query_val%5B%5D=estudo&collSel%5B%5D=&limit=100&offset=0&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none
+    return this.http.get<ResultFromSearch[]>(url).pipe();
+  }
 }
+

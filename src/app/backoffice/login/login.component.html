@@ -2,20 +2,20 @@
     <div class="card card-login mx-auto mt-5">
         <div class="card-header">Login</div>
         <div class="card-body">
-            <form>
-                <div class="form-group">
-                    <div class="form-label-group">
-                        <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
-                            required="required" autofocus="autofocus">
+            <form #login="ngForm" (ngSubmit)="onClickSubmit(login.value)">
+              <div class="form-group">
+                <div class="form-label-group">
+                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address"
+                         required="required" autofocus="autofocus" ngModel>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="form-label-group">
+                  <input type="password" id="inputPassword" class="form-control" placeholder="Password"
+                         required="required" ngModel>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="form-label-group">
-                        <input type="password" id="inputPassword" class="form-control" placeholder="Password"
-                            required="required">
-                    </div>
-                </div>
-                <a class="btn btn-primary btn-block" href="index.html">Login</a>
+              <button class="btn btn-primary btn-block" type="submit">Login</button>
             </form>
         </div>
     </div>

@@ -1,17 +1,21 @@
 <app-nav></app-nav>
 <main role="main" class="container">
 
-  <div class="my-3 p-3 bg-white rounded shadow-sm" *ngIf="items">
-    <h3>{{this.data}}</h3>
-    <table id="tableSortExample" mdbTable class="z-depth-1">
-      <thead>
-      <tr>
-        <th [mdbTableSort]="items" sortBy="uuid">UUID</th>
-        <th [mdbTableSort]="items" sortBy="name">Name</th>
-        <th [mdbTableSort]="items" sortBy="type">Type</th>
-      </tr>
-      <!--      <tr>-->
-      <!--        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="items" [sortBy]="headElements[i]">{{head | titlecase}}-->
+  <div class="my-3 p-3 bg-white rounded shadow-sm" *ngIf="it">
+    <div id="spinner-container" *ngIf="loading else loaded">
+      <mat-spinner style="align-content: center; height: 5%; alignment: center"></mat-spinner>
+    </div>
+    <ng-template #loaded>
+      <h3>{{this.data}}</h3>
+      <table id="tableSortExample" mdbTable class="z-depth-1">
+        <thead>
+        <tr>
+          <th [mdbTableSort]="items" sortBy="items.uuid">UUID</th>
+          <th [mdbTableSort]="items" sortBy="items.name">Name</th>
+          <th [mdbTableSort]="items" sortBy="items.type">Type</th>
+        </tr>
+        <!--      <tr>-->
+        <!--        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="items" [sortBy]="headElements[i]">{{head | titlecase}}-->
       <!--      </tr>-->
       </thead>
       <tbody>
@@ -24,7 +28,8 @@
         <td>{{el.type}}</td>
       </tr>
       </tbody>
-    </table>
+      </table>
+    </ng-template>
     <div>
       <!--      <a [routerLink]="{actualPage: }">-->
       <button mdbBtn type="button" color="primary" mdbWavesEffect>

@@ -21,6 +21,6 @@ export class NavComponent implements OnInit {
 
   onClickSubmit(category) {
     console.log(category);
-    this.router.navigate(['searchitem'], {state: {data: category}});
+    this.router.navigate(['items-search'], {state: {data: category}});
   }
 }

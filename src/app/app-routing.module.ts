@@ -9,6 +9,7 @@ import {ItemSearchComponent} from './item-search/item-search.component';
 import {BackofficeHomeComponent} from './backoffice/home/home.component';
 import {LoginComponent} from './backoffice/login/login.component';
 import {NewsComponent} from './news/news.component';
+import {ItemsSearchComponent} from './items-search/items-search.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: 'admin', component: BackofficeHomeComponent},
   {path: 'adminlogin', component: LoginComponent},
   {path: 'noticias', component: NewsComponent},
-  {path: 'login', component: LoginComponent}
+  {path: 'login', component: LoginComponent},
+  {path: 'items-search', component: ItemsSearchComponent}
 ];
 
 @NgModule({
