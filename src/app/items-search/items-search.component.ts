@@ -2,10 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Items} from '../core/items.model';
 import {ItemsService} from '../core/items.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Search} from '../core/search.model';
-import {ItemsFromSearch} from '../core/items-from-search.model';
 import {ResultFromSearch} from '../core/result-from-search.model';
-import {element} from 'protractor';
+import {Item} from '../shared/item.model';
 
 @Component({
   selector: 'app-items-search',
@@ -15,13 +13,11 @@ import {element} from 'protractor';
 export class ItemsSearchComponent implements OnInit {
 
   constructor(private itemsService: ItemsService, public actRoute: ActivatedRoute, public router: Router) {
-    this.itemsFromSearches = [];
+    this.items = [];
   }
 
-  searchData: Search[];
-  resultFromSearch: ResultFromSearch[];
-  itemsFromSearches: ItemsFromSearch[];
-  itemsResult: Items[];
+  resultFromSearch: ResultFromSearch;
+  items: Items[];
   data: string;
   loading = true;
 
@@ -29,26 +25,23 @@ export class ItemsSearchComponent implements OnInit {
   ngOnInit() {
     // console.log(history.state.data.data);
     const map = new Map()
-      .set('queryField', 'dc.title')
+      .set('queryField', '*')
       .set('queryVop', 'contains')
       .set('queryVal', history.state.data.data)
       .set('limit', 100)
       .set('offset', 0)
       .set('expand', 'parentCollection%2Cmetadata%2Cbitstreams')
       .set('filters', 'none');
-    this.itemsService.searchWildItems(
-      map).subscribe((items: ResultFromSearch[]) => {
-      this.resultFromSearch = items;
-      console.log(this.resultFromSearch[0].items.itemCount.valueOf());
-      this.loading = false;
-      console.log('Numero de items: ' + this.resultFromSearch[0].items);
-      for (let i = 0, leni = this.resultFromSearch.length; i < leni; i++) {
-        console.log('Numero de items: ' + this.resultFromSearch[i].items.itemCount);
-        for (let j = 0, lenj = this.resultFromSearch[i].items.itemCount; j < lenj; j++) {
-          this.itemsResult.push(this.itemsFromSearches[i].items[j]);
-        }
+    this.data = 'Titlo: ' + history.state.data.data;
+    this.itemsService.searchWildItems(map).subscribe((resultFromSearches: ResultFromSearch) => {
+      this.resultFromSearch = resultFromSearches;
+      console.log(this.resultFromSearch.items);
+      let item: Items;
+      for (item of resultFromSearches.items) {
+        this.items.push(item);
       }
-      console.log('ok' + this.itemsResult);
+      console.log(this.items);
+      this.loading = false;
     });
   }
 }

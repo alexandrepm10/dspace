@@ -1,28 +1,40 @@
 <app-nav></app-nav>
 <main role="main" class="container">
 
-  <div class="my-3 p-3 bg-white rounded shadow-sm" *ngIf="items">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
     <div id="spinner-container" *ngIf="loading else loaded">
       <mat-spinner style="align-content: center; height: 5%; alignment: center"></mat-spinner>
     </div>
     <ng-template #loaded>
-      <table id="tableSortExample" mdbTable class="z-depth-1">
+      <table id="tableSortExample" mdbTable class="z-depth-1" *ngIf="items">
         <thead>
         <tr>
-          <th [mdbTableSort]="items" sortBy="uuid">UUID</th>
+          <!--          <th [mdbTableSort]="items" sortBy="uuid">UUID</th>-->
           <th [mdbTableSort]="items" sortBy="name">Name</th>
-          <th [mdbTableSort]="items" sortBy="handle">Handle</th>
-          <th [mdbTableSort]="items" sortBy="type">Type</th>
+          <th>Tipo</th>
+          <th>Autor</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let el of items; let i = index">
-          <th scope="row">{{el.uuid}}</th>
+          <!--          <th scope="row">{{el.uuid}}</th>-->
           <td>
             <a [routerLink]="['/itemsdetail', el.uuid]">{{el.name}}</a>
           </td>
-          <td>{{el.handle}}</td>
-          <td>{{el.type}}</td>
+          <td>
+            <div *ngFor="let eli of items[i].metadata; let j = index">
+              <div *ngIf="eli.key === 'dc.type'">
+                {{eli.value}}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div *ngFor="let eli of items[i].metadata; let j = index">
+              <div *ngIf="eli.key === 'dc.creator'">
+                {{eli.value}}
+              </div>
+            </div>
+          </td>
         </tr>
         </tbody>
       </table>

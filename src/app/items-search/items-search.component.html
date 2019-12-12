@@ -1,37 +1,45 @@
 <app-nav></app-nav>
 <main role="main" class="container">
 
-  <div class="my-3 p-3 bg-white rounded shadow-sm" *ngIf="itemsFromSearches">
+  <div class="my-3 p-3 bg-white rounded shadow-sm">
     <div id="spinner-container" *ngIf="loading else loaded">
       <mat-spinner style="align-content: center; height: 5%; alignment: center"></mat-spinner>
     </div>
     <ng-template #loaded>
-      <h3>{{this.data}}</h3>
-      <table id="tableSortExample" mdbTable class="z-depth-1">
+      <table id="tableSortExample" mdbTable class="z-depth-1" *ngIf="items">
         <thead>
         <tr>
-          <th [mdbTableSort]="itemsFromSearches" sortBy="uuid">UUID</th>
-          <th [mdbTableSort]="itemsFromSearches" sortBy="name">Name</th>
-          <th [mdbTableSort]="itemsFromSearches" sortBy="type">Type</th>
+          <!--          <th [mdbTableSort]="items" sortBy="uuid">UUID</th>-->
+          <th [mdbTableSort]="items" sortBy="name">Name</th>
+          <th>Tipo</th>
+          <th>Autor</th>
         </tr>
-        <!--      <tr>-->
-        <!--        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="items" [sortBy]="headElements[i]">{{head | titlecase}}-->
-        <!--      </tr>-->
         </thead>
         <tbody>
-        <tr *ngFor="let el of itemsResult; let i = index">
-          <!--      <tr mdbTableCol *ngFor="let el of items">-->
-          <th scope="row">{{el.uuid}}</th>
+        <tr *ngFor="let el of items; let i = index">
+          <!--          <th scope="row">{{el.uuid}}</th>-->
           <td>
             <a [routerLink]="['/itemsdetail', el.uuid]">{{el.name}}</a>
           </td>
-          <td>{{el.type}}</td>
+          <td>
+            <div *ngFor="let eli of items[i].metadata; let j = index">
+              <div *ngIf="eli.key === 'dc.type'">
+                {{eli.value}}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div *ngFor="let eli of items[i].metadata; let j = index">
+              <div *ngIf="eli.key === 'dc.creator'">
+                {{eli.value}}
+              </div>
+            </div>
+          </td>
         </tr>
         </tbody>
       </table>
     </ng-template>
     <div>
-      <!--      <a [routerLink]="{actualPage: }">-->
       <button mdbBtn type="button" color="primary" mdbWavesEffect>
         <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>
       </button>
@@ -42,4 +50,23 @@
     </div>
   </div>
 
+
 </main>
+<!--<table mdbTable class="z-depth-1">-->
+<!--  <thead>-->
+<!--  <tr>-->
+<!--    <th [mdbTableSort]="items" sortBy="uuid">UUID</th>-->
+<!--    <th [mdbTableSort]="items" sortBy="name">Name</th>-->
+<!--    <th [mdbTableSort]="items" sortBy="handle">Handle</th>-->
+<!--    <th [mdbTableSort]="items" sortBy="type">Type</th>-->
+<!--  </tr>-->
+<!--  </thead>-->
+<!--  <tbody>-->
+<!--  <tr *ngFor="let el of elements; let i = index">-->
+<!--    <th scope="row">{{el.id}}</th>-->
+<!--    <td>{{el.first.nick}}</td>-->
+<!--    <td>{{el.last}}</td>-->
+<!--    <td>{{el.handle}}</td>-->
+<!--  </tr>-->
+<!--  </tbody>-->
+<!--</table>-->

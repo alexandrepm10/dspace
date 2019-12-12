@@ -10,6 +10,7 @@ import {BackofficeHomeComponent} from './backoffice/home/home.component';
 import {LoginComponent} from './backoffice/login/login.component';
 import {NewsComponent} from './news/news.component';
 import {ItemsSearchComponent} from './items-search/items-search.component';
+import {PdfviewerComponent} from './pdfviewer/pdfviewer.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,7 +25,8 @@ const routes: Routes = [
   {path: 'adminlogin', component: LoginComponent},
   {path: 'noticias', component: NewsComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'items-search', component: ItemsSearchComponent}
+  {path: 'items-search', component: ItemsSearchComponent},
+  {path: 'pdfviewer', component: PdfviewerComponent}
 ];
 
 @NgModule({

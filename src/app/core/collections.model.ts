@@ -2,10 +2,8 @@ export class Collections {
   constructor(
     public uuid: string,
     public name: string,
-    public handle: string,
     public type: string,
-    public link: string,
-    public countItems: string,
+    public numberItems: number,
     public introductoryText: string,
     public shortDescription: string
   ) {

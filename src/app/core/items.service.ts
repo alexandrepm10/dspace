@@ -7,8 +7,9 @@ import {Collections} from './collections.model';
 import {Items} from './items.model';
 import {ItemsDetail} from './item-detail.model';
 import {Search} from './search.model';
-import {ItemsFromSearch} from './items-from-search.model';
 import {ResultFromSearch} from './result-from-search.model';
+import {element} from 'protractor';
+import {Bitstream} from './bitstream.model';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -52,7 +53,7 @@ export class ItemsService {
 
   listSingleItem(uuid): Observable<Items[]> {
     // this.maxOffset = countItems / 25;
-    const url = `${this.baseUrl + 'collections/' + uuid + '/items?limit=25'}`;
+    const url = `${this.baseUrl + 'collections/' + uuid + '/items?limit=50&expand=metadata%2Cbitstreams'}`;
     return this.http.get<Items[]>(url).pipe(retry(1));
   }
 
@@ -62,12 +63,18 @@ export class ItemsService {
     return this.http.get<ItemsDetail[]>(url).pipe(retry(1));
   }
 
+  listItemDetailBitstream(uuid): Observable<Bitstream[]> {
+    // this.maxOffset = countItems / 25;
+    const url = `${this.baseUrl + 'items/' + uuid + '/bitstreams'}`;
+    return this.http.get<Bitstream[]>(url).pipe(retry(1));
+  }
+
   searchItems(obj): Observable<Items[]> {
     const url = `${this.baseUrl + 'items/find-by-metadata-field/'}`;
     return this.http.post<Items[]>(url, obj).pipe();
   }
 
-  searchWildItems(map): Observable<ResultFromSearch[]> {
+  searchWildItems(map): Observable<ResultFromSearch> {
     const url = `${this.baseUrl +
     'filtered-items?query_field%5B%5D=' + map.get('queryField') +
     '&query_op%5B%5D=' + map.get('queryVop') +
@@ -76,9 +83,7 @@ export class ItemsService {
     '&limit=' + map.get('limit') +
     '&offset=' + map.get('offset') +
     '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
-    // http://localhost:8080/rest/filtered-items?query_field%5B%5D=dc.title&query_op%5B%5D=contains&
-    // query_val%5B%5D=estudo&collSel%5B%5D=&limit=100&offset=0&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none
-    return this.http.get<ResultFromSearch[]>(url).pipe();
+    return this.http.get<ResultFromSearch>(url).pipe(retry(1));
   }
 }
 

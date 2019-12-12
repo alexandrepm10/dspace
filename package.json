@@ -29,6 +29,7 @@
     "animate.css": "^3.7.2",
     "chart.js": "^2.9.3",
     "hammerjs": "^2.0.8",
+    "ngx-extended-pdf-viewer": "^1.8.0-rc.3",
     "node-sass": "^4.13.0",
     "primeicons": "^2.0.0",
     "primeng": "^9.0.0-rc.1",

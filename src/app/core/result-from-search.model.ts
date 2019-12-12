@@ -1,9 +1,11 @@
-import {ItemsFromSearch} from './items-from-search.model';
+import {Items} from './items.model';
 
 export class ResultFromSearch {
+  public items: Items[];
   constructor(
-    public items: ItemsFromSearch,
+    items: Items[]
   ) {
+    this.items = items;
   }
 
 }

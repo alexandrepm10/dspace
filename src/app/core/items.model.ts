@@ -1,3 +1,5 @@
+import {ItemsDetail} from './item-detail.model';
+
 export class Items {
   public uuid: string;
 
@@ -9,18 +11,22 @@ export class Items {
 
   public link: string;
 
+  public metadata: ItemsDetail[];
+
   constructor(
     uuid: string,
     name: string,
     handle: string,
     type: string,
     link: string,
+    metadata: ItemsDetail[],
   ) {
     this.link = link;
     this.type = type;
     this.handle = handle;
     this.name = name;
     this.uuid = uuid;
+    this.metadata = metadata;
   }
 }
 
