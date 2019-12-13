@@ -20,6 +20,9 @@ import {NewsComponent} from './news/news.component';
 import {LoginComponent} from './backoffice/login/login.component';
 import {MatFormFieldModule, MatProgressSpinnerModule, MatSelectModule} from '@angular/material';
 import {ItemsSearchComponent} from './items-search/items-search.component';
+import { NewsDetailsComponent } from './news-details/news-details.component';
+import { CreateNewsComponent } from './backoffice/create-news/create-news.component';
+import { EditNewsComponent } from './backoffice/edit-news/edit-news.component';
 
 
 @NgModule({
@@ -38,7 +41,10 @@ import {ItemsSearchComponent} from './items-search/items-search.component';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ItemsSearchComponent
+    ItemsSearchComponent,
+    NewsDetailsComponent,
+    CreateNewsComponent,
+    EditNewsComponent
   ],
   imports: [
     BrowserModule,
