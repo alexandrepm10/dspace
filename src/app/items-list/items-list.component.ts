@@ -3,12 +3,20 @@ import {Items} from '../core/items.model';
 import {ItemsService} from '../core/items.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Collections} from '../core/collections.model';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 
 @Component({
   selector: 'app-items-list',
   templateUrl: './items-list.component.html',
-  styleUrls: ['./items-list.component.css']
+  styleUrls: ['./items-list.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ItemsListComponent implements OnInit {
 

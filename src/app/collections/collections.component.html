@@ -1,42 +1,38 @@
 <app-nav></app-nav>
 <main role="main" class="container">
 
-  <div class="my-3 p-3 bg-white rounded shadow-sm" *ngIf="collections">
+  <div *ngIf="collections">
     <div id="spinner-container" *ngIf="loading else loaded">
       <mat-spinner style="align-content: center; height: 5%; alignment: center"></mat-spinner>
     </div>
     <ng-template #loaded>
-      <table id="tableSortExample" mdbTable class="z-depth-1">
-        <thead>
-        <tr>
-          <!--          <th [mdbTableSort]="collections" sortBy="uuid">UUID</th>-->
-          <th [mdbTableSort]="collections" sortBy="name">Name</th>
-          <th [mdbTableSort]="collections" sortBy="numberItems">Items</th>
-          <!--          <th [mdbTableSort]="collections" sortBy="type">Type</th>-->
-          <!--          <th [mdbTableSort]="collections" sortBy="countItems">Nº Items</th>-->
-        </tr>
-        <!--      <tr>-->
-        <!--        <th *ngFor="let head of headElements; let i = index" aria-controls="tableSortExample" scope="col" [mdbTableSort]="collections" [sortBy]="headElements[i]">{{head | titlecase}}-->
-        <!--      </tr>-->
-        </thead>
-        <tbody>
-        <tr *ngFor="let el of collections; let i = index">
-          <!--      <tr mdbTableCol *ngFor="let el of collections">-->
-          <!--          <th scope="row">{{el.uuid}}</th>-->
-          <td>
-            <a [routerLink]="['/items-list', el.uuid]">{{el.name}}</a>
+      <table mat-table
+             [dataSource]="collections" multiTemplateDataRows
+             class="mat-elevation-z8">
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+          <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+          <td mat-cell *matCellDef="let element"><a [routerLink]="['/items-list', element]">{{element[column]}}</a></td>
+        </ng-container>
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+            <div class="example-element-detail"
+                 [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              <div class="example-element-description">
+                {{element.shortDescription}}
+              </div>
+            </div>
           </td>
-          <td>{{el.numberItems}}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+            class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
         </tr>
-        </tbody>
-        <div>
-          <button mdbBtn type="button" color="primary" mdbWavesEffect>
-            <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>
-          </button>
-          <button mdbBtn type="button" color="default" mdbWavesEffect>
-            <mdb-icon fas icon="arrow-right" class="ml-1"></mdb-icon>
-          </button>
-        </div>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
       </table>
     </ng-template>
   </div>

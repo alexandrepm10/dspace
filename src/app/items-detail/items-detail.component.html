@@ -3,15 +3,15 @@
 
   <div class="my-3 p-3 bg-white rounded shadow-sm">
     <div class="container">
-      <mat-grid-list cols="4" rowHeight="2:1">
-        <mat-grid-tile [colspan]=1>
+      <mat-grid-list cols="4" rowHeight="3:1">
+        <mat-grid-tile [colspan]=1 [rowspan]=3>
           <div *ngFor="let el of itemsDetailsBitstream;">
             <div *ngIf=" el.format==='image/png'">
               <img src="http://localhost:8080{{el.retrieveLink}}">
             </div>
           </div>
         </mat-grid-tile>
-        <mat-grid-tile [colspan]=3>
+        <mat-grid-tile [colspan]=3 [rowspan]=2>
           <div *ngFor="let el of itemsDetails;">
             <div *ngIf=" el.key==='dc.title'">
               <h1>Título: </h1>
@@ -19,27 +19,64 @@
             </div>
           </div>
         </mat-grid-tile>
-      </mat-grid-list>
-
-      <!--<div class="row">
-  <div class="col-4" *ngFor="let el of itemsDetailsBitstream;">
-    <div *ngIf=" el.format==='image/png'">
-      <img src="http://localhost:8080{{el.retrieveLink}}">
-    </div>
-  </div>
-</div>
-<div class="row">
-        <div class="col-8" *ngFor="let el of itemsDetails;">
-          <div *ngIf=" el.key==='dc.title'">
-            <h1>Título: </h1>
-            <h2>{{el.value}}</h2>
+        <mat-grid-tile [colspan]=3 [rowspan]=1>
+          <div *ngFor="let el of itemsDetails;">
+            <div *ngIf=" el.key==='local.theme'">
+              <h6>{{el.value}}</h6>
+            </div>
+            <div *ngIf=" el.key==='dc.title.alternative'">
+              <h6>{{el.value}}</h6>
+            </div>
           </div>
-        </div>-->
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="4" rowHeight="2:1">
+        <mat-grid-tile class="gridSecond" [colspan]=1>
+          <div *ngFor="let el of itemsDetails;">
+            <div *ngIf=" el.key==='dc.date.issued'">
+              <h3>Data: </h3>
+              <h6>{{el.value}}</h6>
+            </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile class="gridSecond" [colspan]=1>
+          <div *ngFor="let el of itemsDetails;">
+            <div *ngIf=" el.key==='dc.identifier.isbn' || el.key==='dc.identifier.issn'">
+              <h3>ISBN: </h3>
+              <h6>{{el.value}}</h6>
+            </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile class="gridSecond" [colspan]=1>
+          <div *ngFor="let el of itemsDetails;">
+            <div *ngIf=" el.key==='local.depositolegal'">
+              <h3>Deposito legal: </h3>
+              <h6>{{el.value}}</h6>
+            </div>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile class="gridSecond" [colspan]=1>
+          <div *ngFor="let el of itemsDetails;">
+            <div *ngIf=" el.key==='local.publish.local'">
+              <h3>Local de publicação: </h3>
+              <h6>{{el.value}}</h6>
+            </div>
+          </div>
+        </mat-grid-tile>
+      </mat-grid-list>
       <div class="row">
+        <div class="col-md-12"><h3>Autor(es): </h3></div>
         <div class="col-md-12" *ngFor="let el of itemsDetails;">
-          <div *ngIf=" el.key==='dc.date.issued'">
-            <h3>Data: </h3>
-            <h6>{{el.value}}</h6>
+          <div *ngIf=" el.key==='dc.creator'  || el.key==='dc.contributor.author'">
+            <h5>{{el.value}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" *ngFor="let el of itemsDetails;">
+          <div *ngIf=" el.key==='dc.publisher'">
+            <h3>Editora: </h3>
+            <h5>{{el.value}}</h5>
           </div>
         </div>
       </div>
@@ -47,6 +84,14 @@
         <div class="col-sm-12" *ngFor="let el of itemsDetails;">
           <div *ngIf=" el.key==='dc.description'">
             <h3>Descrição: </h3>
+            <h5>{{el.value}}</h5>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12" *ngFor="let el of itemsDetails;">
+          <div *ngIf=" el.key==='dc.identifier.citation'">
+            <h3>Citação: </h3>
             <h5>{{el.value}}</h5>
           </div>
         </div>

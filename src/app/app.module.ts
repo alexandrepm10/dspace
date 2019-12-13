@@ -18,10 +18,9 @@ import {CommonModule} from '@angular/common';
 import {BackofficeHomeComponent} from './backoffice/home/home.component';
 import {NewsComponent} from './news/news.component';
 import {LoginComponent} from './backoffice/login/login.component';
-import {MatFormFieldModule, MatGridListModule, MatProgressSpinnerModule, MatSelectModule} from '@angular/material';
+import {MatFormFieldModule, MatGridListModule, MatProgressSpinnerModule, MatSelectModule, MatTableModule} from '@angular/material';
 import {ItemsSearchComponent} from './items-search/items-search.component';
 import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
-import {PdfviewerComponent} from './pdfviewer/pdfviewer.component';
 
 
 @NgModule({
@@ -40,8 +39,7 @@ import {PdfviewerComponent} from './pdfviewer/pdfviewer.component';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ItemsSearchComponent,
-    PdfviewerComponent
+    ItemsSearchComponent
   ],
   imports: [
     BrowserModule,
@@ -66,7 +64,8 @@ import {PdfviewerComponent} from './pdfviewer/pdfviewer.component';
     ReactiveFormsModule,
     HttpClientModule,
     NgxExtendedPdfViewerModule,
-    MatGridListModule
+    MatGridListModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

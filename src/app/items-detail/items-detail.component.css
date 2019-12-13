@@ -3,7 +3,11 @@ main {
   color: #5a5a5a;
 }
 
-h6 {
+.row {
+  padding-bottom: 20px;
+}
+
+.gridSecond {
 
 }
 

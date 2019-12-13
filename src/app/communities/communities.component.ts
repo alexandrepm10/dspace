@@ -1,11 +1,19 @@
 import {Component, OnInit} from '@angular/core';
 import {ItemsService} from '../core/items.service';
 import {Communities} from '../core/communities.model';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-communities',
   templateUrl: './communities.component.html',
-  styleUrls: ['./communities.component.css']
+  styleUrls: ['./communities.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 
 export class CommunitiesComponent implements OnInit {
@@ -14,6 +22,8 @@ export class CommunitiesComponent implements OnInit {
     this.communities = [];
   }
 
+  columnsToDisplay = ['name', 'countItems'];
+  expandedElement: Communities | null;
   communities: Communities[];
   loading = true;
 

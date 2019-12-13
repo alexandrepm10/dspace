@@ -1,26 +1,40 @@
 <app-nav></app-nav>
 <main role="main" class="container">
 
-  <div class="my-3 p-3 bg-white rounded shadow-sm" *ngIf="communities">
+  <h1 style="color: red">Perguntar acerca do header das tabelas</h1>
+  <div *ngIf="communities">
     <div id="spinner-container" *ngIf="loading else loaded">
       <mat-spinner style="align-content: center; height: 5%; alignment: center"></mat-spinner>
     </div>
     <ng-template #loaded>
-      <table id="tableSortExample" mdbTable class="z-depth-1">
-        <thead>
-        <tr>
-          <th [mdbTableSort]="communities" sortBy="name">Name</th>
-          <th [mdbTableSort]="communities" sortBy="countItems">Nº Items</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr *ngFor="let el of communities; let i = index">
-          <td>
-            <a [routerLink]="['/collections', el.uuid]">{{el.name}}</a>
+      <table mat-table
+             [dataSource]="communities" multiTemplateDataRows
+             class="mat-elevation-z8">
+        <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+          <th [mdbTableSort]="communities" sortBy="{{column}}" mat-header-cell *matHeaderCellDef> {{column}} </th>
+          <td mat-cell *matCellDef="let element"><a [routerLink]="['/collections', element]">{{element[column]}}</a>
           </td>
-          <td>{{el.countItems}}</td>
+        </ng-container>
+
+        <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+        <ng-container matColumnDef="expandedDetail">
+          <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplay.length">
+            <div class="example-element-detail"
+                 [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+              <div class="example-element-description">
+                {{element.shortDescription}}
+              </div>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+            class="example-element-row"
+            [class.example-expanded-row]="expandedElement === element"
+            (click)="expandedElement = expandedElement === element ? null : element">
         </tr>
-        </tbody>
+        <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
       </table>
     </ng-template>
   </div>
