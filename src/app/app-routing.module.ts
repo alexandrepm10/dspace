@@ -6,10 +6,14 @@ import {ItemsDetailComponent} from './items-detail/items-detail.component';
 import {CommunitiesComponent} from './communities/communities.component';
 import {CollectionsComponent} from './collections/collections.component';
 import {ItemSearchComponent} from './item-search/item-search.component';
+import {NewsComponent} from './news/news.component';
+import {NewsDetailsComponent} from './news-details/news-details.component';
+import {ItemsSearchComponent} from './items-search/items-search.component';
 import {BackofficeHomeComponent} from './backoffice/home/home.component';
 import {LoginComponent} from './backoffice/login/login.component';
-import {NewsComponent} from './news/news.component';
-import {ItemsSearchComponent} from './items-search/items-search.component';
+import {CreateNewsComponent} from './backoffice/create-news/create-news.component';
+import {EditNewsComponent} from './backoffice/edit-news/edit-news.component';
+
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'items-list/:uuid', component: ItemsListComponent},
@@ -22,8 +26,11 @@ const routes: Routes = [
   {path: 'admin', component: BackofficeHomeComponent},
   {path: 'adminlogin', component: LoginComponent},
   {path: 'noticias', component: NewsComponent},
+  {path: 'noticias/1', component: NewsDetailsComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'items-search', component: ItemsSearchComponent}
+  {path: 'items-search', component: ItemsSearchComponent},
+  {path: 'create-news', component: CreateNewsComponent},
+  {path: 'edit-news/:id', component: EditNewsComponent}
 ];
 
 @NgModule({

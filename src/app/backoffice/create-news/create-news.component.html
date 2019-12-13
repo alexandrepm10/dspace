@@ -58,55 +58,72 @@
         <li class="breadcrumb-item">
           <a [routerLink]="['/admin']">Dashboard</a>
         </li>
-        <li class="breadcrumb-item active">Overview</li>
+        <li class="breadcrumb-item active">Criar Notícia</li>
       </ol>
 
-      <hr />
-      <a [routerLink]="['/create-news']"
-        ><button class="btn btn-success btn-xs">
-          <i class="fas fa-plus-circle"></i> CRIAR NOVA
-        </button></a
+      <form
+        class="col-md-12"
+        [formGroup]="newsCreateForm"
+        (ngSubmit)="onSubmit()"
+        novalidate
       >
-      <hr />
-
-      <!-- Tables -->
-      <div *ngIf="News.length !== 0">
-        <div class="table-responsive">
-          <table
-            class="table table-bordered"
-            id="dataTable"
-            width="100%"
-            cellspacing="0"
-          >
-            <thead>
-              <tr>
-                <th>Title</th>
-                <th>Short Description</th>
-                <th>Date</th>
-                <th>Options</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let new of News">
-                <td>{{ new.Title }}</td>
-                <td>{{ new.Short_description }}</td>
-                <td>{{ new.Date }}</td>
-                <td>
-                  <a [routerLink]="['/edit-news', new.Id]">
-                    <button class="btn btn-primary">
-                      <i class="fas fa-edit"></i>
-                    </button>
-                  </a>
-                  &nbsp;
-                  <button class="btn btn-danger">
-                    <i class="fas fa-trash-alt"></i>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <div class="form-row">
+          <div class="form-group col-md-12">
+            <label for="inputTitle">Titulo:</label>
+            <input
+              formControlName="newsTitle"
+              type="text"
+              class="form-control"
+              id="inputTitle"
+              placeholder="Titulo"
+            />
+          </div>
+          <div class="form-group col-md-12">
+            <label for="inputShortDescription">Breve Descrição:</label>
+            <input
+              formControlName="newsShortDescription"
+              type="text"
+              class="form-control"
+              id="inputShortDescription"
+              placeholder="Pequena Descrição"
+            />
+          </div>
         </div>
-      </div>
+        <div class="form-group">
+          <label for="inputContent">Conteúdo:</label>
+          <textarea
+            formControlName="newsContent"
+            class="form-control"
+            id="inputContent"
+            placeholder="Texto da noticia..."
+          ></textarea>
+        </div>
+        <div class="form-group">
+          <label for="inputDate">Data:</label>
+          <input
+            formControlName="newsDate"
+            type="date"
+            class="form-control"
+            id="inputDate"
+            placeholder="01/01/2040"
+          />
+        </div>
+        <button
+          [disabled]="!newsCreateForm.valid"
+          type="submit"
+          class="btn btn-primary col-md-12 mb-2"
+        >
+          CRIAR
+        </button>
+        <a
+          [routerLink]="['/admin']"
+          class="btn btn-danger btn-block"
+          role="button"
+          >CANCELAR</a
+        >
+      </form>
+
+
     </div>
     <!-- /.container-fluid -->
   </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ItemsService} from '../../core/items.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BackofficeHomeComponent implements OnInit {
 
-  constructor() { }
+  News: any = [];
+
+  constructor(private itemsService: ItemsService) { }
 
   ngOnInit() {
+    this.loadNews()
   }
+
+    // Get employees list
+    loadNews() {
+      return this.itemsService.getNews().subscribe((data: {}) => {
+        this.News = data;
+      })
+    }
 
 }

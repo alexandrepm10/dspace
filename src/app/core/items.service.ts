@@ -1,16 +1,14 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs';
-import {retry} from 'rxjs/operators';
-import {Communities} from './communities.model';
-import {Collections} from './collections.model';
-import {Items} from './items.model';
-import {ItemsDetail} from './item-detail.model';
-import {Search} from './search.model';
-import {ResultFromSearch} from './result-from-search.model';
-import {element} from 'protractor';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+import { Communities } from './communities.model';
+import { Collections } from './collections.model';
+import { Items } from './items.model';
+import { ItemsDetail } from './item-detail.model';
+import { News } from './news';
+import { ResultFromSearch } from './result-from-search.model';
 import {Bitstream} from './bitstream.model';
-
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/xml',
@@ -24,6 +22,9 @@ const httpOptions = {
 export class ItemsService {
 
   private baseUrl = 'http://localhost:8080/rest/';
+  // Define API
+  apiURL = 'http://localhost:3000';
+
   public maxOffset: number;
 
   constructor(
@@ -84,6 +85,53 @@ export class ItemsService {
     '&offset=' + map.get('offset') +
     '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
     return this.http.get<ResultFromSearch>(url).pipe(retry(1));
+  }
+
+  // HttpClient API get() method => Fetch news list
+  getNews(): Observable<News[]> {
+    return this.http.get<News[]>(this.apiURL + '/news').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  // HttpClient API get() method => particular news
+  getSingleNews(id): Observable<News> {
+    return this.http.get<News>(this.apiURL + '/news/' + id).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  // HttpClient API put() method => Update patient
+  updateNews(id, news) {
+    return this.http.put(this.apiURL + '/news?id=' + id, news).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  // HttpClient API post() method => Create patient
+  createNews(news) {
+    return this.http.post(this.apiURL + '/news', news).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+
+  // Error handling
+  handleError(error) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    window.alert(errorMessage);
+    return throwError(errorMessage);
   }
 }
 

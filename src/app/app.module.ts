@@ -21,6 +21,9 @@ import {LoginComponent} from './backoffice/login/login.component';
 import {MatFormFieldModule, MatGridListModule, MatProgressSpinnerModule, MatSelectModule, MatTableModule} from '@angular/material';
 import {ItemsSearchComponent} from './items-search/items-search.component';
 import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
+import { NewsDetailsComponent } from './news-details/news-details.component';
+import { CreateNewsComponent } from './backoffice/create-news/create-news.component';
+import { EditNewsComponent } from './backoffice/edit-news/edit-news.component';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
     AppComponent,
     HomeComponent,
     LoginComponent,
-    ItemsSearchComponent
+    ItemsSearchComponent,
+    NewsDetailsComponent,
+    CreateNewsComponent,
+    EditNewsComponent
   ],
   imports: [
     BrowserModule,
