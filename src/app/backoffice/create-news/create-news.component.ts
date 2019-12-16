@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import {ItemsService} from '../../core/items.service';
-import { FormBuilder, Validators } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {ApiService} from '../../core/api.service';
+import {FormBuilder, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-create-news',
@@ -19,7 +19,8 @@ export class CreateNewsComponent implements OnInit {
   });
 
 
-  constructor(public api: ItemsService, private formBuilder: FormBuilder) { }
+  constructor(public api: ApiService, private formBuilder: FormBuilder) {
+  }
 
   ngOnInit() {
   }

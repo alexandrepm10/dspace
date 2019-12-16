@@ -1,27 +1,33 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { retry, catchError } from 'rxjs/operators';
-import { Communities } from './communities.model';
-import { Collections } from './collections.model';
-import { Items } from './items.model';
-import { ItemsDetail } from './item-detail.model';
-import { News } from './news';
-import { ResultFromSearch } from './result-from-search.model';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable, throwError} from 'rxjs';
+import {retry, catchError} from 'rxjs/operators';
+import {Communities} from './communities.model';
+import {Collections} from './collections.model';
+import {Items} from './items.model';
+import {ItemsDetail} from './metadata.model';
+import {News} from './news';
+import {ResultFromSearch} from './search';
 import {Bitstream} from './bitstream.model';
+import {Status} from './status.model';
+
+
 const httpOptions = {
   headers: new HttpHeaders({
-    'Content-Type': 'application/xml',
-    Authorization: 'jwt-token'
+    'Access-Control-Allow-Origin': '*',
+    accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'accept-encoding': 'gzip, deflate, br',
+    'accept-language': 'en-US,en;q=0.9,pt;q=0.8',
+    'cache-control': 'max-age=0'
   })
 };
 
 @Injectable({
   providedIn: 'root',
 })
-export class ItemsService {
+export class ApiService {
 
-  private baseUrl = 'http://localhost:8080/rest/';
+  private baseUrl = '/rest/';
   // Define API
   apiURL = 'http://localhost:3000';
 
@@ -84,7 +90,22 @@ export class ItemsService {
     '&limit=' + map.get('limit') +
     '&offset=' + map.get('offset') +
     '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
-    return this.http.get<ResultFromSearch>(url).pipe(retry(1));
+    return this.http.get<ResultFromSearch>(url).pipe();
+  }
+
+  login(obj) {
+    const url = this.baseUrl + 'login/';
+    return this.http.post(url, obj).pipe();
+  }
+
+  logout(obj) {
+    const url = this.baseUrl + 'logout/';
+    return this.http.get(url).pipe();
+  }
+
+  status(obj): Observable<Status> {
+    const url = this.baseUrl + 'status/';
+    return this.http.get<Status>(url).pipe();
   }
 
   // HttpClient API get() method => Fetch news list

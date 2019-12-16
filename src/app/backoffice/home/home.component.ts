@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ItemsService} from '../../core/items.service';
+import {Component, OnInit} from '@angular/core';
+import {ApiService} from '../../core/api.service';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +10,8 @@ export class BackofficeHomeComponent implements OnInit {
 
   News: any = [];
 
-  constructor(private itemsService: ItemsService) { }
+  constructor(private itemsService: ApiService) {
+  }
 
   ngOnInit() {
     this.loadNews()

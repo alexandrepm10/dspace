@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Items} from '../core/items.model';
-import {ItemsService} from '../core/items.service';
+import {ApiService} from '../core/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {ResultFromSearch} from '../core/result-from-search.model';
+import {ResultFromSearch} from '../core/search';
 import {Item} from '../shared/item.model';
 
 @Component({
@@ -12,7 +12,7 @@ import {Item} from '../shared/item.model';
 })
 export class ItemsSearchComponent implements OnInit {
 
-  constructor(private itemsService: ItemsService, public actRoute: ActivatedRoute, public router: Router) {
+  constructor(private itemsService: ApiService, public actRoute: ActivatedRoute, public router: Router) {
     this.items = [];
   }
 
@@ -24,10 +24,11 @@ export class ItemsSearchComponent implements OnInit {
 
   ngOnInit() {
     // console.log(history.state.data.data);
+    const queryVal = history.state.data.data;
     const map = new Map()
       .set('queryField', '*')
       .set('queryVop', 'contains')
-      .set('queryVal', history.state.data.data)
+      .set('queryVal', queryVal)
       .set('limit', 100)
       .set('offset', 0)
       .set('expand', 'parentCollection%2Cmetadata%2Cbitstreams')
@@ -35,12 +36,6 @@ export class ItemsSearchComponent implements OnInit {
     this.data = 'Titlo: ' + history.state.data.data;
     this.itemsService.searchWildItems(map).subscribe((resultFromSearches: ResultFromSearch) => {
       this.resultFromSearch = resultFromSearches;
-      console.log(this.resultFromSearch.items);
-      let item: Items;
-      for (item of resultFromSearches.items) {
-        this.items.push(item);
-      }
-      console.log(this.items);
       this.loading = false;
     });
   }

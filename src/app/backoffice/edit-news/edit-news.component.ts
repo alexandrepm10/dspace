@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { ItemsService } from '../../core/items.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ApiService} from '../../core/api.service';
+import {ActivatedRoute, Router} from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { News } from '../../core/news';
 
@@ -25,11 +25,12 @@ export class EditNewsComponent implements OnInit {
   });
 
 
-  constructor(private api: ItemsService,
-    public actRoute: ActivatedRoute,
-    public router: Router,
-    private formBuilder: FormBuilder
-  ) { }
+  constructor(private api: ApiService,
+              public actRoute: ActivatedRoute,
+              public router: Router,
+              private formBuilder: FormBuilder
+  ) {
+  }
 
   ngOnInit() {
     this.actRoute.queryParams.subscribe(queryParams => {

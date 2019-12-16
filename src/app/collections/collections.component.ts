@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ItemsService} from '../core/items.service';
+import {ApiService} from '../core/api.service';
 import {Collections} from '../core/collections.model';
 import {ActivatedRoute, Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
@@ -20,7 +20,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 export class CollectionsComponent implements OnInit {
 
 
-  constructor(private itemsService: ItemsService, public actRoute: ActivatedRoute, public router: Router) {
+  constructor(private itemsService: ApiService, public actRoute: ActivatedRoute, public router: Router) {
     this.collections = [];
   }
 

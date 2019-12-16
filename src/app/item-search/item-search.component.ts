@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ItemsService} from '../core/items.service';
+import {ApiService} from '../core/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Items} from '../core/items.model';
-import {ItemsDetail} from '../core/item-detail.model';
+import {ItemsDetail} from '../core/metadata.model';
 import {Search} from '../core/search.model';
 
 
@@ -13,7 +13,7 @@ import {Search} from '../core/search.model';
 })
 export class ItemSearchComponent implements OnInit {
 
-  constructor(private itemsService: ItemsService, public actRoute: ActivatedRoute, public router: Router) {
+  constructor(private itemsService: ApiService, public actRoute: ActivatedRoute, public router: Router) {
     this.items = [];
   }
 

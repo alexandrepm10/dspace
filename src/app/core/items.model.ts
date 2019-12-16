@@ -1,4 +1,4 @@
-import {ItemsDetail} from './item-detail.model';
+import {ItemsDetail} from './metadata.model';
 
 export class Items {
   public uuid: string;

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ItemsService} from '../core/items.service';
+import {ApiService} from '../core/api.service';
 import {Communities} from '../core/communities.model';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 
@@ -18,7 +18,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 
 export class CommunitiesComponent implements OnInit {
 
-  constructor(private itemsService: ItemsService) {
+  constructor(private itemsService: ApiService) {
     this.communities = [];
   }
 

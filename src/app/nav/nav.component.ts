@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ItemsDetail} from '../core/item-detail.model';
-import {ItemsService} from '../core/items.service';
+import {ItemsDetail} from '../core/metadata.model';
+import {ApiService} from '../core/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private itemsService: ItemsService, public actRoute: ActivatedRoute, public router: Router) {
+  constructor(private itemsService: ApiService, public actRoute: ActivatedRoute, public router: Router) {
     this.items = [];
   }
 
