@@ -54,16 +54,16 @@ export class ApiService {
     );
   }
 
-  setLoggedIn(value: boolean) {
+  setLoggedInStatus(value: boolean) {
     this.loggedInStatus = value;
-  }
-
-  isLoggedIn(): Observable<Status> {
-    return this.http.get<Status>(this.baseUrl + 'status');
   }
 
   get isLoggedInSetted() {
     return this.loggedInStatus;
+  }
+
+  isLoggedIn(): Observable<Status> {
+    return this.http.get<Status>(this.baseUrl + 'status');
   }
 
   logout() {

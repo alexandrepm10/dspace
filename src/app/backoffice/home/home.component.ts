@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../core/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,8 @@ export class BackofficeHomeComponent implements OnInit {
 
   News: any = [];
 
-  constructor(private api: ApiService) {
+  constructor(private api: ApiService,
+    public router: Router) {
   }
 
   ngOnInit() {
@@ -24,9 +26,10 @@ export class BackofficeHomeComponent implements OnInit {
     })
   }
 
-  myFunc() {
-    this.api.setLoggedIn(false);
+  logout() {
+    this.api.setLoggedInStatus(false);
     this.api.logout().subscribe();
+    this.router.navigate(['admin/login']);
     console.log("logout");
   }
 

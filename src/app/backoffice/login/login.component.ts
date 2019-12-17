@@ -24,19 +24,15 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*const body = document.getElementsByTagName('body')[0];
-    body.classList.add('bg-dark');*/
   }
 
-  onSubmit() {
+  onSubmit() {    
     const user = this.loginDetailsForm.get('user').value;
     const pass = this.loginDetailsForm.get('pass').value;
 
-    console.log(user + ' - ' + pass);
-
     this.api.loginUser(user, pass).
       subscribe(data => {
-        this.api.setLoggedIn(true);
+        this.api.setLoggedInStatus(true);
         this.router.navigate(['admin']);
       }
       );

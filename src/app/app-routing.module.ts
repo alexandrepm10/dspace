@@ -24,14 +24,13 @@ const routes: Routes = [
   { path: 'collections/:uuid', component: CollectionsComponent },
   { path: 'collections', component: CollectionsComponent },
   { path: 'searchitem', component: ItemSearchComponent },
-  { path: 'admin', component: BackofficeHomeComponent, canActivate: [AuthGuard] },
-  { path: 'adminlogin', component: LoginComponent },
   { path: 'noticias', component: NewsComponent },
   { path: 'noticias/1', component: NewsDetailsComponent },
-  { path: 'login', component: LoginComponent },
   { path: 'items-search', component: ItemsSearchComponent },
-  { path: 'create-news', component: CreateNewsComponent },
-  { path: 'edit-news/:id', component: EditNewsComponent }
+  { path: 'admin', component: BackofficeHomeComponent, canActivate: [AuthGuard] },
+  { path: 'admin/login', component: LoginComponent },
+  { path: 'admin/create-news', component: CreateNewsComponent, canActivate: [AuthGuard] },
+  { path: 'admin/edit-news/:id', component: EditNewsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({
