@@ -18,12 +18,20 @@ import {CommonModule} from '@angular/common';
 import {BackofficeHomeComponent} from './backoffice/home/home.component';
 import {NewsComponent} from './news/news.component';
 import {LoginComponent} from './backoffice/login/login.component';
-import {MatFormFieldModule, MatGridListModule, MatProgressSpinnerModule, MatSelectModule, MatTableModule} from '@angular/material';
+import {
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatGridListModule,
+  MatProgressSpinnerModule,
+  MatSelectModule,
+  MatTableModule, MatTabsModule
+} from '@angular/material';
 import {ItemsSearchComponent} from './items-search/items-search.component';
 import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
 import { NewsDetailsComponent } from './news-details/news-details.component';
 import { CreateNewsComponent } from './backoffice/create-news/create-news.component';
-import { EditNewsComponent } from './backoffice/edit-news/edit-news.component';
+import {EditNewsComponent} from './backoffice/edit-news/edit-news.component';
+import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -71,7 +79,10 @@ import { EditNewsComponent } from './backoffice/edit-news/edit-news.component';
     HttpClientModule,
     NgxExtendedPdfViewerModule,
     MatGridListModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule,
+    MatTabsModule,
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

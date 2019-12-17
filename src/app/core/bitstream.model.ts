@@ -46,7 +46,7 @@ export class Bitstream {
             "policies",
             "all"
         ],
-        "bundleName": "ORIGINAL",
+        "bundleName": "ORIGINAL"
         "description": "Ficheiro exemplo",
         "format": "Adobe PDF",
         "mimeType": "application/pdf",

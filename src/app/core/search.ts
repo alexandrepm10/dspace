@@ -5,7 +5,7 @@ export class ResultFromSearch {
   public description: string;
   constructor(
     items: Items[],
-    description: string,
+    description: string
   ) {
     this.description = description;
     this.items = items;

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Items} from '../core/items.model';
 import {ApiService} from '../core/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {Collections} from '../core/collections.model';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ResultFromSearch} from '../core/search';
+import {FilteredCollections} from '../core/filtered-collections.model';
 
 
 @Component({
@@ -22,22 +22,42 @@ export class ItemsListComponent implements OnInit {
 
 
   constructor(private itemsService: ApiService, public actRoute: ActivatedRoute, public router: Router) {
-    this.items = [];
+    this.page = 0;
   }
 
-  items: Items[];
+  prevPage = false;
+  nextPage = false;
+  page: number;
+  filteredCollections: FilteredCollections;
   loading = true;
 
   ngOnInit() {
     if (this.actRoute.snapshot.params['uuid']) {
-      // this.maxOffSet = this.actRoute.snapshot.params['countItems'] / 10;
-      this.itemsService.listSingleItem(this.actRoute.snapshot.params['uuid']).subscribe((items: Items[]) => {
-        this.items = items;
+      this.itemsService.listSingleItem(this.actRoute.snapshot.params['uuid']).subscribe((filteredCollections: FilteredCollections) => {
+        this.filteredCollections = filteredCollections;
+        if (this.filteredCollections.numberItemsProcessed > 0) {
+          this.nextPage = true;
+        }
         this.loading = false;
       });
     } else {
-      this.itemsService.listItems().subscribe((items: Items[]) => {
-        this.items = items;
+      alert('Error por favor volte atrás.');
+    }
+  }
+
+  public onClick(page) {
+    console.log('Função click page: ' + page);
+    this.page = this.page + page;
+    console.log('Função click this.page: ' + this.page);
+    if (this.page > -1) {
+      this.itemsService.listSingleItem(this.actRoute.snapshot.params['uuid'], this.page).subscribe((filteredCollections: FilteredCollections) => {
+        this.filteredCollections = filteredCollections;
+        if (this.filteredCollections.numberItemsProcessed !== 0) {
+          this.nextPage = true;
+        }
+        if (this.page > 0) {
+          this.prevPage = true;
+        }
         this.loading = false;
       });
     }

@@ -10,6 +10,8 @@ import {News} from './news';
 import {ResultFromSearch} from './search';
 import {Bitstream} from './bitstream.model';
 import {Status} from './status.model';
+import {Search} from './search.model';
+import {FilteredCollections} from './filtered-collections.model';
 
 
 const httpOptions = {
@@ -53,15 +55,37 @@ export class ApiService {
     return this.http.get<Collections[]>(url).pipe(retry(1));
   }
 
-  listItems(): Observable<Items[]> {
-    const url = `${this.baseUrl + 'items'}/`;
-    return this.http.get<Items[]>(url).pipe(retry(1));
+  listItems(): Observable<ResultFromSearch> {
+    const url = `${this.baseUrl +
+    'filtered-items?query_field%5B%5D=*' +
+    '&query_op%5B%5D=contains' +
+    '&query_val%5B%5D=' +
+    '&collSel%5B%5D=' +
+    '&limit=100' +
+    '&offset=0' +
+    '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
+    return this.http.get<ResultFromSearch>(url).pipe(retry(1));
   }
 
-  listSingleItem(uuid): Observable<Items[]> {
-    // this.maxOffset = countItems / 25;
-    const url = `${this.baseUrl + 'collections/' + uuid + '/items?limit=50&expand=metadata%2Cbitstreams'}`;
-    return this.http.get<Items[]>(url).pipe(retry(1));
+  listSingleItem(uuid, page?): Observable<FilteredCollections> {
+    var limit = 50;
+    var offSet = 0;
+    console.log('api page:' + page);
+    if (page == null) {
+      offSet = 0;
+    } else if (page > 0) {
+      offSet = limit * page;
+    } else if (page < -1) {
+      offSet = limit / page;
+    }
+    // filtered-collections/ecfc5518-458d-4d28-99e4-24bac8086a2d?expand=items&limit=2&filters=&offset=0&show_fields%5B%5D=null&show_fields_bits%5B%5D=null
+    console.log('api offset:' + offSet);
+    const url = `${this.baseUrl +
+    'filtered-collections/' + uuid +
+    '?expand=items%2Cmetadata%2Cbitstreams&limit=' + limit +
+    '&filters=&offset=' + offSet +
+    '&show_fields%5B%5D=null&show_fields_bits%5B%5D=null'}`;
+    return this.http.get<FilteredCollections>(url).pipe(retry(1));
   }
 
   listItemDetail(uuid): Observable<ItemsDetail[]> {

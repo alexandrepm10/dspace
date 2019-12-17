@@ -24,6 +24,7 @@
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@fullcalendar/core": "^4.3.1",
     "@fullcalendar/daygrid": "^4.3.0",
+    "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "@types/chart.js": "^2.9.2",
     "angular-bootstrap-md": "^8.7.0",
     "animate.css": "^3.7.2",

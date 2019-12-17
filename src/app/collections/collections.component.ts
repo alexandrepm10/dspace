@@ -8,13 +8,6 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
   selector: 'app-collections',
   templateUrl: './collections.component.html',
   styleUrls: ['./collections.component.css'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
 })
 
 export class CollectionsComponent implements OnInit {
@@ -24,8 +17,6 @@ export class CollectionsComponent implements OnInit {
     this.collections = [];
   }
 
-  columnsToDisplay = ['name', 'numberItems'];
-  expandedElement: Collections | null;
   collections: Collections[];
   loading = true;
 

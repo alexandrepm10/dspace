@@ -3,7 +3,6 @@ import {ApiService} from '../core/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Items} from '../core/items.model';
 import {ItemsDetail} from '../core/metadata.model';
-import {Search} from '../core/search.model';
 
 
 @Component({

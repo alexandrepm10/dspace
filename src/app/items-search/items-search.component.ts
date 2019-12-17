@@ -3,7 +3,6 @@ import {Items} from '../core/items.model';
 import {ApiService} from '../core/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResultFromSearch} from '../core/search';
-import {Item} from '../shared/item.model';
 
 @Component({
   selector: 'app-items-search',

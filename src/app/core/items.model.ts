@@ -1,4 +1,5 @@
 import {ItemsDetail} from './metadata.model';
+import {Bitstream} from './bitstream.model';
 
 export class Items {
   public uuid: string;
@@ -13,6 +14,8 @@ export class Items {
 
   public metadata: ItemsDetail[];
 
+  public bitstream: Bitstream[];
+
   constructor(
     uuid: string,
     name: string,
@@ -20,6 +23,7 @@ export class Items {
     type: string,
     link: string,
     metadata: ItemsDetail[],
+    bitstream: Bitstream[],
   ) {
     this.link = link;
     this.type = type;
@@ -27,6 +31,7 @@ export class Items {
     this.name = name;
     this.uuid = uuid;
     this.metadata = metadata;
+    this.bitstream = bitstream;
   }
 }
 
