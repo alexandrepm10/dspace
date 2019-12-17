@@ -39,7 +39,7 @@
                   </mat-tab>
                   <mat-tab label="Descrição">
                     <div *ngFor="let elj of eli.metadata">
-                      <div *ngIf="elj.key === 'dc.description'">
+                      <div *ngIf="elj.key === 'dc.description' || elj.key === 'dc.description.abstract'">
                         {{elj.value}}
                       </div>
                     </div>
@@ -50,14 +50,15 @@
           </mat-expansion-panel>
         </div>
       </mat-accordion>
+      <div>
+        <button mdbBtn type="button" color="primary" mdbWavesEffect *ngIf="prevPage" (click)="onClick(-1)">
+          <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>
+        </button>
+        {{itemsProcessed}} de {{filteredCollections.numberItems}}
+        <button mdbBtn type="button" color="default" mdbWavesEffect *ngIf="nextPage" (click)="onClick(1)">
+          <mdb-icon fas icon="arrow-right" class="ml-1"></mdb-icon>
+        </button>
+      </div>
     </ng-template>
-    <div>
-      <button mdbBtn type="button" color="primary" mdbWavesEffect *ngIf="prevPage" (click)="onClick(-1)">
-        <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>
-      </button>
-      <button mdbBtn type="button" color="default" mdbWavesEffect *ngIf="nextPage" (click)="onClick(1)">
-        <mdb-icon fas icon="arrow-right" class="ml-1"></mdb-icon>
-      </button>
-    </div>
   </div>
 </main>

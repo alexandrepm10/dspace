@@ -19,7 +19,7 @@ a {
 }
 
 .example-headers-align .mat-expansion-panel-header-description {
-  justify-content: space-between;
+  justify-content: left;
   align-items: center;
 }
 
@@ -62,3 +62,6 @@ mat-form-field {
   align-self: flex-start;
 }
 
+.mat-grid-tile .mat-figure {
+  justify-content: left;
+}

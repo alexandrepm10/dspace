@@ -67,18 +67,17 @@ export class ApiService {
     return this.http.get<ResultFromSearch>(url).pipe(retry(1));
   }
 
-  listSingleItem(uuid, page?): Observable<FilteredCollections> {
+  listSingleItem(uuid, page?, offset?): Observable<FilteredCollections> {
     var limit = 50;
-    var offSet = 0;
-    console.log('api page:' + page);
-    if (page == null) {
-      offSet = 0;
-    } else if (page > 0) {
-      offSet = limit * page;
-    } else if (page < -1) {
-      offSet = limit / page;
+    if (offSet == null || offSet == undefined) {
+      if (page == null || page == 0) {
+        var offSet = 0;
+      } else if (page > 0) {
+        var offSet = limit * page;
+      } else if (page < -1) {
+        var offSet = limit / page;
+      }
     }
-    // filtered-collections/ecfc5518-458d-4d28-99e4-24bac8086a2d?expand=items&limit=2&filters=&offset=0&show_fields%5B%5D=null&show_fields_bits%5B%5D=null
     console.log('api offset:' + offSet);
     const url = `${this.baseUrl +
     'filtered-collections/' + uuid +
