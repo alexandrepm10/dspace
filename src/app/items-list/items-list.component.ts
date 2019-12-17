@@ -23,7 +23,6 @@ export class ItemsListComponent implements OnInit {
 
   constructor(private itemsService: ApiService, public actRoute: ActivatedRoute, public router: Router) {
     this.page = 0;
-    this.itemsProcessed = 50;
   }
 
   offsetDiff: number;
@@ -39,8 +38,10 @@ export class ItemsListComponent implements OnInit {
     if (this.actRoute.snapshot.params['uuid']) {
       this.itemsService.listSingleItem(this.actRoute.snapshot.params['uuid']).subscribe((filteredCollections: FilteredCollections) => {
         this.filteredCollections = filteredCollections;
-        if (this.filteredCollections.numberItemsProcessed > 0) {
+        if (this.filteredCollections.numberItemsProcessed > 50) {
           this.nextPage = true;
+        } else if (this.filteredCollections.numberItems < 51) {
+          this.itemsProcessed = this.filteredCollections.numberItems;
         }
         this.loading = false;
       });

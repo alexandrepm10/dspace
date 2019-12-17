@@ -5,7 +5,6 @@ import {ItemsListComponent} from './items-list/items-list.component';
 import {ItemsDetailComponent} from './items-detail/items-detail.component';
 import {CommunitiesComponent} from './communities/communities.component';
 import {CollectionsComponent} from './collections/collections.component';
-import {ItemSearchComponent} from './item-search/item-search.component';
 import {NewsComponent} from './news/news.component';
 import {NewsDetailsComponent} from './news-details/news-details.component';
 import {ItemsSearchComponent} from './items-search/items-search.component';
@@ -22,13 +21,13 @@ const routes: Routes = [
   {path: 'communities', component: CommunitiesComponent},
   {path: 'collections/:uuid', component: CollectionsComponent},
   {path: 'collections', component: CollectionsComponent},
-  {path: 'searchitem', component: ItemSearchComponent},
   {path: 'admin', component: BackofficeHomeComponent},
   {path: 'adminlogin', component: LoginComponent},
   {path: 'noticias', component: NewsComponent},
   {path: 'noticias/1', component: NewsDetailsComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'items-search', component: ItemsSearchComponent},
+  {path: 'items-search/:queryVal', component: ItemsSearchComponent},
+  {path: 'items-search/:queryVal/:queryField', component: ItemsSearchComponent},
   {path: 'create-news', component: CreateNewsComponent},
   {path: 'edit-news/:id', component: EditNewsComponent}
 ];

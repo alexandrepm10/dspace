@@ -11,7 +11,6 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import {ItemsDetailComponent} from './items-detail/items-detail.component';
 import {CommunitiesComponent} from './communities/communities.component';
 import {CollectionsComponent} from './collections/collections.component';
-import {ItemSearchComponent} from './item-search/item-search.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CodeHighlighterModule, DropdownModule, TabViewModule} from 'primeng';
 import {CommonModule} from '@angular/common';
@@ -19,6 +18,7 @@ import {BackofficeHomeComponent} from './backoffice/home/home.component';
 import {NewsComponent} from './news/news.component';
 import {LoginComponent} from './backoffice/login/login.component';
 import {
+  MatButtonModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatGridListModule,
@@ -28,10 +28,12 @@ import {
 } from '@angular/material';
 import {ItemsSearchComponent} from './items-search/items-search.component';
 import {NgxExtendedPdfViewerModule} from 'ngx-extended-pdf-viewer';
-import { NewsDetailsComponent } from './news-details/news-details.component';
-import { CreateNewsComponent } from './backoffice/create-news/create-news.component';
+import {NewsDetailsComponent} from './news-details/news-details.component';
+import {CreateNewsComponent} from './backoffice/create-news/create-news.component';
 import {EditNewsComponent} from './backoffice/edit-news/edit-news.component';
 import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
+import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material';
 
 
 @NgModule({
@@ -43,7 +45,6 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
     ItemsDetailComponent,
     CommunitiesComponent,
     CollectionsComponent,
-    ItemSearchComponent,
     BackofficeHomeComponent,
     NewsComponent,
     LoginComponent,
@@ -82,7 +83,10 @@ import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
     MatTableModule,
     MatExpansionModule,
     MatTabsModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

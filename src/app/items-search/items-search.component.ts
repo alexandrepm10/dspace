@@ -22,17 +22,21 @@ export class ItemsSearchComponent implements OnInit {
 
 
   ngOnInit() {
-    // console.log(history.state.data.data);
-    const queryVal = history.state.data.data;
+    const queryVal = this.actRoute.snapshot.params['queryVal'];
     const map = new Map()
-      .set('queryField', '*')
+      // .set('queryField', '*')
       .set('queryVop', 'contains')
       .set('queryVal', queryVal)
       .set('limit', 100)
       .set('offset', 0)
       .set('expand', 'parentCollection%2Cmetadata%2Cbitstreams')
       .set('filters', 'none');
-    this.data = 'Titlo: ' + history.state.data.data;
+    if (this.actRoute.snapshot.params['queryField'] != null) {
+      map.set('queryField', this.actRoute.snapshot.params['queryField']);
+    } else {
+      map.set('queryField', '*');
+    }
+    this.data = 'Pesquisa: ' + queryVal;
     this.itemsService.searchWildItems(map).subscribe((resultFromSearches: ResultFromSearch) => {
       this.resultFromSearch = resultFromSearches;
       this.loading = false;

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SelectItem } from 'primeng/api';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
 
 export interface Category {
   value: string;
@@ -17,11 +16,15 @@ export class HomeComponent implements OnInit {
 
   selectedValue: string;
 
+  searchForm = new FormGroup({
+    termo: new FormControl(''),
+  });
   categories: Category[] = [
-    { value: 'Antropologia Cultural', viewValue: 'Antropologia Cultural' },
-    { value: 'Etnografia', viewValue: 'Etnografia' },
-    { value: 'Antropologia da Religião', viewValue: 'Antropologia da Religião' }
+    {value: '*', viewValue: 'Todos'},
+    {value: 'dc.contributor.author', viewValue: 'Autor'},
+    {value: 'dc.title', viewValue: 'Titlo'}
   ];
+  value = '';
 
   constructor(public fb: FormBuilder, public actRoute: ActivatedRoute, public router: Router) {
 
@@ -31,8 +34,8 @@ export class HomeComponent implements OnInit {
   }
 
   onClickSubmit() {
-    console.log(this.selectedValue);
-    this.router.navigate(['searchitem'], {state: {data: this.selectedValue}});
+    console.log('Campo: ' + +' selecionado: ' + this.selectedValue);
+    // this.router.navigate(['searchitem'], {state: {data: this.selectedValue}});
   }
 
 }
