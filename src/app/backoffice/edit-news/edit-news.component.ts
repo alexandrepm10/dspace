@@ -11,8 +11,6 @@ import { News } from '../../core/news';
 })
 export class EditNewsComponent implements OnInit {
 
-  API_URL = 'http://localhost:3000';
-
   id = this.actRoute.snapshot.params['id'];
 
   newsData: News;
@@ -42,7 +40,7 @@ export class EditNewsComponent implements OnInit {
 
   }
 
-  // Get patient details
+  // Get news details
   loadNewsDetails(id) {
     return this.api.getSingleNews(id).subscribe((data: News) => {
       this.newsData = data;
@@ -60,10 +58,11 @@ export class EditNewsComponent implements OnInit {
     formData.append('Content', this.newsDetailsForm.get('newsContent').value);
     formData.append('Date', this.newsDetailsForm.get('newsDate').value);
 
-    if (window.confirm('Are you sure, you want to edit?')) {
+    if (window.confirm('Tem a certeza que pretende EDITAR?')) {
       this.api.updateNews(this.id, formData).subscribe(
-        data => console.log('Success!', data),
-        error => console.log('ERROR!', error)
+        data => {
+          this.router.navigate(['/admin']);
+        }
       );
     }
   }

@@ -4,61 +4,45 @@
     <hr class="featurette-divider" />
     <!-- START THE FEATURETTES -->
 
-    <div class="card card-cascade">
-      <!-- Card image -->
-      <div class="view view-cascade overlay">
-        <img
-          class="card-img-top"
-          src="http://ecorrector.com/wp-content/uploads/2018/06/conference.jpg"
-          alt="Card image cap"
-        />
-        <a>
-          <div class="mask rgba-white-slight"></div>
-        </a>
-      </div>
+    <div *ngIf="News != null; else emptyNews">
+      <div class="card card-cascade" *ngFor="let new of News">
+        <!-- Card image -->
+        <div class="view view-cascade overlay">
+          <img
+            class="card-img-top"
+            src="http://ecorrector.com/wp-content/uploads/2018/06/conference.jpg"
+            alt="Card image cap"
+          />
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
 
-      <!-- Card content -->
-      <div class="card-body card-body-cascade">
-        <!-- Title -->
-        <h4 class="card-title"><strong>Isto é um exemplo Noticia</strong></h4>
-        <!-- Subtitle -->
-        <h6 class="font-weight-bold indigo-text py-2">Antropologia Portuguesa</h6>
-        <!-- Text -->
-        <p class="card-text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-          Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.
-        </p>
-        <a routerLink="/noticias/1" class="btn btn-primary">Ler mais...</a>
+        <!-- Card content -->
+        <div class="card-body card-body-cascade">
+          <!-- Title -->
+          <h6>{{ new.Date | date: "dd/MM/yyyy" }}</h6>
+          <h4 class="card-title">
+            <strong>{{ new.Title }}</strong>
+          </h4>
+          <hr />
+          <!-- Subtitle -->
+          <h6 class="font-weight-bold indigo-text py-2">
+            Antropologia Portuguesa
+          </h6>
+          <!-- Text -->
+          <p class="card-text">
+            {{ new.Short_description }}
+          </p>
+          <a routerLink="/noticias/{{ new.Id }}" class="btn btn-primary"
+            >Ler mais...</a
+          >
+        </div>
       </div>
     </div>
-    <div class="card card-cascade">
-            <!-- Card image -->
-            <div class="view view-cascade overlay">
-              <img
-                class="card-img-top"
-                src="https://cdn.oreillystatic.com/en/assets/1/event/294/velocityca2019_og_image.jpg"
-                alt="Card image cap"
-              />
-              <a>
-                <div class="mask rgba-white-slight"></div>
-              </a>
-            </div>
-      
-            <!-- Card content -->
-            <div class="card-body card-body-cascade">
-              <!-- Title -->
-              <h4 class="card-title"><strong>Isto é um outro exemplo</strong></h4>
-              <!-- Subtitle -->
-              <h6 class="font-weight-bold indigo-text py-2">Web developer</h6>
-              <!-- Text -->
-              <p class="card-text">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.
-              </p>
-      
-              <a href="#" class="btn btn-primary">Ler mais..</a>
-            </div>
-          </div>
+    <ng-template #emptyNews>
+      <p>Não existem notícias.</p>
+    </ng-template>
 
     <hr class="featurette-divider" />
     <!-- /END THE FEATURETTES -->

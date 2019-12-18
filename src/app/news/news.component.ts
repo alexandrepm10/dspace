@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../core/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-news',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewsComponent implements OnInit {
 
-  constructor() { }
+  News: any = [];
+
+  constructor(private api: ApiService,
+    public router: Router) { }
 
   ngOnInit() {
+    this.loadNews();
+  }
+
+  // Get employees list
+  loadNews() {
+    return this.api.getNews().subscribe((data: {}) => {
+      this.News = data;
+    })
   }
 
 }

@@ -34,8 +34,10 @@ export class CreateNewsComponent implements OnInit {
     formData.append('Content', this.newsCreateForm.get('newsContent').value);
     formData.append('Date', this.newsCreateForm.get('newsDate').value);
 
-    if (window.confirm('Are you sure, you want to create?')) {
-      this.api.createNews(formData).subscribe(data => console.log('Success!', data), error => console.log('ERROR!', error));
+    if (window.confirm('Tem a certeza que pretende CRIAR esta notícia?')) {
+      this.api.createNews(formData).subscribe(data => {
+        this.router.navigate(['/admin']);
+      });
     }
   }
 

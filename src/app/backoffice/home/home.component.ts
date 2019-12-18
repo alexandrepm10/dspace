@@ -16,15 +16,25 @@ export class BackofficeHomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.loadNews()
+    this.loadNews();
   }
 
-  // Get employees list
+  // Get news list
   loadNews() {
     return this.api.getNews().subscribe((data: {}) => {
       this.News = data;
     })
   }
+
+  deleteNews(id) {
+    if (window.confirm('Tem a certeza que pretende ELIMINAR?')) {
+      this.api.deleteNews(id).subscribe(data => {
+        //this.router.navigate(['/admin']);
+        this.loadNews();
+      });
+    }
+  }
+
 
   logout() {
     this.api.setLoggedInStatus(false);

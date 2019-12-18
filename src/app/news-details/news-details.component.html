@@ -19,34 +19,26 @@
 
       <!-- Card content -->
       <div class="card-body card-body-cascade">
+        <p class="card-text">
+          {{ newDate | date: "dd/MM/yyyy" }}
+        </p>
         <!-- Title -->
-        <h4 class="card-title"><strong>Isto é um exemplo Noticia</strong></h4>
+        <h4 class="card-title">
+          <strong>{{ newTitle }}</strong>
+        </h4>
+        <hr />
         <!-- Subtitle -->
-        <h6 class="font-weight-bold indigo-text py-2">Antropologia Portuguesa</h6>
+        <h6 class="font-weight-bold indigo-text py-2">
+          {{ newShortDescription }}
+        </h6>
         <!-- Text -->
         <p class="card-text">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            Voluptatibus, ex, recusandae. Facere modi sunt, quod quibusdam.
+          {{ newContent }}
         </p>
-        
-      </div>      
+      </div>
     </div>
     <hr class="featurette-divider" />
-      <a routerLink="/noticias" class="btn btn-primary">Voltar</a>
+    <a routerLink="/noticias" class="btn btn-primary">Voltar</a>
 
     <hr class="featurette-divider" />
     <!-- /END THE FEATURETTES -->

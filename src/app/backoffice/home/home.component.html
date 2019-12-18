@@ -14,14 +14,18 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="tables.html">
+      <a class="nav-link" href="#">
         <i class="fas fa-fw fa-table"></i>
         <span>Eventos</span></a
       >
     </li>
     <li class="nav-item">
       <a class="nav-link">
-        <button (click)="logout()" type="button" class="btn btn-secondary btn-sm">
+        <button
+          (click)="logout()"
+          type="button"
+          class="btn btn-secondary btn-sm"
+        >
           <i class="fas fa-sign-out-alt"></i>
           <span> Logout</span>
         </button>
@@ -82,10 +86,10 @@
           >
             <thead>
               <tr>
-                <th>Title</th>
-                <th>Short Description</th>
-                <th>Date</th>
-                <th>Options</th>
+                <th>Título</th>
+                <th>Breve Descrição</th>
+                <th>Data</th>
+                <th>Opções</th>
               </tr>
             </thead>
             <tbody>
@@ -100,7 +104,7 @@
                     </button>
                   </a>
                   &nbsp;
-                  <button class="btn btn-danger">
+                  <button class="btn btn-danger" (click)="deleteNews(new.Id)">
                     <i class="fas fa-trash-alt"></i>
                   </button>
                 </td>

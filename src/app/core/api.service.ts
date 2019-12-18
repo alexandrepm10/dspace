@@ -190,6 +190,14 @@ export class ApiService {
     );
   }
 
+  // HttpClient API put() method => Update patient
+  deleteNews(id) {
+    return this.http.delete(this.apiURL + '/news?id=' + id).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
   // HttpClient API post() method => Create patient
   createNews(news) {
     return this.http.post(this.apiURL + '/news', news).pipe(

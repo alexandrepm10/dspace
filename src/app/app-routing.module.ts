@@ -23,7 +23,7 @@ const routes: Routes = [
   {path: 'collections/:uuid', component: CollectionsComponent},
   {path: 'collections', component: CollectionsComponent},
   {path: 'noticias', component: NewsComponent},
-  {path: 'noticias/1', component: NewsDetailsComponent},
+  {path: 'noticias/:id', component: NewsDetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'items-search/:queryVal', component: ItemsSearchComponent},
   {path: 'items-search/:queryVal/:queryField', component: ItemsSearchComponent},
