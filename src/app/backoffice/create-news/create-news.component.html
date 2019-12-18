@@ -21,7 +21,11 @@
     </li>
     <li class="nav-item">
       <a class="nav-link">
-        <button (click)="logout()" type="button" class="btn btn-secondary btn-sm">
+        <button
+          (click)="logout()"
+          type="button"
+          class="btn btn-secondary btn-sm"
+        >
           <i class="fas fa-sign-out-alt"></i>
           <span> Logout</span>
         </button>
@@ -110,6 +114,16 @@
             id="inputDate"
           />
         </div>
+        <div class="form-group">
+          <label for="inputFile">Image:</label>
+          <input
+            type="file"
+            id="inputFile"
+            class="form-control"
+            name="newsImage"
+            (change)="onFileSelect($event)"
+          />
+        </div>
         <button
           [disabled]="!newsCreateForm.valid"
           type="submit"
@@ -124,8 +138,6 @@
           >CANCELAR</a
         >
       </form>
-
-
     </div>
     <!-- /.container-fluid -->
   </div>

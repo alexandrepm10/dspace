@@ -3,42 +3,42 @@
   <div class="container marketing">
     <hr class="featurette-divider" />
     <!-- START THE FEATURETTES -->
-
     <div *ngIf="News != null; else emptyNews">
-      <div class="card card-cascade" *ngFor="let new of News">
-        <!-- Card image -->
-        <div class="view view-cascade overlay">
-          <img
-            class="card-img-top"
-            src="http://ecorrector.com/wp-content/uploads/2018/06/conference.jpg"
-            alt="Card image cap"
-          />
+      <mdb-card *ngFor="let new of News">
+        <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+          <mdb-card-img src="../../assets/{{ new.Image }}"></mdb-card-img>
           <a>
-            <div class="mask rgba-white-slight"></div>
+            <div class="mask"></div>
           </a>
         </div>
-
-        <!-- Card content -->
-        <div class="card-body card-body-cascade">
-          <!-- Title -->
-          <h6>{{ new.Date | date: "dd/MM/yyyy" }}</h6>
-          <h4 class="card-title">
-            <strong>{{ new.Title }}</strong>
-          </h4>
+        <mdb-card-body>
+          <mdb-card-title>
+            <h4>{{ new.Title }}</h4>
+          </mdb-card-title>
           <hr />
-          <!-- Subtitle -->
-          <h6 class="font-weight-bold indigo-text py-2">
-            Antropologia Portuguesa
-          </h6>
-          <!-- Text -->
-          <p class="card-text">
+          <mdb-card-text>
             {{ new.Short_description }}
-          </p>
-          <a routerLink="/noticias/{{ new.Id }}" class="btn btn-primary"
-            >Ler mais...</a
-          >
-        </div>
-      </div>
+          </mdb-card-text>
+        </mdb-card-body>
+        <mdb-card-footer class="mdb-color lighten-3">
+          <ul class="list-unstyled list-inline font-small mt-3">
+            <li class="list-inline-item pr-2 white-text">
+              <mdb-icon far icon="clock" class="pr-1"></mdb-icon
+              >{{ new.Date | date: "dd/MM/yyyy" }}
+            </li>
+            <li class="list-inline-item pr-2">
+              <a
+                [routerLink]="['/noticias', new.Id]"
+                mdbBtn
+                color="primary"
+                class="waves-light"
+                mdbWavesEffect
+                >Ler mais...
+              </a>
+            </li>
+          </ul>
+        </mdb-card-footer>
+      </mdb-card>
     </div>
     <ng-template #emptyNews>
       <p>Não existem notícias.</p>

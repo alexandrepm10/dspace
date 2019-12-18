@@ -11,10 +11,7 @@ import { News } from '../core/news';
 export class NewsDetailsComponent implements OnInit {
 
   id = this.actRoute.snapshot.params['id'];
-  newTitle: string;
-  newShortDescription: string;
-  newContent: string;
-  newDate: string;
+  News: any = [];
 
   constructor(private api: ApiService,
     public actRoute: ActivatedRoute,
@@ -35,10 +32,7 @@ export class NewsDetailsComponent implements OnInit {
       if (data.Id == 0) {
         this.router.navigate(['/noticias']);
       }
-      this.newTitle = data.Title;
-      this.newShortDescription = data.Short_description;
-      this.newContent = data.Content;
-      this.newDate = data.Date;
+      this.News = data;
     });
   }
 

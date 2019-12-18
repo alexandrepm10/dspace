@@ -2,43 +2,41 @@
 <main role="main">
   <div class="container marketing">
     <hr class="featurette-divider" />
-    <!-- START THE FEATURETTES -->
-
-    <div class="card card-cascade">
-      <!-- Card image -->
-      <div class="view view-cascade overlay">
-        <img
-          class="card-img-top"
-          src="http://ecorrector.com/wp-content/uploads/2018/06/conference.jpg"
+    <mdb-card>
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <mdb-card-img
+          src="../../assets/{{ News.Image }}"
           alt="Card image cap"
-        />
+        ></mdb-card-img>
         <a>
-          <div class="mask rgba-white-slight"></div>
+          <div class="mask"></div>
         </a>
       </div>
-
-      <!-- Card content -->
-      <div class="card-body card-body-cascade">
-        <p class="card-text">
-          {{ newDate | date: "dd/MM/yyyy" }}
-        </p>
-        <!-- Title -->
-        <h4 class="card-title">
-          <strong>{{ newTitle }}</strong>
-        </h4>
-        <hr />
-        <!-- Subtitle -->
-        <h6 class="font-weight-bold indigo-text py-2">
-          {{ newShortDescription }}
-        </h6>
-        <!-- Text -->
-        <p class="card-text">
-          {{ newContent }}
-        </p>
-      </div>
-    </div>
+      <mdb-card-body>
+        <mdb-card-title>
+          <p class="card-text">
+            {{ News.Date | date: "dd/MM/yyyy" }}
+          </p>
+          <h4>{{ News.Title }}</h4>
+          <hr />
+        </mdb-card-title>
+        <mdb-card-text>
+          <h6 class="font-weight-bold indigo-text py-2">
+            {{ News.Short_description }}
+          </h6>
+          <p>{{ News.Content }}</p>
+        </mdb-card-text>
+      </mdb-card-body>
+    </mdb-card>
     <hr class="featurette-divider" />
-    <a routerLink="/noticias" class="btn btn-primary">Voltar</a>
+    <a
+      [routerLink]="['/noticias']"
+      mdbBtn
+      color="primary"
+      class="waves-light"
+      mdbWavesEffect
+      >Voltar
+    </a>
 
     <hr class="featurette-divider" />
     <!-- /END THE FEATURETTES -->

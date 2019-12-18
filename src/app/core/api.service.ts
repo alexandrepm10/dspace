@@ -174,6 +174,14 @@ export class ApiService {
     );
   }
 
+  // HttpClient API get() method => Fetch HIGHLIGHTED news list
+  getNewsHighlighted(): Observable<News[]> {
+    return this.http.get<News[]>(this.apiURL + '/newshighlighted').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
   // HttpClient API get() method => particular news
   getSingleNews(id): Observable<News> {
     return this.http.get<News>(this.apiURL + '/news/' + id).pipe(
@@ -185,6 +193,14 @@ export class ApiService {
   // HttpClient API put() method => Update patient
   updateNews(id, news) {
     return this.http.put(this.apiURL + '/news?id=' + id, news).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  // HttpClient API put() method => Update Highlight
+  changeHighlight(id, status) {
+    return this.http.get(this.apiURL + '/highlight?id=' + id + '&status=' + status).pipe(
       retry(1),
       catchError(this.handleError)
     );

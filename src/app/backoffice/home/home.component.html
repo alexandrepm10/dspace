@@ -76,7 +76,7 @@
       <hr />
 
       <!-- Tables -->
-      <div *ngIf="News.length !== 0">
+      <div *ngIf="News != null">
         <div class="table-responsive">
           <table
             class="table table-bordered"
@@ -96,7 +96,7 @@
               <tr *ngFor="let new of News">
                 <td>{{ new.Title }}</td>
                 <td>{{ new.Short_description }}</td>
-                <td>{{ new.Date }}</td>
+                <td>{{ new.Date | date: "dd/MM/yyyy" }}</td>
                 <td>
                   <a [routerLink]="['edit-news', new.Id]">
                     <button class="btn btn-primary">
@@ -106,6 +106,17 @@
                   &nbsp;
                   <button class="btn btn-danger" (click)="deleteNews(new.Id)">
                     <i class="fas fa-trash-alt"></i>
+                  </button>
+                  &nbsp;
+                  <button
+                    class="btn"
+                    [ngClass]="{
+                      'btn-warning': new.Highlight == 0,
+                      'btn-danger': new.Highlight == 1
+                    }"
+                    (click)="changeHighlight(new.Id, new.Highlight)"
+                  >
+                    <i class="fas fa-star"></i>
                   </button>
                 </td>
               </tr>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
+import { ApiService } from '../core/api.service';
 
 export interface Category {
   value: string;
@@ -14,6 +15,8 @@ export interface Category {
 })
 export class HomeComponent implements OnInit {
 
+  News: any = [];
+
   selectedValue: string;
 
   searchForm = new FormGroup({
@@ -26,11 +29,19 @@ export class HomeComponent implements OnInit {
   ];
   value = '';
 
-  constructor(public fb: FormBuilder, public actRoute: ActivatedRoute, public router: Router) {
+  constructor(private api: ApiService, public fb: FormBuilder, public actRoute: ActivatedRoute, public router: Router) {
 
   }
 
   ngOnInit() {
+    this.loadHighlightedNews();
+  }
+
+  // Get news list
+  loadHighlightedNews() {
+    return this.api.getNewsHighlighted().subscribe((data: {}) => {
+      this.News = data;
+    })
   }
 
   onClickSubmit() {

@@ -17,6 +17,7 @@ export class CreateNewsComponent implements OnInit {
     newsTitle: [''],
     newsShortDescription: [''],
     newsContent: [''],
+    newsImage: [''],
     newsDate: ['']
   });
 
@@ -27,11 +28,19 @@ export class CreateNewsComponent implements OnInit {
   ngOnInit() {
   }
 
+  onFileSelect(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.newsCreateForm.get('newsImage').setValue(file);
+    }
+  }
+
   onSubmit() {
     const formData = new FormData();
     formData.append('Title', this.newsCreateForm.get('newsTitle').value);
     formData.append('Short_description', this.newsCreateForm.get('newsShortDescription').value);
     formData.append('Content', this.newsCreateForm.get('newsContent').value);
+    formData.append('file', this.newsCreateForm.get('newsImage').value);
     formData.append('Date', this.newsCreateForm.get('newsDate').value);
 
     if (window.confirm('Tem a certeza que pretende CRIAR esta notícia?')) {
