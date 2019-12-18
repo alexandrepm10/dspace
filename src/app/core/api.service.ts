@@ -1,17 +1,17 @@
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
-import {retry, catchError} from 'rxjs/operators';
-import {Communities} from './communities.model';
-import {Collections} from './collections.model';
-import {Items} from './items.model';
-import {ItemsDetail} from './metadata.model';
-import {News} from './news';
-import {ResultFromSearch} from './search';
-import {Bitstream} from './bitstream.model';
-import {Status} from './status.model';
-import {Search} from './search.model';
-import {FilteredCollections} from './filtered-collections.model';
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { retry, catchError } from 'rxjs/operators';
+import { Communities } from './communities.model';
+import { Collections } from './collections.model';
+import { Items } from './items.model';
+import { ItemsDetail } from './metadata.model';
+import { News } from './news';
+import { ResultFromSearch } from './search';
+import { Bitstream } from './bitstream.model';
+import { Status } from './status.model';
+import { Search } from './search.model';
+import { FilteredCollections } from './filtered-collections.model';
 
 
 const httpOptions = {
@@ -35,10 +35,43 @@ export class ApiService {
 
   public maxOffset: number;
 
+  private loggedInStatus = false;
+
   constructor(
     private http: HttpClient,
   ) {
   }
+
+
+  //-----------------------------------
+  //-------------- LOGIN --------------
+  //-----------------------------------
+
+  loginUser(user, pass) {
+    return this.http.get(this.baseUrl + 'login?email=' + user + '&password=' + pass).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  setLoggedInStatus(value: boolean) {
+    this.loggedInStatus = value;
+  }
+
+  get isLoggedInSetted() {
+    return this.loggedInStatus;
+  }
+
+  isLoggedIn(): Observable<Status> {
+    return this.http.get<Status>(this.baseUrl + 'status');
+  }
+
+  logout() {
+    return this.http.get(this.baseUrl + 'logout');
+  }
+
+  //-----------------------------------
+  //-----------------------------------
 
   listCommunities(): Observable<Communities[]> {
     const url = `${this.baseUrl + 'communities'}/`;
@@ -57,13 +90,13 @@ export class ApiService {
 
   listItems(): Observable<ResultFromSearch> {
     const url = `${this.baseUrl +
-    'filtered-items?query_field%5B%5D=*' +
-    '&query_op%5B%5D=contains' +
-    '&query_val%5B%5D=' +
-    '&collSel%5B%5D=' +
-    '&limit=100' +
-    '&offset=0' +
-    '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
+      'filtered-items?query_field%5B%5D=*' +
+      '&query_op%5B%5D=contains' +
+      '&query_val%5B%5D=' +
+      '&collSel%5B%5D=' +
+      '&limit=100' +
+      '&offset=0' +
+      '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
     return this.http.get<ResultFromSearch>(url).pipe(retry(1));
   }
 
@@ -80,10 +113,10 @@ export class ApiService {
     }
     console.log('api offset:' + offSet);
     const url = `${this.baseUrl +
-    'filtered-collections/' + uuid +
-    '?expand=items%2Cmetadata%2Cbitstreams&limit=' + limit +
-    '&filters=&offset=' + offSet +
-    '&show_fields%5B%5D=null&show_fields_bits%5B%5D=null'}`;
+      'filtered-collections/' + uuid +
+      '?expand=items%2Cmetadata%2Cbitstreams&limit=' + limit +
+      '&filters=&offset=' + offSet +
+      '&show_fields%5B%5D=null&show_fields_bits%5B%5D=null'}`;
     return this.http.get<FilteredCollections>(url).pipe(retry(1));
   }
 
@@ -106,13 +139,13 @@ export class ApiService {
 
   searchWildItems(map): Observable<ResultFromSearch> {
     const url = `${this.baseUrl +
-    'filtered-items?query_field%5B%5D=' + map.get('queryField') +
-    '&query_op%5B%5D=' + map.get('queryVop') +
-    '&query_val%5B%5D=' + map.get('queryVal') +
-    '&collSel%5B%5D=' +
-    '&limit=' + map.get('limit') +
-    '&offset=' + map.get('offset') +
-    '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
+      'filtered-items?query_field%5B%5D=' + map.get('queryField') +
+      '&query_op%5B%5D=' + map.get('queryVop') +
+      '&query_val%5B%5D=' + map.get('queryVal') +
+      '&collSel%5B%5D=' +
+      '&limit=' + map.get('limit') +
+      '&offset=' + map.get('offset') +
+      '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
     return this.http.get<ResultFromSearch>(url).pipe();
   }
 
@@ -121,15 +154,17 @@ export class ApiService {
     return this.http.post(url, obj).pipe();
   }
 
-  logout(obj) {
-    const url = this.baseUrl + 'logout/';
-    return this.http.get(url).pipe();
-  }
 
   status(obj): Observable<Status> {
     const url = this.baseUrl + 'status/';
     return this.http.get<Status>(url).pipe();
   }
+
+  //-----------------------------------
+  //-----------------------------------
+  //-------------NOTICIAS--------------
+  //-----------------------------------
+  //-----------------------------------
 
   // HttpClient API get() method => Fetch news list
   getNews(): Observable<News[]> {
@@ -162,7 +197,6 @@ export class ApiService {
       catchError(this.handleError)
     );
   }
-
 
   // Error handling
   handleError(error) {

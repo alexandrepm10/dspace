@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiService} from '../../core/api.service';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../core/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -10,18 +11,26 @@ export class BackofficeHomeComponent implements OnInit {
 
   News: any = [];
 
-  constructor(private itemsService: ApiService) {
+  constructor(private api: ApiService,
+    public router: Router) {
   }
 
   ngOnInit() {
     this.loadNews()
   }
 
-    // Get employees list
-    loadNews() {
-      return this.itemsService.getNews().subscribe((data: {}) => {
-        this.News = data;
-      })
-    }
+  // Get employees list
+  loadNews() {
+    return this.api.getNews().subscribe((data: {}) => {
+      this.News = data;
+    })
+  }
+
+  logout() {
+    this.api.setLoggedInStatus(false);
+    this.api.logout().subscribe();
+    this.router.navigate(['admin/login']);
+    console.log("logout");
+  }
 
 }

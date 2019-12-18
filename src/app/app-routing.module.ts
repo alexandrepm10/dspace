@@ -12,6 +12,7 @@ import {BackofficeHomeComponent} from './backoffice/home/home.component';
 import {LoginComponent} from './backoffice/login/login.component';
 import {CreateNewsComponent} from './backoffice/create-news/create-news.component';
 import {EditNewsComponent} from './backoffice/edit-news/edit-news.component';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,15 +22,15 @@ const routes: Routes = [
   {path: 'communities', component: CommunitiesComponent},
   {path: 'collections/:uuid', component: CollectionsComponent},
   {path: 'collections', component: CollectionsComponent},
-  {path: 'admin', component: BackofficeHomeComponent},
-  {path: 'adminlogin', component: LoginComponent},
   {path: 'noticias', component: NewsComponent},
   {path: 'noticias/1', component: NewsDetailsComponent},
   {path: 'login', component: LoginComponent},
   {path: 'items-search/:queryVal', component: ItemsSearchComponent},
   {path: 'items-search/:queryVal/:queryField', component: ItemsSearchComponent},
-  {path: 'create-news', component: CreateNewsComponent},
-  {path: 'edit-news/:id', component: EditNewsComponent}
+  {path: 'admin', component: BackofficeHomeComponent, canActivate: [AuthGuard] },
+  {path: 'admin/login', component: LoginComponent },
+  {path: 'admin/create-news', component: CreateNewsComponent, canActivate: [AuthGuard] },
+  {path: 'admin/edit-news/:id', component: EditNewsComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

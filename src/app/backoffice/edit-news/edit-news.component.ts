@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiService} from '../../core/api.service';
-import {ActivatedRoute, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../core/api.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { News } from '../../core/news';
 
@@ -26,9 +26,9 @@ export class EditNewsComponent implements OnInit {
 
 
   constructor(private api: ApiService,
-              public actRoute: ActivatedRoute,
-              public router: Router,
-              private formBuilder: FormBuilder
+    public actRoute: ActivatedRoute,
+    public router: Router,
+    private formBuilder: FormBuilder
   ) {
   }
 
@@ -68,6 +68,11 @@ export class EditNewsComponent implements OnInit {
     }
   }
 
-
+  logout() {
+    this.api.setLoggedInStatus(false);
+    this.api.logout().subscribe();
+    this.router.navigate(['admin/login']);
+    console.log("logout");
+  }
 
 }

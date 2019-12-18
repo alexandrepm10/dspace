@@ -1,6 +1,8 @@
-import {Component, OnInit} from '@angular/core';
-import {ApiService} from '../../core/api.service';
-import {FormBuilder, Validators} from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../core/api.service';
+import { FormBuilder } from '@angular/forms';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-create-news',
@@ -19,7 +21,7 @@ export class CreateNewsComponent implements OnInit {
   });
 
 
-  constructor(public api: ApiService, private formBuilder: FormBuilder) {
+  constructor(public api: ApiService, private formBuilder: FormBuilder, public router: Router) {
   }
 
   ngOnInit() {
@@ -37,5 +39,11 @@ export class CreateNewsComponent implements OnInit {
     }
   }
 
+  logout() {
+    this.api.setLoggedInStatus(false);
+    this.api.logout().subscribe();
+    this.router.navigate(['admin/login']);
+    console.log("logout");
+  }
 
 }
