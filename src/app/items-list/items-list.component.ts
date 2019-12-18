@@ -35,8 +35,8 @@ export class ItemsListComponent implements OnInit {
   offset: number;
 
   ngOnInit() {
-    if (this.actRoute.snapshot.params['uuid']) {
-      this.itemsService.listSingleItem(this.actRoute.snapshot.params['uuid']).subscribe((filteredCollections: FilteredCollections) => {
+    if (this.actRoute.snapshot.params.uuid) {
+      this.itemsService.listSingleItem(this.actRoute.snapshot.params.uuid).subscribe((filteredCollections: FilteredCollections) => {
         this.filteredCollections = filteredCollections;
         if (this.filteredCollections.numberItems > 50) {
           this.itemsProcessed = 50;
@@ -58,7 +58,7 @@ export class ItemsListComponent implements OnInit {
 
     if (this.page > -1 && (this.itemsProcessed) === (this.filteredCollections.numberItems)) {
       this.loading = true;
-      this.itemsService.listSingleItem(this.actRoute.snapshot.params['uuid'], this.page, this.offsetDiff)
+      this.itemsService.listSingleItem(this.actRoute.snapshot.params.uuid, this.page, this.offsetDiff)
         .subscribe((filteredCollections: FilteredCollections) => {
           this.filteredCollections = filteredCollections;
           this.itemsProcessed = this.itemsProcessed - this.offsetDiff;
@@ -69,7 +69,7 @@ export class ItemsListComponent implements OnInit {
     }
     if (this.page > -1 && (this.itemsProcessed) < (this.filteredCollections.numberItems)) {
       this.loading = true;
-      this.itemsService.listSingleItem(this.actRoute.snapshot.params['uuid'], this.page)
+      this.itemsService.listSingleItem(this.actRoute.snapshot.params.uuid, this.page)
         .subscribe((filteredCollections: FilteredCollections) => {
           this.filteredCollections = filteredCollections;
           if (this.page > 0 && page === -1) {
