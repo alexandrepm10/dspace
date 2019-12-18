@@ -21,10 +21,10 @@ import {
   MatButtonModule,
   MatExpansionModule,
   MatFormFieldModule,
-  MatGridListModule,
+  MatGridListModule, MatIconModule,
   MatProgressSpinnerModule,
   MatSelectModule,
-  MatTableModule, MatTabsModule
+  MatTableModule, MatTabsModule, MatInputModule
 } from '@angular/material';
 import { ItemsSearchComponent } from './items-search/items-search.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
@@ -33,8 +33,6 @@ import { CreateNewsComponent } from './backoffice/create-news/create-news.compon
 import { EditNewsComponent } from './backoffice/edit-news/edit-news.component';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './core/auth.guard';
-import {MatInputModule} from '@angular/material/input';
-import {MatIconModule} from '@angular/material';
 
 
 @NgModule({
@@ -85,7 +83,9 @@ import {MatIconModule} from '@angular/material';
     MatExpansionModule,
     MatTabsModule,
     NgbPaginationModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
