@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import {FormBuilder, FormControl, FormGroup} from '@angular/forms';
-import { ApiService } from '../core/api.service';
+import {ApiService} from '../core/api.service';
+import {stringify} from 'querystring';
 
 export interface Category {
   value: string;
@@ -20,14 +21,13 @@ export class HomeComponent implements OnInit {
   selectedValue: string;
 
   searchForm = new FormGroup({
-    termo: new FormControl(''),
+    title: new FormControl(''),
+    author: new FormControl(''),
+    any: new FormControl('')
   });
-  categories: Category[] = [
-    {value: '*', viewValue: 'Todos'},
-    {value: 'dc.contributor.author', viewValue: 'Autor'},
-    {value: 'dc.title', viewValue: 'Titlo'}
-  ];
   value = '';
+  value1 = '';
+  value2 = '';
 
   constructor(private api: ApiService, public fb: FormBuilder, public actRoute: ActivatedRoute, public router: Router) {
 
@@ -41,12 +41,19 @@ export class HomeComponent implements OnInit {
   loadHighlightedNews() {
     return this.api.getNewsHighlighted().subscribe((data: {}) => {
       this.News = data;
-    })
+    });
   }
 
-  onClickSubmit() {
-    console.log('Campo: ' + +' selecionado: ' + this.selectedValue);
-    // this.router.navigate(['searchitem'], {state: {data: this.selectedValue}});
+  onClickSubmit(searchForm: FormGroup) {
+    const navigationExtras: NavigationExtras = {
+      queryParams: {
+        any: searchForm.value.any,
+        title: searchForm.value.title,
+        author: searchForm.value.author
+      }
+    };
+    console.log(navigationExtras);
+    this.router.navigate(['items-search'], navigationExtras);
   }
 
 }

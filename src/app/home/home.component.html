@@ -1,13 +1,13 @@
 <app-nav></app-nav>
 <main role="main">
   <mdb-carousel
-    class="carousel slide carousel-fade"
-    [animation]="'fade'"
     *ngIf="News != null"
+    [animation]="'fade'"
+    class="carousel slide carousel-fade"
   >
     <mdb-carousel-item>
       <div class="view">
-        <video class="video-fluid" autoplay loop>
+        <video autoplay class="video-fluid" loop>
           <source
             src="https://mdbootstrap.com/img/video/Lines.mp4"
             type="video/mp4"
@@ -26,9 +26,9 @@
     <mdb-carousel-item *ngFor="let new of News">
       <div class="view w-100">
         <img
+          alt="First slide"
           class="d-block w-100"
           src="../../assets/{{ new.Image }}"
-          alt="First slide"
         />
         <div class="mask rgba-purple-slight waves-light" mdbWavesEffect></div>
       </div>
@@ -37,11 +37,11 @@
         <p>{{ new.Short_description }}</p>
         <a
           [routerLink]="['noticias', new.Id]"
-          mdbBtn
-          color="primary"
           class="waves-light"
+          color="primary"
+          mdbBtn
           mdbWavesEffect
-          >Ler mais...
+        >Ler mais...
         </a>
       </div>
     </mdb-carousel-item>
@@ -61,53 +61,44 @@
         </h2>
       </div>
       <div class="col-md-12">
-        <form [formGroup]="searchForm" (ngSubmit)="onClickSubmit()">
+        <form [formGroup]="searchForm" (ngSubmit)="onClickSubmit(searchForm)" class="myForm">
           <div class="form-group row">
-            <div class="col-sm-4">
+            <div class="col-sm-12">
               <mat-form-field class="example-container">
-                <mat-label>Campo a pesquisar</mat-label>
-                <mat-select [(value)]="selectedValue">
-                  <mat-option
-                    *ngFor="let category of categories"
-                    [value]="category.value"
-                  >
-                    {{ category.viewValue }}
-                  </mat-option>
-                </mat-select>
+                <input [(ngModel)]="value" formControlName="any" matInput placeholder="Pesquisar em todo o repositorio"
+                       type="search"/>
+                <button (click)="value = ''" *ngIf="value" aria-label="Clear" mat-button mat-icon-button matSuffix>
+                  <mat-icon>close</mat-icon>
+                </button>
               </mat-form-field>
             </div>
             <div class="col-sm-6">
               <mat-form-field class="example-container">
-                <input
-                  matInput
-                  type="search"
-                  placeholder="Introduza o termo a pesquisar"
-                  [(ngModel)]="value"
-                  formControlName="termo"
-                />
-                <button
-                  mat-button
-                  *ngIf="value"
-                  matSuffix
-                  mat-icon-button
-                  aria-label="Clear"
-                  (click)="value = ''"
-                >
+                <input [(ngModel)]="value1" formControlName="title" matInput placeholder="Pesquisar por título"
+                       type="search"/>
+                <button (click)="value1 = ''" *ngIf="value1" aria-label="Clear" mat-button mat-icon-button matSuffix>
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+              <mat-form-field class="example-container">
+                <input [(ngModel)]="value2" formControlName="author" matInput placeholder="Pesquisar por autor"
+                       type="search"/>
+                <button (click)="value2 = ''" *ngIf="value2" aria-label="Clear" mat-button mat-icon-button matSuffix>
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
             </div>
             <div class="col-sm-2">
-              <button class="btn btn-primary" (click)="onClickSubmit()">
-                Pesquisar
-              </button>
+              <button class="btn btn-primary" type="submit">Pesquisar</button>
             </div>
           </div>
         </form>
       </div>
     </div>
 
-    <hr class="featurette-divider" />
+    <hr class="featurette-divider"/>
     <!-- /END THE FEATURETTES -->
   </div>
   <!-- /.container -->
