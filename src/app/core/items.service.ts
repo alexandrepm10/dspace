@@ -38,7 +38,7 @@ export class ItemsService {
     );
   }
 
-  listCollections(): Observable<Collections[]> {
+  listCollections(): Observable<Collections[]> {    
     return this.http.get<Collections[]>('/rest/collections/').pipe(retry(1));
   }
 
@@ -91,7 +91,7 @@ export class ItemsService {
   // -------------------------------------------------------
   // -------------------------------------------------------
 
-
+  
   // HttpClient API get() method => Fetch news list
   getNews(): Observable<News[]> {
     return this.http.get<News[]>(this.apiURL + '/news').pipe(

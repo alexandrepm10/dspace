@@ -21,7 +21,6 @@ export class CreateNewsComponent implements OnInit {
     newsDate: ['']
   });
 
-
   constructor(public api: ApiService, private formBuilder: FormBuilder, public router: Router) {
   }
 

@@ -99,20 +99,20 @@
                 <td>{{ new.Date | date: "dd/MM/yyyy" }}</td>
                 <td>
                   <a [routerLink]="['edit-news', new.Id]">
-                    <button class="btn btn-primary">
+                    <button class="btn btn-light">
                       <i class="fas fa-edit"></i>
                     </button>
                   </a>
                   &nbsp;
-                  <button class="btn btn-danger" (click)="deleteNews(new.Id)">
+                  <button class="btn btn-light" (click)="deleteNews(new.Id)">
                     <i class="fas fa-trash-alt"></i>
                   </button>
                   &nbsp;
                   <button
                     class="btn"
                     [ngClass]="{
-                      'btn-warning': new.Highlight == 0,
-                      'btn-danger': new.Highlight == 1
+                      'btn-dark': new.Highlight == 0,
+                      'btn-success': new.Highlight == 1
                     }"
                     (click)="changeHighlight(new.Id, new.Highlight)"
                   >

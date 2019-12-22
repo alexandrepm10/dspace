@@ -11,7 +11,8 @@ export class BackofficeHomeComponent implements OnInit {
 
   News: any = [];
 
-  constructor(private api: ApiService, public router: Router) {
+  constructor(private api: ApiService,
+    public router: Router) {
   }
 
   ngOnInit() {

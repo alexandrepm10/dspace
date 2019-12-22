@@ -7,6 +7,7 @@ import { Collections } from './collections.model';
 import { Items } from './items.model';
 import { ItemsDetail } from './metadata.model';
 import { News } from './news';
+import { Event } from './event';
 import { ResultFromSearch } from './search';
 import { Bitstream } from './bitstream.model';
 import { Status } from './status.model';
@@ -217,6 +218,13 @@ export class ApiService {
   // HttpClient API post() method => Create patient
   createNews(news) {
     return this.http.post(this.apiURL + '/news', news).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.apiURL + '/events').pipe(
       retry(1),
       catchError(this.handleError)
     );

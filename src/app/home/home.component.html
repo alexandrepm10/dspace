@@ -1,13 +1,13 @@
 <app-nav></app-nav>
 <main role="main">
   <mdb-carousel
-    *ngIf="News != null"
-    [animation]="'fade'"
     class="carousel slide carousel-fade"
+    [animation]="'fade'"
+    *ngIf="News != null"
   >
     <mdb-carousel-item>
       <div class="view">
-        <video autoplay class="video-fluid" loop>
+        <video class="video-fluid" autoplay loop>
           <source
             src="https://mdbootstrap.com/img/video/Lines.mp4"
             type="video/mp4"
@@ -26,9 +26,9 @@
     <mdb-carousel-item *ngFor="let new of News">
       <div class="view w-100">
         <img
-          alt="First slide"
           class="d-block w-100"
           src="../../assets/{{ new.Image }}"
+          alt="First slide"
         />
         <div class="mask rgba-purple-slight waves-light" mdbWavesEffect></div>
       </div>
@@ -37,11 +37,11 @@
         <p>{{ new.Short_description }}</p>
         <a
           [routerLink]="['noticias', new.Id]"
-          class="waves-light"
-          color="primary"
           mdbBtn
+          color="primary"
+          class="waves-light"
           mdbWavesEffect
-        >Ler mais...
+          >Ler mais...
         </a>
       </div>
     </mdb-carousel-item>
@@ -61,44 +61,153 @@
         </h2>
       </div>
       <div class="col-md-12">
-        <form [formGroup]="searchForm" (ngSubmit)="onClickSubmit(searchForm)" class="myForm">
+        <form [formGroup]="searchForm" (ngSubmit)="onClickSubmit()">
           <div class="form-group row">
-            <div class="col-sm-12">
+            <div class="col-sm-4">
               <mat-form-field class="example-container">
-                <input [(ngModel)]="value" formControlName="any" matInput placeholder="Pesquisar em todo o repositorio"
-                       type="search"/>
-                <button (click)="value = ''" *ngIf="value" aria-label="Clear" mat-button mat-icon-button matSuffix>
-                  <mat-icon>close</mat-icon>
-                </button>
+                <mat-label>Campo a pesquisar</mat-label>
+                <mat-select [(value)]="selectedValue">
+                  <mat-option
+                    *ngFor="let category of categories"
+                    [value]="category.value"
+                  >
+                    {{ category.viewValue }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
             <div class="col-sm-6">
               <mat-form-field class="example-container">
-                <input [(ngModel)]="value1" formControlName="title" matInput placeholder="Pesquisar por título"
-                       type="search"/>
-                <button (click)="value1 = ''" *ngIf="value1" aria-label="Clear" mat-button mat-icon-button matSuffix>
-                  <mat-icon>close</mat-icon>
-                </button>
-              </mat-form-field>
-            </div>
-            <div class="col-sm-6">
-              <mat-form-field class="example-container">
-                <input [(ngModel)]="value2" formControlName="author" matInput placeholder="Pesquisar por autor"
-                       type="search"/>
-                <button (click)="value2 = ''" *ngIf="value2" aria-label="Clear" mat-button mat-icon-button matSuffix>
+                <input
+                  matInput
+                  type="search"
+                  placeholder="Introduza o termo a pesquisar"
+                  [(ngModel)]="value"
+                  formControlName="termo"
+                />
+                <button
+                  mat-button
+                  *ngIf="value"
+                  matSuffix
+                  mat-icon-button
+                  aria-label="Clear"
+                  (click)="value = ''"
+                >
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
             </div>
             <div class="col-sm-2">
-              <button class="btn btn-primary" type="submit">Pesquisar</button>
+              <button class="btn btn-primary" (click)="onClickSubmit()">
+                Pesquisar
+              </button>
             </div>
           </div>
         </form>
       </div>
     </div>
 
-    <hr class="featurette-divider"/>
+    <hr class="featurette-divider" />
+
+    <!-- DYNAMIC FORM -->
+
+    <form #addressForm="ngForm" class="container mt-3" (ngSubmit)="logValue()">
+      <div class="row justify-content-center">
+        <div class="col-10">
+          <section
+            class="container border mb-4 p-3"
+            *ngFor="let address of addresses; let i = index"
+          >
+            <div class="row">
+              <div class="col-6">
+                <h4>Address {{ i + 1 }}</h4>
+              </div>
+              <div class="col-6 text-right" *ngIf="i != 0">
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm"
+                  (click)="removeAddress(i)"
+                >
+                  Remove
+                </button>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="address.address"
+                    name="address_{{ i }}"
+                    placeholder="St. Thomas Apartment"
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Street</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="address.street"
+                    name="street_{{ i }}"
+                    placeholder="South Street"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-group">
+                  <label>City</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    [(ngModel)]="address.city"
+                    name="city_{{ i }}"
+                    placeholder="Mumbai"
+                  />
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-group">
+                  <label>Country</label>
+                  <select
+                    class="form-control"
+                    [(ngModel)]="address.country"
+                    name="country_{{ i }}"
+                    placeholder="India"
+                  >
+                    <option value="india">India</option>
+                    <option value="usa">USA</option>
+                    <option value="england">England</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <button
+            type="button"
+            class="btn btn-primary mb-2"
+            (click)="addAddress()"
+          >
+            <i class="fas fa-plus-circle"></i>
+          </button>
+        </div>
+
+        <div class="col-2">
+          <div class="text-right">
+            <input type="submit" class="btn btn-primary" value="Pesquisar" />
+          </div>
+        </div>
+      </div>
+    </form>
+
+    <!-- END DYNAMIC FORM -->
+
     <!-- /END THE FEATURETTES -->
   </div>
   <!-- /.container -->

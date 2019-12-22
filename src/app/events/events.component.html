@@ -3,30 +3,30 @@
   <div class="container marketing">
     <hr class="featurette-divider" />
     <!-- START THE FEATURETTES -->
-    <div class="container" *ngIf="News != null; else emptyNews">
+    <div class="container" *ngIf="Events != null; else emptyEvents">
       <div class="row">
-        <div class="col-md-6" *ngFor="let new of News">
+        <div class="col-md-4" *ngFor="let event of Events">
           <mdb-card>
             <div class="view rgba-white-slight waves-light" mdbWavesEffect>
-              <mdb-card-img src="../../assets/{{ new.Image }}"></mdb-card-img>
+              <mdb-card-img src="../../assets/{{ event.Image }}"></mdb-card-img>
               <a>
                 <div class="mask"></div>
               </a>
             </div>
             <mdb-card-body>
               <mdb-card-title>
-                <h4>{{ new.Title }}</h4>
+                <h4>{{ event.Title }}</h4>
               </mdb-card-title>
               <hr />
               <mdb-card-text>
-                {{ new.Short_description }}
+                {{ event.Short_description }}
               </mdb-card-text>
             </mdb-card-body>
-            <mdb-card-footer class="mdb-color lighten-3 text-center">
+            <mdb-card-footer class="mdb-color lighten-3">
               <ul class="list-unstyled list-inline font-small mt-3">
                 <li class="list-inline-item pr-2 white-text">
                   <mdb-icon far icon="clock" class="pr-1"></mdb-icon
-                  >{{ new.Date | date: "dd/MM/yyyy" }}
+                  >{{ event.Date_start | date: "dd/MM/yyyy" }}
                 </li>
                 <li class="list-inline-item pr-2">
                   <a
@@ -44,8 +44,8 @@
         </div>
       </div>
     </div>
-    <ng-template #emptyNews>
-      <h4 class="text-center">Não existem notícias.</h4>
+    <ng-template #emptyEvents>
+      <h4 class="text-center">Não existem eventos.</h4>
     </ng-template>
 
     <hr class="featurette-divider" />

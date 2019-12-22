@@ -33,6 +33,7 @@ import { CreateNewsComponent } from './backoffice/create-news/create-news.compon
 import { EditNewsComponent } from './backoffice/edit-news/edit-news.component';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './core/auth.guard';
+import { EventsComponent } from './events/events.component';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { AuthGuard } from './core/auth.guard';
     ItemsSearchComponent,
     NewsDetailsComponent,
     CreateNewsComponent,
-    EditNewsComponent
+    EditNewsComponent,
+    EventsComponent
   ],
   imports: [
     BrowserModule,
