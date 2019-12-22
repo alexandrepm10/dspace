@@ -34,6 +34,10 @@ import { EditNewsComponent } from './backoffice/edit-news/edit-news.component';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthGuard } from './core/auth.guard';
 import { EventsComponent } from './events/events.component';
+import { ListEventsComponent } from './backoffice/list-events/list-events.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { CreateEventComponent } from './backoffice/create-event/create-event.component';
+import { EditEventComponent } from './backoffice/edit-event/edit-event.component';
 
 
 @NgModule({
@@ -55,7 +59,11 @@ import { EventsComponent } from './events/events.component';
     NewsDetailsComponent,
     CreateNewsComponent,
     EditNewsComponent,
-    EventsComponent
+    EventsComponent,
+    ListEventsComponent,
+    EventDetailsComponent,
+    CreateEventComponent,
+    EditEventComponent
   ],
   imports: [
     BrowserModule,

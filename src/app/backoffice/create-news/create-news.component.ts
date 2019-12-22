@@ -11,8 +11,6 @@ import { Router } from '@angular/router';
 })
 export class CreateNewsComponent implements OnInit {
 
-  API_URL = 'http://localhost:3000';
-
   newsCreateForm = this.formBuilder.group({
     newsTitle: [''],
     newsShortDescription: [''],
