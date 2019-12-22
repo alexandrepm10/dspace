@@ -29,33 +29,11 @@ export class HomeComponent implements OnInit {
   ];
   value = '';
 
-  public addresses: any[] = [{
-    address: '',
-    street: '',
-    city: '',
-    country: ''
-  }];
-
   constructor(private api: ApiService, public fb: FormBuilder, public actRoute: ActivatedRoute, public router: Router) {
   }
 
   ngOnInit() {
     this.loadHighlightedNews();
-  }
-
-  addAddress() {
-    this.addresses.push({
-      address: '',
-      street: '',
-      city: '',
-      country: ''
-    });
-  }
-  removeAddress(i: number) {
-    this.addresses.splice(i, 1);
-  }
-  logValue() {
-    console.log(this.addresses);
   }
 
   // Get news list
