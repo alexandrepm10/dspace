@@ -3,7 +3,6 @@ import {Items} from '../core/items.model';
 import {ApiService} from '../core/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ResultFromSearch} from '../core/search';
-import {FilteredCollections} from '../core/filtered-collections.model';
 
 @Component({
   selector: 'app-items-search',
@@ -27,15 +26,13 @@ export class ItemsSearchComponent implements OnInit {
 
 
   ngOnInit() {
-    this.query = new Map();
+    this.query = new Array();
     let anyTerm = null;
     let author = null;
     let title = null;
     if (this.actRoute.snapshot.params.queryVal != null) {
       const queryVal = this.actRoute.snapshot.params.queryVal;
-      this.query.set('queryVal', queryVal)
-        .set('queryVop', 'contains')
-        .set('queryField', '*');
+      this.query.push({'queryVal': queryVal, 'queryVop': 'contains', 'queryField': '*'});
     } else if (this.actRoute.queryParams != null) {
       this.actRoute.queryParams.subscribe(params => {
         anyTerm = params.anyTerm;
@@ -44,33 +41,24 @@ export class ItemsSearchComponent implements OnInit {
         console.log(anyTerm, author, title);
       });
       console.log(typeof anyTerm, anyTerm, typeof author, author, typeof title, title);
-      if (anyTerm != (null || undefined)) {
-        this.query.set('queryVal', anyTerm)
-          .set('queryVop', 'contains')
-          .set('queryField', '*');
+      if (anyTerm != undefined && anyTerm != '') {
+        this.query.push({'queryVal': anyTerm, 'queryVop': 'contains', 'queryField': '*'});
       }
-      if (title != (null || undefined)) {
-        this.query.set('queryVal', title)
-          .set('queryVop', 'contains')
-          .set('queryField', 'dc.title');
+      if (title != undefined && title != '') {
+        this.query.push({'queryVal': title, 'queryVop': 'contains', 'queryField': 'dc.title'});
       }
-      if (author != (null || undefined)) {
-        this.query.set('queryVal', author)
-          .set('queryVop', 'contains')
-          .set('queryField', 'dc.contributor.author');
+      if (author != undefined && author != '') {
+        this.query.push({'queryVal': author, 'queryVop': 'contains', 'queryField': 'dc.contributor.author'});
       }
     } else {
       this.router.navigate(['']);
     }
-    this.query.set('limit', 500)
-      .set('offset', 0)
-      .set('expand', 'parentCollection%2Cmetadata%2Cbitstreams')
-      .set('filters', 'none');
+    // this.query.push({'limit': 500, 'offset': 0, 'expand': 'parentCollection%2Cmetadata%2Cbitstreams', 'filters': 'none'});
     // this.data = 'Pesquisa: ' + ;
     console.log(this.query);
-    /*this.itemsService.searchWildItems(this.query).subscribe((resultFromSearches: ResultFromSearch) => {
+    this.itemsService.searchWildItems(this.query).subscribe((resultFromSearches: ResultFromSearch) => {
       this.resultFromSearch = resultFromSearches;
       this.loading = false;
-    });*/
+    });
   }
 }
