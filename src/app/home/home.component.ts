@@ -19,10 +19,11 @@ export class HomeComponent implements OnInit {
   Events: any = [];
 
   searchForm = new FormGroup({
-    title: new FormControl('', [Validators.minLength(4), Validators.maxLength(25)]),
-    author: new FormControl('', [Validators.minLength(4), Validators.maxLength(25)]),
-    anyTerm: new FormControl('', [Validators.minLength(4), Validators.maxLength(25)])
-  });
+      title: new FormControl('', [Validators.minLength(4), Validators.maxLength(25)]),
+      author: new FormControl('', [Validators.minLength(4), Validators.maxLength(25)]),
+      anyTerm: new FormControl('', [Validators.minLength(4), Validators.maxLength(25)])
+    },
+    {updateOn: 'blur'});
   value = '';
   value1 = '';
   value2 = '';
@@ -61,7 +62,7 @@ export class HomeComponent implements OnInit {
   }
 
   getErrorMessage() {
-    console.log(this.searchForm.get('anyTerm').value);
+    // console.log(this.searchForm.get('anyTerm').value);
     return this.searchForm.get('anyTerm').hasError('minlength') ? 'Número mínimo de caracteres 4' :
       this.searchForm.get('anyTerm').hasError('maxlength') ? 'Número máximo de caracteres 25' :
         '';

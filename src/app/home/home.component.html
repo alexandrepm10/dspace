@@ -122,9 +122,10 @@
             </div>
             <div class="col-sm-6">
               <mat-form-field class="example-container">
-                <input [(ngModel)]="value1" formControlName="title" matInput minlength="4"
+                <input #title [(ngModel)]="value1" formControlName="title" matInput minlength="4"
                        placeholder="Pesquisar por título"
                        type="search"/>
+                <mat-hint align="end">{{title.value?.length || 0}}/25</mat-hint>
                 <button (click)="value1 = ''" *ngIf="value1" aria-label="Clear" mat-button mat-icon-button matSuffix>
                   <mat-icon>close</mat-icon>
                 </button>
@@ -132,16 +133,17 @@
             </div>
             <div class="col-sm-6">
               <mat-form-field class="example-container">
-                <input [(ngModel)]="value2" formControlName="author" matInput minlength="4"
+                <input #author [(ngModel)]="value2" formControlName="author" matInput minlength="4"
                        placeholder="Pesquisar por autor"
                        type="search"/>
+                <mat-hint align="end">{{author.value?.length || 0}}/25</mat-hint>
                 <button (click)="value2 = ''" *ngIf="value2" aria-label="Clear" mat-button mat-icon-button matSuffix>
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
             </div>
             <div class="col-sm-2">
-              <button class="btn btn-primary" type="submit">Pesquisar</button>
+              <button class="btn btn-primary" type="submit" [disabled]='!searchForm.valid'>Pesquisar</button>
             </div>
           </div>
         </form>
