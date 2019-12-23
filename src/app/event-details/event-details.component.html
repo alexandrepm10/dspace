@@ -1,0 +1,70 @@
+<app-nav></app-nav>
+<main role="main">
+  <div class="container marketing">
+    <hr class="featurette-divider" />
+    <mdb-card>
+      <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+        <mdb-card-img
+          src="../../assets/{{ event_details.Image }}"
+          alt="Card image cap"
+        ></mdb-card-img>
+        <a>
+          <div class="mask"></div>
+        </a>
+      </div>
+      <mdb-card-body>
+        <mdb-card-title>
+          <button
+            mdbBtn
+            type="button"
+            class="btn-block"
+            color="default"
+            mdbWavesEffect
+          >
+            <h5><span class="badge badge-default">Início</span></h5>
+            {{ event_details.Date_start | date: "dd/MM/yyyy" }} -
+            {{ event_details.Time_start }}
+          </button>
+          <button
+            mdbBtn
+            type="button"
+            class="btn-block"
+            color="mdb-color"
+            mdbWavesEffect
+          >
+            <h5><span class="badge badge-default">Fim</span></h5>
+            {{ event_details.Date_end | date: "dd/MM/yyyy" }} -
+            {{ event_details.Time_end }}
+          </button>
+          <hr />
+          <h4>{{ event_details.Title }}</h4>
+          <hr />
+        </mdb-card-title>
+        <mdb-card-text>
+          <h6 class="font-weight-bold indigo-text py-2">
+            {{ event_details.Short_description }}
+          </h6>
+          <p>{{ event_details.Content }}</p>
+        </mdb-card-text>
+      </mdb-card-body>
+    </mdb-card>
+    <hr class="featurette-divider" />
+    <a
+      [routerLink]="['/eventos']"
+      mdbBtn
+      color="primary"
+      class="waves-light"
+      mdbWavesEffect
+      >Voltar
+    </a>
+
+    <hr class="featurette-divider" />
+    <!-- /END THE FEATURETTES -->
+  </div>
+  <!-- /.container -->
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&middot; &copy; 2019 Antropologia Portuguesa &middot;</p>
+  </footer>
+</main>

@@ -1,0 +1,80 @@
+<app-nav></app-nav>
+<main role="main">
+  <div class="container marketing">
+    <hr class="featurette-divider" />
+    <!-- START THE FEATURETTES -->
+    <div class="container" *ngIf="Events != null; else emptyEvents">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let event of Events">
+          <mdb-card>
+            <div class="view rgba-white-slight waves-light" mdbWavesEffect>
+              <mdb-card-img src="../../assets/{{ event.Image }}"></mdb-card-img>
+              <a>
+                <div class="mask"></div>
+              </a>
+            </div>
+            <mdb-card-body>
+              <mdb-card-title>
+                <button
+                  mdbBtn
+                  type="button"
+                  class="btn-block"
+                  color="default"
+                  mdbWavesEffect
+                >
+                  <h5><span class="badge badge-default">Início</span></h5>
+                  {{ event.Date_start | date: "dd/MM/yyyy" }} -
+                  {{ event.Time_start }}
+                </button>
+                <button
+                  mdbBtn
+                  type="button"
+                  class="btn-block"
+                  color="mdb-color"
+                  mdbWavesEffect
+                >
+                  <h5><span class="badge badge-default">Fim</span></h5>
+                  {{ event.Date_end | date: "dd/MM/yyyy" }} -
+                  {{ event.Time_end }}
+                </button>
+                <hr />
+                <h4>{{ event.Title }}</h4>
+              </mdb-card-title>
+
+              <mdb-card-text>
+                {{ event.Short_description }}
+              </mdb-card-text>
+            </mdb-card-body>
+            <mdb-card-footer class="mdb-color lighten-3">
+              <ul class="list-unstyled list-inline font-small mt-3 text-center">
+                <li class="list-inline-item pr-2">
+                  <a
+                    [routerLink]="['/eventos', event.Id]"
+                    mdbBtn
+                    color="primary"
+                    size="sm"
+                    class="waves-light"
+                    mdbWavesEffect
+                    >Saber mais
+                  </a>
+                </li>
+              </ul>
+            </mdb-card-footer>
+          </mdb-card>
+        </div>
+      </div>
+    </div>
+    <ng-template #emptyEvents>
+      <h4 class="text-center">Não existem eventos.</h4>
+    </ng-template>
+
+    <hr class="featurette-divider" />
+    <!-- /END THE FEATURETTES -->
+  </div>
+  <!-- /.container -->
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&middot; &copy; 2019 Antropologia Portuguesa &middot;</p>
+  </footer>
+</main>

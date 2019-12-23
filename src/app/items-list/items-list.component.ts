@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ApiService} from '../core/api.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {ResultFromSearch} from '../core/search';
 import {FilteredCollections} from '../core/filtered-collections.model';
 
 
@@ -29,9 +30,9 @@ export class ItemsListComponent implements OnInit {
   nextPage = false;
   page: number;
   itemsProcessed: number;
-  offset: number;
   filteredCollections: FilteredCollections;
   loading = true;
+  offset: number;
 
   ngOnInit() {
     if (this.actRoute.snapshot.params.uuid) {

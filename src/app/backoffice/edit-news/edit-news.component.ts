@@ -37,7 +37,6 @@ export class EditNewsComponent implements OnInit {
     this.actRoute.params.subscribe(routeParams => {
       this.loadNewsDetails(routeParams.id);
     });
-
   }
 
   // Get news details

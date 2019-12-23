@@ -6,61 +6,48 @@
       <mat-spinner style="align-content: center; height: 5%; alignment: center"></mat-spinner>
     </div>
     <ng-template #loaded>
-      <mat-accordion class="example-headers-align" *ngIf="resultFromSearch">
-        <div *ngFor="let eli of resultFromSearch.items">
-          <mat-expansion-panel>
-            <mat-expansion-panel-header>
-              <mat-panel-title class="mat-expansion-panel-header-title">
-                <div><a [routerLink]="['/itemsdetail', eli.uuid]">{{eli.name}}</a></div>
-              </mat-panel-title>
-              <mat-panel-description class="mat-expansion-panel-header-description">
-                <div *ngFor="let elj of eli.metadata">
-                  <div *ngIf="elj.key === 'dc.creator' || elj.key === 'dc.contributor.author'">
-                    {{elj.value}}
-                  </div>
-                </div>
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <mat-grid-list cols="4" rowHeight="3:1">
-              <mat-grid-tile [colspan]=1 [rowspan]=3>
-                <div *ngFor="let elj of eli.bitstream">
-                  <div *ngIf=" elj.format==='image/png' || elj.description==='cover'">
-                    <img src="http://localhost:8080{{elj.retrieveLink}}">
-                  </div>
-                </div>
-              </mat-grid-tile>
-              <mat-grid-tile [colspan]=3 [rowspan]=3>
-                <mat-tab-group>
-                  <mat-tab label="Autor">
-                    <div *ngFor="let elj of eli.metadata">
-                      <div *ngIf="elj.key === 'dc.creator' || elj.key === 'dc.contributor.author'">
-                        {{elj.value}}
-                      </div>
-                    </div>
-                  </mat-tab>
-                  <mat-tab label="Descrição">
-                    <div *ngFor="let elj of eli.metadata">
-                      <div *ngIf="elj.key === 'dc.description' || elj.key === 'dc.description.abstract'">
-                        {{elj.value}}
-                      </div>
-                    </div>
-                  </mat-tab>
-                </mat-tab-group>
-              </mat-grid-tile>
-            </mat-grid-list>
-          </mat-expansion-panel>
-        </div>
-      </mat-accordion>
-      <!--<div>
-        <button mdbBtn type="button" color="primary" mdbWavesEffect *ngIf="prevPage" (click)="onClick(-1)">
-          <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>
-        </button>
-        {{itemsProcessed}} de {{filteredCollections.numberItems}}
-        <button mdbBtn type="button" color="default" mdbWavesEffect *ngIf="nextPage" (click)="onClick(1)">
-          <mdb-icon fas icon="arrow-right" class="ml-1"></mdb-icon>
-        </button>
-      </div>-->
+      <table id="tableSortExample" mdbTable class="z-depth-1" *ngIf="resultFromSearch">
+        <thead>
+        <tr>
+          <!--          <th [mdbTableSort]="items" sortBy="uuid">UUID</th>-->
+          <th [mdbTableSort]="resultFromSearch.items" sortBy="name">Name</th>
+          <th>Tipo</th>
+          <th>Autor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let el of resultFromSearch.items; let i = index">
+          <!--          <th scope="row">{{el.uuid}}</th>-->
+          <td>
+            <a [routerLink]="['/itemsdetail', el.uuid]">{{el.name}}</a>
+          </td>
+          <td>
+            <div *ngFor="let eli of el.metadata; let j = index">
+              <div *ngIf="eli.key === 'dc.type'">
+                {{eli.value}}
+              </div>
+            </div>
+          </td>
+          <td>
+            <div *ngFor="let eli of el.metadata; let j = index">
+              <div *ngIf="eli.key === 'dc.creator' || eli.key === 'dc.contributor.author'">
+                {{eli.value}}
+              </div>
+            </div>
+          </td>
+        </tr>
+        </tbody>
+      </table>
     </ng-template>
+    <div>
+      <button mdbBtn type="button" color="primary" mdbWavesEffect>
+        <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>
+      </button>
+      <!--      </a>-->
+      <button mdbBtn type="button" color="default" mdbWavesEffect>
+        <mdb-icon fas icon="arrow-right" class="ml-1"></mdb-icon>
+      </button>
+    </div>
   </div>
 
 

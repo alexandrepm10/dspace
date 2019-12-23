@@ -7,6 +7,7 @@ import { Collections } from './collections.model';
 import { Items } from './items.model';
 import { ItemsDetail } from './metadata.model';
 import { News } from './news';
+import { Event } from './event';
 import { ResultFromSearch } from './search';
 import { Bitstream } from './bitstream.model';
 import { Status } from './status.model';
@@ -199,8 +200,8 @@ export class ApiService {
   }
 
   // HttpClient API put() method => Update Highlight
-  changeHighlight(id, status) {
-    return this.http.get(this.apiURL + '/highlight?id=' + id + '&status=' + status).pipe(
+  changeHighlightNews(id, status) {
+    return this.http.get(this.apiURL + '/setnewshighlight?id=' + id + '&status=' + status).pipe(
       retry(1),
       catchError(this.handleError)
     );
@@ -217,6 +218,55 @@ export class ApiService {
   // HttpClient API post() method => Create patient
   createNews(news) {
     return this.http.post(this.apiURL + '/news', news).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.apiURL + '/events').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getSingleEvent(id): Observable<Event> {
+    return this.http.get<Event>(this.apiURL + '/event/' + id).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  getEventsHighlighted(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.apiURL + '/eventshighlighted').pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  createEvent(event) {
+    return this.http.post(this.apiURL + '/event', event).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  updateEvent(id, event) {
+    return this.http.put(this.apiURL + '/event?id=' + id, event).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  deleteEvent(id) {
+    return this.http.delete(this.apiURL + '/event?id=' + id).pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
+  changeHighlightEvent(id, status) {
+    return this.http.get(this.apiURL + '/seteventhighlight?id=' + id + '&status=' + status).pipe(
       retry(1),
       catchError(this.handleError)
     );

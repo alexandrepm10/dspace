@@ -1,13 +1,13 @@
 <app-nav></app-nav>
 <main role="main">
   <mdb-carousel
-    *ngIf="News != null"
-    [animation]="'fade'"
     class="carousel slide carousel-fade"
+    [animation]="'fade'"
+    *ngIf="News != null || Events != null"
   >
     <mdb-carousel-item>
       <div class="view">
-        <video autoplay class="video-fluid" loop>
+        <video class="video-fluid" autoplay loop>
           <source
             src="https://mdbootstrap.com/img/video/Lines.mp4"
             type="video/mp4"
@@ -26,9 +26,9 @@
     <mdb-carousel-item *ngFor="let new of News">
       <div class="view w-100">
         <img
-          alt="First slide"
           class="d-block w-100"
           src="../../assets/{{ new.Image }}"
+          alt="First slide"
         />
         <div class="mask rgba-purple-slight waves-light" mdbWavesEffect></div>
       </div>
@@ -37,11 +37,55 @@
         <p>{{ new.Short_description }}</p>
         <a
           [routerLink]="['noticias', new.Id]"
-          class="waves-light"
-          color="primary"
           mdbBtn
+          color="primary"
+          class="waves-light"
           mdbWavesEffect
-        >Ler mais...
+          >Ler mais
+        </a>
+      </div>
+    </mdb-carousel-item>
+    <mdb-carousel-item *ngFor="let event of Events">
+      <div class="view w-100">
+        <img
+          class="d-block w-100"
+          src="../../assets/{{ event.Image }}"
+          alt="First slide"
+        />
+        <div class="mask rgba-purple-slight waves-light" mdbWavesEffect></div>
+      </div>
+      <div class="carousel-caption">
+        <h3 class="h3-responsive">{{ event.Title }}</h3>
+        <p>{{ event.Short_description }}</p>
+        <button
+          mdbBtn
+          type="button"
+          class="btn-block"
+          color="default"
+          mdbWavesEffect
+        >
+          <h5><span class="badge badge-default">Início</span></h5>
+          {{ event.Date_start | date: "dd/MM/yyyy" }} -
+          {{ event.Time_start }}
+        </button>
+        <button
+          mdbBtn
+          type="button"
+          class="btn-block"
+          color="mdb-color"
+          mdbWavesEffect
+        >
+          <h5><span class="badge badge-default">Fim</span></h5>
+          {{ event.Date_end | date: "dd/MM/yyyy" }} -
+          {{ event.Time_end }}
+        </button>
+        <a
+          [routerLink]="['eventos', event.Id]"
+          mdbBtn
+          color="primary"
+          class="waves-light"
+          mdbWavesEffect
+          >Saber mais
         </a>
       </div>
     </mdb-carousel-item>

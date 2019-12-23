@@ -11,7 +11,8 @@ export class BackofficeHomeComponent implements OnInit {
 
   News: any = [];
 
-  constructor(private api: ApiService, public router: Router) {
+  constructor(private api: ApiService,
+    public router: Router) {
   }
 
   ngOnInit() {
@@ -37,20 +38,19 @@ export class BackofficeHomeComponent implements OnInit {
   changeHighlight(id, status) {
     if (status == 0) {
       if (window.confirm('Tem a certeza que pretende DESTACAR esta notícia na página principal?')) {
-        this.api.changeHighlight(id, 1).subscribe(data => {
+        this.api.changeHighlightNews(id, 1).subscribe(data => {
           this.loadNews();
         });
       }
     }
     else {
       if (window.confirm('Tem a certeza que pretende REMOVER esta notícia dos destaques da página principal?')) {
-        this.api.changeHighlight(id, 0).subscribe(data => {
+        this.api.changeHighlightNews(id, 0).subscribe(data => {
           this.loadNews();
         });
       }
     }
   }
-
 
   logout() {
     this.api.setLoggedInStatus(false);

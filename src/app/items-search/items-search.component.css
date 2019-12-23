@@ -15,53 +15,14 @@ a {
 
 .example-headers-align .mat-expansion-panel-header-title,
 .example-headers-align .mat-expansion-panel-header-description {
-  flex-basis: initial;
+  flex-basis: 0;
 }
 
 .example-headers-align .mat-expansion-panel-header-description {
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
-}
-
-p#foo {
-  white-space: pre;
-}
-
-div#for {
-  padding-bottom: 1px;
-}
-
-mat-form-field {
-  margin-right: 12px;
-}
-
-.mat-expansion-panel-header-title {
-  flex: 0 0 auto; /* make this not grow or shrink */
-  margin-right: 16px;
-}
-
-.mat-expansion-panel-header-description {
-  flex: 1 1 auto; /* make this grow and shrink */
-  min-width: 0; /* see link to see why this is needed */
-  margin-right: 16px;
-}
-
-.mat-expansion-panel-header-description > div {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 mat-form-field {
   margin-right: 50px;
-}
-
-.mat-tab-group {
-  display: flex;
-  flex-direction: column;
-  align-self: flex-start;
-}
-
-.mat-grid-tile .mat-figure {
-  justify-content: left;
 }
