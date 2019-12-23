@@ -16,6 +16,7 @@ export interface Category {
 export class HomeComponent implements OnInit {
 
   News: any = [];
+  Events: any = [];
 
   searchForm = new FormGroup({
     title: new FormControl('', [Validators.minLength(4), Validators.maxLength(25)]),
@@ -31,12 +32,19 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.loadHighlightedNews();
+    this.loadHighlightedEvents();
   }
 
   // Get news list
   loadHighlightedNews() {
     return this.api.getNewsHighlighted().subscribe((data: {}) => {
       this.News = data;
+    });
+  }
+
+  loadHighlightedEvents() {
+    return this.api.getEventsHighlighted().subscribe((data: {}) => {
+      this.Events = data;
     });
   }
 
