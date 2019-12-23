@@ -38,22 +38,23 @@ export class ItemsSearchComponent implements OnInit {
         .set('queryField', '*');
     } else if (this.actRoute.queryParams != null) {
       this.actRoute.queryParams.subscribe(params => {
-        anyTerm = params.any;
+        anyTerm = params.anyTerm;
         author = params.author;
         title = params.title;
         console.log(anyTerm, author, title);
       });
-      if (anyTerm != null) {
+      console.log(typeof anyTerm, anyTerm, typeof author, author, typeof title, title);
+      if (anyTerm != (null || undefined)) {
         this.query.set('queryVal', anyTerm)
           .set('queryVop', 'contains')
           .set('queryField', '*');
       }
-      if (title != null) {
+      if (title != (null || undefined)) {
         this.query.set('queryVal', title)
           .set('queryVop', 'contains')
           .set('queryField', 'dc.title');
       }
-      if (author != null) {
+      if (author != (null || undefined)) {
         this.query.set('queryVal', author)
           .set('queryVop', 'contains')
           .set('queryField', 'dc.contributor.author');
@@ -66,9 +67,10 @@ export class ItemsSearchComponent implements OnInit {
       .set('expand', 'parentCollection%2Cmetadata%2Cbitstreams')
       .set('filters', 'none');
     // this.data = 'Pesquisa: ' + ;
-    this.itemsService.searchWildItems(this.query).subscribe((resultFromSearches: ResultFromSearch) => {
+    console.log(this.query);
+    /*this.itemsService.searchWildItems(this.query).subscribe((resultFromSearches: ResultFromSearch) => {
       this.resultFromSearch = resultFromSearches;
       this.loading = false;
-    });
+    });*/
   }
 }
