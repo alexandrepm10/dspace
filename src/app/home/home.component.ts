@@ -1,12 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ApiService} from '../core/api.service';
 
-export interface Category {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-home',
@@ -27,7 +23,8 @@ export class HomeComponent implements OnInit {
   value = '';
   value1 = '';
   value2 = '';
-  constructor(private api: ApiService, public fb: FormBuilder, public actRoute: ActivatedRoute, public router: Router) {
+
+  constructor(private api: ApiService, public actRoute: ActivatedRoute, public router: Router) {
 
   }
 
@@ -62,7 +59,6 @@ export class HomeComponent implements OnInit {
   }
 
   getErrorMessage() {
-    // console.log(this.searchForm.get('anyTerm').value);
     return this.searchForm.get('anyTerm').hasError('minlength') ? 'Número mínimo de caracteres 4' :
       this.searchForm.get('anyTerm').hasError('maxlength') ? 'Número máximo de caracteres 25' :
         '';

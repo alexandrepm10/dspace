@@ -1,13 +1,13 @@
 <app-nav></app-nav>
 <main role="main">
   <mdb-carousel
-    class="carousel slide carousel-fade"
-    [animation]="'fade'"
     *ngIf="News != null || Events != null"
+    [animation]="'fade'"
+    class="carousel slide carousel-fade"
   >
     <mdb-carousel-item>
       <div class="view">
-        <video class="video-fluid" autoplay loop>
+        <video autoplay class="video-fluid" loop>
           <source
             src="https://mdbootstrap.com/img/video/Lines.mp4"
             type="video/mp4"
@@ -26,9 +26,9 @@
     <mdb-carousel-item *ngFor="let new of News">
       <div class="view w-100">
         <img
+          alt="First slide"
           class="d-block w-100"
           src="../../assets/{{ new.Image }}"
-          alt="First slide"
         />
         <div class="mask rgba-purple-slight waves-light" mdbWavesEffect></div>
       </div>
@@ -37,20 +37,20 @@
         <p>{{ new.Short_description }}</p>
         <a
           [routerLink]="['noticias', new.Id]"
-          mdbBtn
-          color="primary"
           class="waves-light"
+          color="primary"
+          mdbBtn
           mdbWavesEffect
-          >Ler mais
+        >Ler mais
         </a>
       </div>
     </mdb-carousel-item>
     <mdb-carousel-item *ngFor="let event of Events">
       <div class="view w-100">
         <img
+          alt="First slide"
           class="d-block w-100"
           src="../../assets/{{ event.Image }}"
-          alt="First slide"
         />
         <div class="mask rgba-purple-slight waves-light" mdbWavesEffect></div>
       </div>
@@ -58,22 +58,22 @@
         <h3 class="h3-responsive">{{ event.Title }}</h3>
         <p>{{ event.Short_description }}</p>
         <button
-          mdbBtn
-          type="button"
           class="btn-block"
           color="default"
+          mdbBtn
           mdbWavesEffect
+          type="button"
         >
           <h5><span class="badge badge-default">Início</span></h5>
           {{ event.Date_start | date: "dd/MM/yyyy" }} -
           {{ event.Time_start }}
         </button>
         <button
-          mdbBtn
-          type="button"
           class="btn-block"
           color="mdb-color"
+          mdbBtn
           mdbWavesEffect
+          type="button"
         >
           <h5><span class="badge badge-default">Fim</span></h5>
           {{ event.Date_end | date: "dd/MM/yyyy" }} -
@@ -81,11 +81,11 @@
         </button>
         <a
           [routerLink]="['eventos', event.Id]"
-          mdbBtn
-          color="primary"
           class="waves-light"
+          color="primary"
+          mdbBtn
           mdbWavesEffect
-          >Saber mais
+        >Saber mais
         </a>
       </div>
     </mdb-carousel-item>
@@ -105,7 +105,9 @@
         </h2>
       </div>
       <div class="col-md-12">
-        <form (ngSubmit)="onClickSubmit(searchForm)" [formGroup]="searchForm" class="myForm">
+        <form (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()"
+              (ngSubmit)="onClickSubmit(searchForm)"
+              [formGroup]="searchForm" class="myForm">
           <div class="form-group row">
             <div class="col-sm-12">
               <mat-form-field class="example-container" hintLabel="Mínimo 4 e máximo 25 caráteres">
@@ -122,7 +124,7 @@
             </div>
             <div class="col-sm-6">
               <mat-form-field class="example-container">
-                <input #title [(ngModel)]="value1" formControlName="title" matInput minlength="4"
+                <input #title [(ngModel)]="value1" formControlName="title" matInput
                        placeholder="Pesquisar por título"
                        type="search"/>
                 <mat-hint align="end">{{title.value?.length || 0}}/25</mat-hint>
@@ -133,7 +135,7 @@
             </div>
             <div class="col-sm-6">
               <mat-form-field class="example-container">
-                <input #author [(ngModel)]="value2" formControlName="author" matInput minlength="4"
+                <input #author [(ngModel)]="value2" formControlName="author" matInput
                        placeholder="Pesquisar por autor"
                        type="search"/>
                 <mat-hint align="end">{{author.value?.length || 0}}/25</mat-hint>
@@ -143,7 +145,7 @@
               </mat-form-field>
             </div>
             <div class="col-sm-2">
-              <button class="btn btn-primary" type="submit" [disabled]='!searchForm.valid'>Pesquisar</button>
+              <button [disabled]='!searchForm.valid' class="btn btn-primary" type="submit">Pesquisar</button>
             </div>
           </div>
         </form>
