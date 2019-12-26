@@ -36,7 +36,7 @@ export class NavComponent implements OnInit {
         }
       };
       console.log(navigationExtras);
-      // this.router.navigate(['items-search'], navigationExtras);
+      this.router.navigate(['items-search'], navigationExtras);
     }
   }
 }

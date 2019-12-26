@@ -30,6 +30,8 @@ export class ItemsSearchComponent implements OnInit {
     let anyTerm = null;
     let author = null;
     let title = null;
+    let theme = null;
+    let geoArea = null;
     if (this.actRoute.snapshot.params.queryVal != null) {
       const queryVal = this.actRoute.snapshot.params.queryVal;
       this.query.push({'queryVal': queryVal, 'queryVop': 'contains', 'queryField': '*'});
@@ -38,6 +40,8 @@ export class ItemsSearchComponent implements OnInit {
         anyTerm = params.anyTerm;
         author = params.author;
         title = params.title;
+        theme = params.theme;
+        geoArea = params.geoArea;
         console.log(anyTerm, author, title);
       });
       console.log(typeof anyTerm, anyTerm, typeof author, author, typeof title, title);
@@ -49,6 +53,12 @@ export class ItemsSearchComponent implements OnInit {
       }
       if (author != undefined && author != '') {
         this.query.push({'queryVal': author, 'queryVop': 'contains', 'queryField': 'dc.contributor.author'});
+      }
+      if (theme != undefined && theme != '') {
+        this.query.push({'queryVal': theme, 'queryVop': 'contains', 'queryField': '*'});
+      }
+      if (geoArea != undefined && geoArea != '') {
+        this.query.push({'queryVal': geoArea, 'queryVop': 'contains', 'queryField': '*'});
       }
     } else {
       this.router.navigate(['']);

@@ -68,33 +68,42 @@
             mdbWavesEffect
           >Antropologia da Religião</a
           >
-          <!--<div class="divider dropdown-divider"></div>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="">Separated link</a>-->
         </div>
       </li>
     </ul>
     <!-- Links -->
 
+    <ul class="navbar-nav ml-auto">
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <mdb-icon fas icon="user"></mdb-icon>
+          Perfil<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="admin/login">Minha conta</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+        </div>
+      </li>
+
+    </ul>
     <!-- Search form -->
-    <form
-      (ngSubmit)="onClickSubmit(navForm)"
-      [formGroup]="navForm"
-      mdbWavesEffect>
-      <mat-form-field>
-        <input
-          [(ngModel)]="value"
-          formControlName="anyTermNav"
-          matInput
-          maxlenght="25"
-          minlength="4"
-          placeholder="Procurar"
-          type="text"
-        />
-        <button (click)="value = ''" *ngIf="value" aria-label="Clear" mat-button mat-icon-button matSuffix>
-          <mat-icon>close</mat-icon>
-        </button>
-      </mat-form-field>
-    </form>
+    <!--    <form-->
+    <!--      (ngSubmit)="onClickSubmit(navForm)"-->
+    <!--      [formGroup]="navForm"-->
+    <!--      mdbWavesEffect>-->
+    <!--      <mat-form-field>-->
+    <!--        <input-->
+    <!--          [(ngModel)]="value"-->
+    <!--          formControlName="anyTermNav"-->
+    <!--          matInput-->
+    <!--          placeholder="Procurar"-->
+    <!--          type="text"-->
+    <!--        />-->
+    <!--        <button (click)="value = ''" *ngIf="value" aria-label="Clear" mat-button mat-icon-button matSuffix>-->
+    <!--          <mat-icon>close</mat-icon>-->
+    <!--        </button>-->
+    <!--      </mat-form-field>-->
+    <!--    </form>-->
   </links>
   <!-- Collapsible content -->
 </mdb-navbar>

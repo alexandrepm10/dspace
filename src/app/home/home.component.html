@@ -18,8 +18,8 @@
 
       <div class="carousel-caption">
         <div class="animated fadeInDown">
-          <h3 class="h3-responsive">Bem vindo à Antropologia</h3>
-          <p>Antropologia Portuguesa</p>
+          <h3 class="h3-responsive">Base de Dados Bibliográficos da Antropologia Portuguesa</h3>
+          <p>Benjamim Enes Pereira</p>
         </div>
       </div>
     </mdb-carousel-item>
@@ -142,6 +142,30 @@
                 <button (click)="value2 = ''" *ngIf="value2" aria-label="Clear" mat-button mat-icon-button matSuffix>
                   <mat-icon>close</mat-icon>
                 </button>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+              <mat-form-field class="example-container">
+                <mat-label>Pesquisar por área</mat-label>
+                <mat-select [formControl]="geoAreaControl" formControlName="geoArea">
+                  <mat-option>-- None --</mat-option>
+                  <mat-optgroup *ngFor="let group of geoAreaGroups" [label]="group.name">
+                    <!--[disabled]="group.disabled"-->
+                    <mat-option *ngFor="let area of group.geoArea" [value]="area.value">
+                      {{area.viewValue}}
+                    </mat-option>
+                  </mat-optgroup>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="col-sm-6">
+              <mat-form-field class="example-container">
+                <mat-label>Pesquisar por tema</mat-label>
+                <mat-select formControlName="theme">
+                  <mat-option *ngFor="let theme of themes" [value]="theme.value" matInput>
+                    {{theme.viewValue}}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
             <div class="col-sm-2">
