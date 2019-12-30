@@ -147,7 +147,7 @@
             <div class="col-sm-6">
               <mat-form-field class="example-container">
                 <mat-label>Pesquisar por área</mat-label>
-                <mat-select [formControl]="geoAreaControl" formControlName="geoArea">
+                <mat-select formControlName="geoArea">
                   <mat-option>-- None --</mat-option>
                   <mat-optgroup *ngFor="let group of geoAreaGroups" [label]="group.name">
                     <!--[disabled]="group.disabled"-->
@@ -180,9 +180,6 @@
     <!-- /END THE FEATURETTES -->
   </div>
   <!-- /.container -->
-  <!-- FOOTER -->
-  <footer class="container">
-    <p class="float-right"><a href="#">Back to top</a></p>
-    <p>&middot; &copy; 2019 Antropologia Portuguesa &middot;</p>
-  </footer>
+
 </main>
+<app-footer></app-footer>

@@ -1,6 +1,6 @@
 <!--Navbar-->
 <mdb-navbar
-  SideClass="navbar navbar-expand-lg navbar-dark unique-color"
+  SideClass="navbar fixed-top navbar-expand-lg navbar-dark unique-color"
   [containerInside]="false"
 >
   <!-- Navbar brand -->
@@ -29,46 +29,16 @@
         <a class="nav-link waves-light" routerLink="/communities">Listagem</a>
       </li>
       <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" routerLink="/revistas">Revistas</a>
+      </li>
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" routerLink="/centros">Centros de Investigação e Instituições</a>
+      </li>
+      <li [routerLinkActive]="['active']" class="nav-item">
         <a class="nav-link waves-light" routerLink="/noticias">Notícias</a>
       </li>
       <li [routerLinkActive]="['active']" class="nav-item">
         <a class="nav-link waves-light" routerLink="/eventos">Eventos</a>
-      </li>
-
-      <!-- Dropdown -->
-      <li class="nav-item dropdown" dropdown>
-        <a
-          class="nav-link dropdown-toggle waves-light"
-          dropdownToggle
-          mdbWavesEffect
-          type="button"
-        >
-          Categorias<span class="caret"></span
-        ></a>
-        <div
-          *dropdownMenu
-          class="dropdown-menu dropdown dropdown-primary"
-          role="menu"
-        >
-          <a
-            (click)="onClickSubmit('Antropologia Cultural')"
-            class="dropdown-item waves-light"
-            mdbWavesEffect
-          >Antropologia Cultural</a
-          >
-          <a
-            (click)="onClickSubmit('Etnografia')"
-            class="dropdown-item waves-light"
-            mdbWavesEffect
-          >Etnografia</a
-          >
-          <a
-            (click)="onClickSubmit('Antropologia da Religião')"
-            class="dropdown-item waves-light"
-            mdbWavesEffect
-          >Antropologia da Religião</a
-          >
-        </div>
       </li>
     </ul>
     <!-- Links -->
@@ -76,12 +46,12 @@
     <ul class="navbar-nav ml-auto">
       <!-- Dropdown -->
       <li class="nav-item dropdown" dropdown>
-        <a dropdownToggle type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+        <a class="nav-link dropdown-toggle waves-light" dropdownToggle mdbWavesEffect type="button">
           <mdb-icon fas icon="user"></mdb-icon>
           Perfil<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
           <a class="dropdown-item waves-light" mdbWavesEffect routerLink="admin/login">Minha conta</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>
+          <!--          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>-->
         </div>
       </li>
 

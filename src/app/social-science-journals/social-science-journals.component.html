@@ -1,0 +1,13 @@
+<app-nav></app-nav>
+<main class="container" role="main">
+  <div *ngIf="journals">
+    <h3>Revistas de Ciências Sociais</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let el of journals; last as last">
+        <a (click)="goToLink(el.url)">{{el.name}}</a>
+        <mat-divider *ngIf="!last" [inset]="true"></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </div>
+</main>
+<app-footer></app-footer>

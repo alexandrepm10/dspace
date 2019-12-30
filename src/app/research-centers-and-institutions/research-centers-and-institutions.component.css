@@ -1,0 +1,15 @@
+main {
+  padding-top: 5rem;
+  color: #5a5a5a;
+}
+
+a {
+  color: #000000;
+  font-size: 120%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+  height: 100%;
+}
