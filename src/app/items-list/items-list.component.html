@@ -24,7 +24,7 @@
               <mat-grid-tile [colspan]=1 [rowspan]=3>
                 <div *ngFor="let elj of eli.bitstream">
                   <div *ngIf=" elj.format==='image/png' || elj.description==='cover'">
-                    <img src="http://localhost:8080{{elj.retrieveLink}}">
+                    <img src="http://localhost:8080{{elj.retrieveLink}}" width="100%">
                   </div>
                 </div>
               </mat-grid-tile>
@@ -50,7 +50,7 @@
           </mat-expansion-panel>
         </div>
       </mat-accordion>
-      <div>
+      <div class="paginator">
         <button mdbBtn type="button" color="primary" mdbWavesEffect *ngIf="prevPage" (click)="onClick(-1)">
           <mdb-icon fas icon="arrow-left" class="mr-1"></mdb-icon>
         </button>

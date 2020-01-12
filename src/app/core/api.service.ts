@@ -102,7 +102,7 @@ export class ApiService {
   }
 
   listSingleItem(uuid, page?, offset?): Observable<FilteredCollections> {
-    var limit = 50;
+    var limit = 15;
     if (offSet == null || offSet == undefined) {
       if (page == null || page == 0) {
         var offSet = 0;
