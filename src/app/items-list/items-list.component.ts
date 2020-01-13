@@ -38,10 +38,10 @@ export class ItemsListComponent implements OnInit {
     if (this.actRoute.snapshot.params.uuid) {
       this.itemsService.listSingleItem(this.actRoute.snapshot.params.uuid).subscribe((filteredCollections: FilteredCollections) => {
         this.filteredCollections = filteredCollections;
-        if (this.filteredCollections.numberItems > 15) {
-          this.itemsProcessed = 15;
+        if (this.filteredCollections.numberItems > 50) {
+          this.itemsProcessed = 50;
           this.nextPage = true;
-        } else if (this.filteredCollections.numberItems < 16) {
+        } else if (this.filteredCollections.numberItems < 51) {
           this.itemsProcessed = this.filteredCollections.numberItems;
         }
         this.loading = false;
@@ -73,18 +73,18 @@ export class ItemsListComponent implements OnInit {
         .subscribe((filteredCollections: FilteredCollections) => {
           this.filteredCollections = filteredCollections;
           if (this.page > 0 && page === -1) {
-            this.itemsProcessed = this.itemsProcessed - 15;
+            this.itemsProcessed = this.itemsProcessed - 50;
             this.prevPage = true;
             this.nextPage = true;
           } else if (this.page === 0 && page === -1) {
-            this.itemsProcessed = this.itemsProcessed - 15;
+            this.itemsProcessed = this.itemsProcessed - 50;
             this.prevPage = false;
             this.nextPage = true;
-          } else if (this.page > 0 && page === 1 && ((this.itemsProcessed + 15) < (this.filteredCollections.numberItems))) {
-            this.itemsProcessed = this.itemsProcessed + 15;
+          } else if (this.page > 0 && page === 1 && ((this.itemsProcessed + 50) < (this.filteredCollections.numberItems))) {
+            this.itemsProcessed = this.itemsProcessed + 50;
             this.prevPage = true;
             this.nextPage = true;
-          } else if (this.page > 0 && page === 1 && ((this.itemsProcessed + 15) > (this.filteredCollections.numberItems))) {
+          } else if (this.page > 0 && page === 1 && ((this.itemsProcessed + 50) > (this.filteredCollections.numberItems))) {
             this.offsetDiff = this.filteredCollections.numberItems - this.itemsProcessed;
             this.itemsProcessed = this.itemsProcessed + this.offsetDiff;
             this.prevPage = true;
