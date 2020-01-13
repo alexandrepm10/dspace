@@ -24,23 +24,20 @@ import {
   MatGridListModule, MatIconModule,
   MatProgressSpinnerModule,
   MatSelectModule,
-  MatTableModule, MatTabsModule, MatInputModule, MatCardModule, MatListModule
+  MatTableModule, MatTabsModule, MatInputModule
 } from '@angular/material';
 import { ItemsSearchComponent } from './items-search/items-search.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
-import {NewsDetailsComponent} from './news-details/news-details.component';
-import {CreateNewsComponent} from './backoffice/create-news/create-news.component';
-import {EditNewsComponent} from './backoffice/edit-news/edit-news.component';
-import {NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
-import {AuthGuard} from './core/auth.guard';
-import {EventsComponent} from './events/events.component';
-import {ListEventsComponent} from './backoffice/list-events/list-events.component';
-import {EventDetailsComponent} from './event-details/event-details.component';
-import {CreateEventComponent} from './backoffice/create-event/create-event.component';
-import {EditEventComponent} from './backoffice/edit-event/edit-event.component';
-import {SocialScienceJournalsComponent} from './social-science-journals/social-science-journals.component';
-import {ResearchCentersAndInstitutionsComponent} from './research-centers-and-institutions/research-centers-and-institutions.component';
-import {FooterComponent} from './footer/footer.component';
+import { NewsDetailsComponent } from './news-details/news-details.component';
+import { CreateNewsComponent } from './backoffice/create-news/create-news.component';
+import { EditNewsComponent } from './backoffice/edit-news/edit-news.component';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthGuard } from './core/auth.guard';
+import { EventsComponent } from './events/events.component';
+import { ListEventsComponent } from './backoffice/list-events/list-events.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { CreateEventComponent } from './backoffice/create-event/create-event.component';
+import { EditEventComponent } from './backoffice/edit-event/edit-event.component';
 
 
 @NgModule({
@@ -66,10 +63,7 @@ import {FooterComponent} from './footer/footer.component';
     ListEventsComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    EditEventComponent,
-    SocialScienceJournalsComponent,
-    ResearchCentersAndInstitutionsComponent,
-    FooterComponent
+    EditEventComponent
   ],
   imports: [
     BrowserModule,
@@ -101,9 +95,7 @@ import {FooterComponent} from './footer/footer.component';
     NgbPaginationModule,
     MatButtonModule,
     MatIconModule,
-    MatInputModule,
-    MatCardModule,
-    MatListModule
+    MatInputModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
