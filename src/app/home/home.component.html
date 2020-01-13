@@ -1,13 +1,13 @@
 <app-nav></app-nav>
 <main role="main">
   <mdb-carousel
-    *ngIf="News != null || Events != null"
-    [animation]="'fade'"
     class="carousel slide carousel-fade"
+    [animation]="'fade'"
+    *ngIf="News != null || Events != null"
   >
     <mdb-carousel-item>
       <div class="view">
-        <video autoplay class="video-fluid" loop>
+        <video class="video-fluid" autoplay loop>
           <source
             src="https://mdbootstrap.com/img/video/Lines.mp4"
             type="video/mp4"
@@ -18,17 +18,17 @@
 
       <div class="carousel-caption">
         <div class="animated fadeInDown">
-          <h3 class="h3-responsive">Base de Dados Bibliográficos da Antropologia Portuguesa</h3>
-          <p>Benjamim Enes Pereira</p>
+          <h3 class="h3-responsive">Bem vindo à Antropologia</h3>
+          <p>Antropologia Portuguesa</p>
         </div>
       </div>
     </mdb-carousel-item>
     <mdb-carousel-item *ngFor="let new of News">
       <div class="view w-100">
         <img
-          alt="First slide"
           class="d-block w-100"
           src="../../assets/{{ new.Image }}"
+          alt="First slide"
         />
         <div class="mask rgba-purple-slight waves-light" mdbWavesEffect></div>
       </div>
@@ -37,9 +37,9 @@
         <p>{{ new.Short_description }}</p>
         <a
           [routerLink]="['noticias', new.Id]"
-          class="waves-light"
-          color="primary"
           mdbBtn
+          color="primary"
+          class="waves-light"
           mdbWavesEffect
         >Ler mais
         </a>
@@ -48,9 +48,9 @@
     <mdb-carousel-item *ngFor="let event of Events">
       <div class="view w-100">
         <img
-          alt="First slide"
           class="d-block w-100"
           src="../../assets/{{ event.Image }}"
+          alt="First slide"
         />
         <div class="mask rgba-purple-slight waves-light" mdbWavesEffect></div>
       </div>
@@ -58,22 +58,22 @@
         <h3 class="h3-responsive">{{ event.Title }}</h3>
         <p>{{ event.Short_description }}</p>
         <button
+          mdbBtn
+          type="button"
           class="btn-block"
           color="default"
-          mdbBtn
           mdbWavesEffect
-          type="button"
         >
           <h5><span class="badge badge-default">Início</span></h5>
           {{ event.Date_start | date: "dd/MM/yyyy" }} -
           {{ event.Time_start }}
         </button>
         <button
+          mdbBtn
+          type="button"
           class="btn-block"
           color="mdb-color"
-          mdbBtn
           mdbWavesEffect
-          type="button"
         >
           <h5><span class="badge badge-default">Fim</span></h5>
           {{ event.Date_end | date: "dd/MM/yyyy" }} -
@@ -81,9 +81,9 @@
         </button>
         <a
           [routerLink]="['eventos', event.Id]"
-          class="waves-light"
-          color="primary"
           mdbBtn
+          color="primary"
+          class="waves-light"
           mdbWavesEffect
         >Saber mais
         </a>
@@ -105,71 +105,45 @@
         </h2>
       </div>
       <div class="col-md-12">
-        <form (keydown.enter)="$event.preventDefault()" (keydown.shift.enter)="$event.preventDefault()"
-              (ngSubmit)="onClickSubmit(searchForm)"
-              [formGroup]="searchForm" class="myForm">
+        <form [formGroup]="searchForm" (ngSubmit)="onClickSubmit()">
           <div class="form-group row">
-            <div class="col-sm-12">
-              <mat-form-field class="example-container" hintLabel="Mínimo 4 e máximo 25 caráteres">
-                <input #anyTerm [(ngModel)]="value" formControlName="anyTerm" matInput
-                       placeholder="Pesquisar em todo o repositorio"
-                       type="search"/>
-                <mat-hint align="end">{{anyTerm.value?.length || 0}}/25</mat-hint>
-                <mat-error
-                  *ngIf="searchForm.get('anyTerm').errors && (searchForm.get('anyTerm').touched || searchForm.get('anyTerm').dirty)">{{getErrorMessage()}}</mat-error>
-                <button (click)="value = ''" *ngIf="value" aria-label="Clear" mat-button mat-icon-button matSuffix>
-                  <mat-icon>close</mat-icon>
-                </button>
-              </mat-form-field>
-            </div>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <mat-form-field class="example-container">
-                <input #title [(ngModel)]="value1" formControlName="title" matInput
-                       placeholder="Pesquisar por título"
-                       type="search"/>
-                <mat-hint align="end">{{title.value?.length || 0}}/25</mat-hint>
-                <button (click)="value1 = ''" *ngIf="value1" aria-label="Clear" mat-button mat-icon-button matSuffix>
-                  <mat-icon>close</mat-icon>
-                </button>
-              </mat-form-field>
-            </div>
-            <div class="col-sm-6">
-              <mat-form-field class="example-container">
-                <input #author [(ngModel)]="value2" formControlName="author" matInput
-                       placeholder="Pesquisar por autor"
-                       type="search"/>
-                <mat-hint align="end">{{author.value?.length || 0}}/25</mat-hint>
-                <button (click)="value2 = ''" *ngIf="value2" aria-label="Clear" mat-button mat-icon-button matSuffix>
-                  <mat-icon>close</mat-icon>
-                </button>
-              </mat-form-field>
-            </div>
-            <div class="col-sm-6">
-              <mat-form-field class="example-container">
-                <mat-label>Pesquisar por área</mat-label>
-                <mat-select formControlName="geoArea">
-                  <mat-option>-- None --</mat-option>
-                  <mat-optgroup *ngFor="let group of geoAreaGroups" [label]="group.name">
-                    <!--[disabled]="group.disabled"-->
-                    <mat-option *ngFor="let area of group.geoArea" [value]="area.value">
-                      {{area.viewValue}}
-                    </mat-option>
-                  </mat-optgroup>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <div class="col-sm-6">
-              <mat-form-field class="example-container">
-                <mat-label>Pesquisar por tema</mat-label>
-                <mat-select formControlName="theme">
-                  <mat-option *ngFor="let theme of themes" [value]="theme.value" matInput>
-                    {{theme.viewValue}}
+                <mat-label>Campo a pesquisar</mat-label>
+                <mat-select [(value)]="selectedValue">
+                  <mat-option
+                    *ngFor="let category of categories"
+                    [value]="category.value"
+                  >
+                    {{ category.viewValue }}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
+            <div class="col-sm-6">
+              <mat-form-field class="example-container">
+                <input
+                  matInput
+                  type="search"
+                  placeholder="Introduza o termo a pesquisar"
+                  formControlName="termo"
+                />
+                <button
+                  mat-button
+                  *ngIf="value"
+                  matSuffix
+                  mat-icon-button
+                  aria-label="Clear"
+                  (click)="value = ''"
+                >
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
             <div class="col-sm-2">
-              <button [disabled]='!searchForm.valid' class="btn btn-primary" type="submit">Pesquisar</button>
+              <button class="btn btn-primary" (click)="onClickSubmit()">
+                Pesquisar
+              </button>
             </div>
           </div>
         </form>
@@ -177,9 +151,13 @@
     </div>
 
     <hr class="featurette-divider"/>
+
     <!-- /END THE FEATURETTES -->
   </div>
   <!-- /.container -->
-
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="#">Back to top</a></p>
+    <p>&middot; &copy; 2019 Antropologia Portuguesa &middot;</p>
+  </footer>
 </main>
-<app-footer></app-footer>
