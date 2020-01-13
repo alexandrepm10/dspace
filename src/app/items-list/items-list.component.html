@@ -20,33 +20,36 @@
                 </div>
               </mat-panel-description>
             </mat-expansion-panel-header>
-            <mat-grid-list cols="4" rowHeight="3:1">
-              <mat-grid-tile [colspan]=1 [rowspan]=3>
-                <div *ngFor="let elj of eli.bitstream">
-                  <div *ngIf=" elj.format==='image/png' || elj.description==='cover'">
-                    <img src="http://localhost:8080{{elj.retrieveLink}}" width="100%">
+            <div class="container" style="height: 10rem">
+              <div class="row">
+                <div class="col-md-4">
+                  <div *ngFor="let elj of eli.bitstream">
+                    <div *ngIf=" elj.description === 'cover' || elj.format === 'image/png'">
+                      <p>"http://localhost:8080{{elj.retrieveLink}}"</p>
+                      <img src="http://localhost:8080{{elj.retrieveLink}}" width="100%">
+                    </div>
                   </div>
                 </div>
-              </mat-grid-tile>
-              <mat-grid-tile [colspan]=3 [rowspan]=3>
-                <mat-tab-group>
-                  <mat-tab label="Autor">
-                    <div *ngFor="let elj of eli.metadata">
-                      <div *ngIf="elj.key === 'dc.creator' || elj.key === 'dc.contributor.author'">
-                        {{elj.value}}
+                <div class="col-md-8">
+                  <mat-tab-group>
+                    <mat-tab label="Autor">
+                      <div *ngFor="let elj of eli.metadata">
+                        <div *ngIf="elj.key === 'dc.creator' || elj.key === 'dc.contributor.author'">
+                          {{elj.value}}
+                        </div>
                       </div>
-                    </div>
-                  </mat-tab>
-                  <mat-tab label="Descrição">
-                    <div *ngFor="let elj of eli.metadata">
-                      <div *ngIf="elj.key === 'dc.description' || elj.key === 'dc.description.abstract'">
-                        {{elj.value}}
+                    </mat-tab>
+                    <mat-tab label="Descrição">
+                      <div *ngFor="let elj of eli.metadata">
+                        <div *ngIf="elj.key === 'dc.description' || elj.key === 'dc.description.abstract'">
+                          {{elj.value}}
+                        </div>
                       </div>
-                    </div>
-                  </mat-tab>
-                </mat-tab-group>
-              </mat-grid-tile>
-            </mat-grid-list>
+                    </mat-tab>
+                  </mat-tab-group>
+                </div>
+              </div>
+            </div>
           </mat-expansion-panel>
         </div>
       </mat-accordion>

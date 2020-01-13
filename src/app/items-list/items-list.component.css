@@ -13,6 +13,12 @@ a {
   font-size: 120%;
 }
 
+.paginator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .example-headers-align .mat-expansion-panel-header-title,
 .example-headers-align .mat-expansion-panel-header-description {
   flex-basis: initial;
@@ -31,6 +37,7 @@ div#for {
   padding-bottom: 1px;
 }
 
+/*
 mat-form-field {
   margin-right: 12px;
 }
@@ -39,21 +46,17 @@ mat-form-field {
   justify-content: left !important;
   align-items: flex-start !important;
 }
+*/
 
-.paginator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.mat-expansion-panel-header-title {
-  flex: 0 0 auto; /* make this not grow or shrink */
+/*.mat-expansion-panel-header-title {
+  flex: 0 0 auto; !* make this not grow or shrink *!
   margin-right: 16px;
 }
 
 .mat-expansion-panel-header-description {
-  flex: 1 1 auto; /* make this grow and shrink */
-  min-width: 0; /* see link to see why this is needed */
+  flex: 1 1 auto; !* make this grow and shrink *!
+  min-width: 0; !* see link to see why this is needed *!
   margin-right: 16px;
 }
 
@@ -71,4 +74,4 @@ mat-form-field {
   display: flex;
   flex-direction: column;
   align-self: flex-start;
-}
+}*/
