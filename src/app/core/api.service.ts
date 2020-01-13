@@ -102,7 +102,7 @@ export class ApiService {
   }
 
   listSingleItem(uuid, page?, offset?): Observable<FilteredCollections> {
-    var limit = 50;
+    var limit = 15;
     if (offSet == null || offSet == undefined) {
       if (page == null || page == 0) {
         var offSet = 0;
@@ -139,15 +139,41 @@ export class ApiService {
   }
 
   searchWildItems(map): Observable<ResultFromSearch> {
-    const url = `${this.baseUrl +
-      'filtered-items?query_field%5B%5D=' + map.get('queryField') +
-      '&query_op%5B%5D=' + map.get('queryVop') +
-      '&query_val%5B%5D=' + map.get('queryVal') +
+    console.log(map.length);
+    console.log(map);
+    if (map.length > 1) {
+      var params = 'filtered-items?';
+      for (let i = 0; i < map.length; i++) { // let el of map) {
+        params = `${params +
+        'query_field%5B%5D=' + map[i].queryField +
+        '&query_op%5B%5D=' + map[i].queryVop +
+        '&query_val%5B%5D=' + map[i].queryVal}`;
+        if (i < (map.length - 1)) {
+          params = `${params + '&'}`;
+        }
+      }
+      params = `${params +
       '&collSel%5B%5D=' +
-      '&limit=' + map.get('limit') +
-      '&offset=' + map.get('offset') +
+      '&limit=' + '500' +
+      '&offset=' + '0' +
       '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
-    return this.http.get<ResultFromSearch>(url).pipe();
+      const url = `${this.baseUrl + params}`;
+      return this.http.get<ResultFromSearch>(url).pipe();
+    } else if (map.length == 1) {
+      var url;
+      for (let el of map) {
+        console.log(el);
+        url = `${this.baseUrl +
+        'filtered-items?query_field%5B%5D=' + el.queryField +
+        '&query_op%5B%5D=' + el.queryVop +
+        '&query_val%5B%5D=' + el.queryVal +
+        '&collSel%5B%5D=' +
+        '&limit=' + '500' +
+        '&offset=' + '0' +
+        '&expand=parentCollection%2Cmetadata%2Cbitstreams&filters=none'}`;
+      }
+      return this.http.get<ResultFromSearch>(url).pipe();
+    }
   }
 
   login(obj) {

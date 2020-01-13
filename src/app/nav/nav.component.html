@@ -1,13 +1,13 @@
 <!--Navbar-->
 <mdb-navbar
-  SideClass="navbar navbar-expand-lg navbar-dark unique-color"
+  SideClass="navbar fixed-top navbar-expand-lg navbar-dark unique-color"
   [containerInside]="false"
 >
   <!-- Navbar brand -->
   <mdb-navbar-brand
-    ><a class="navbar-brand" routerLink="/"
-      >ANTROPOLOGIA PORTUGUESA</a
-    ></mdb-navbar-brand
+  ><a class="navbar-brand" routerLink="/"
+  >ANTROPOLOGIA PORTUGUESA</a
+  ></mdb-navbar-brand
   >
 
   <!-- Collapsible content -->
@@ -15,85 +15,65 @@
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       <li
-        class="nav-item"
-        [routerLinkActive]="['active']"
         [routerLinkActiveOptions]="{ exact: true }"
+        [routerLinkActive]="['active']"
+        class="nav-item"
       >
         <a class="nav-link waves-light" routerLink="/">Home</a>
       </li>
       <li
-        class="nav-item"
-        [routerLinkActive]="['active']"
         [routerLinkActiveOptions]="{ exact: true }"
+        [routerLinkActive]="['active']"
+        class="nav-item"
       >
         <a class="nav-link waves-light" routerLink="/communities">Listagem</a>
       </li>
-      <li class="nav-item" [routerLinkActive]="['active']">
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" routerLink="/revistas">Revistas</a>
+      </li>
+      <li [routerLinkActive]="['active']" class="nav-item">
+        <a class="nav-link waves-light" routerLink="/centros">Centros de Investigação e Instituições</a>
+      </li>
+      <li [routerLinkActive]="['active']" class="nav-item">
         <a class="nav-link waves-light" routerLink="/noticias">Notícias</a>
       </li>
-      <li class="nav-item" [routerLinkActive]="['active']">
+      <li [routerLinkActive]="['active']" class="nav-item">
         <a class="nav-link waves-light" routerLink="/eventos">Eventos</a>
-      </li>
-
-      <!-- Dropdown -->
-      <li class="nav-item dropdown" dropdown>
-        <a
-          dropdownToggle
-          mdbWavesEffect
-          type="button"
-          class="nav-link dropdown-toggle waves-light"
-        >
-          Categorias<span class="caret"></span
-        ></a>
-        <div
-          *dropdownMenu
-          class="dropdown-menu dropdown dropdown-primary"
-          role="menu"
-        >
-          <a
-            class="dropdown-item waves-light"
-            mdbWavesEffect
-            (click)="onClickSubmit('Antropologia Cultural')"
-            >Antropologia Cultural</a
-          >
-          <a
-            class="dropdown-item waves-light"
-            mdbWavesEffect
-            (click)="onClickSubmit('Etnografia')"
-            >Etnografia</a
-          >
-          <a
-            class="dropdown-item waves-light"
-            mdbWavesEffect
-            (click)="onClickSubmit('Antropologia da Religião')"
-            >Antropologia da Religião</a
-          >
-          <!--<div class="divider dropdown-divider"></div>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="">Separated link</a>-->
-        </div>
       </li>
     </ul>
     <!-- Links -->
 
-    <!-- Search form -->
-    <form
-      #search="ngForm"
-      class="form-inline waves-light form"
-      mdbWavesEffect
-      (ngSubmit)="onClickSubmit(search.value)"
-    >
-      <div class="md-form my-0">
-        <div class="form-field">
-          <input
-            class="form-control mr-sm-2, form-input"
-            type="text"
-            name="data"
-            placeholder="Procurar"
-            ngModel
-          />
+    <ul class="navbar-nav ml-auto">
+      <!-- Dropdown -->
+      <li class="nav-item dropdown" dropdown>
+        <a class="nav-link dropdown-toggle waves-light" dropdownToggle mdbWavesEffect type="button">
+          <mdb-icon fas icon="user"></mdb-icon>
+          Perfil<span class="caret"></span></a>
+        <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
+          <a class="dropdown-item waves-light" mdbWavesEffect routerLink="admin/login">Minha conta</a>
+          <!--          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Log out</a>-->
         </div>
-      </div>
-    </form>
+      </li>
+
+    </ul>
+    <!-- Search form -->
+    <!--    <form-->
+    <!--      (ngSubmit)="onClickSubmit(navForm)"-->
+    <!--      [formGroup]="navForm"-->
+    <!--      mdbWavesEffect>-->
+    <!--      <mat-form-field>-->
+    <!--        <input-->
+    <!--          [(ngModel)]="value"-->
+    <!--          formControlName="anyTermNav"-->
+    <!--          matInput-->
+    <!--          placeholder="Procurar"-->
+    <!--          type="text"-->
+    <!--        />-->
+    <!--        <button (click)="value = ''" *ngIf="value" aria-label="Clear" mat-button mat-icon-button matSuffix>-->
+    <!--          <mat-icon>close</mat-icon>-->
+    <!--        </button>-->
+    <!--      </mat-form-field>-->
+    <!--    </form>-->
   </links>
   <!-- Collapsible content -->
 </mdb-navbar>
