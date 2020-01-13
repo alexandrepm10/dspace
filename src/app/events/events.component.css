@@ -1,3 +1,9 @@
+main {
+  padding-top: 3rem;
+  color: #5a5a5a;
+  padding-bottom: 5rem;
+}
+
 .bd-placeholder-img {
   font-size: 1.125rem;
   text-anchor: middle;
@@ -22,10 +28,10 @@ body {
   color: #5a5a5a;
 }
 .card {
-  margin-bottom:30px;
-  width:100%;
-  max-height: 600px;    
-  overflow:hidden;
+  margin-bottom: 30px;
+  width: 100%;
+  max-height: 600px;
+  overflow: hidden;
 }
 
 

@@ -146,7 +146,7 @@ export class HomeComponent implements OnInit {
 
   searchForm = new FormGroup({
       title: new FormControl('', [Validators.minLength(4), Validators.maxLength(25)]),
-      author: new FormControl('', [Validators.minLength(4), Validators.maxLength(25)]),
+      author: new FormControl('', [Validators.minLength(2), Validators.maxLength(25)]),
       anyTerm: new FormControl('', [Validators.minLength(4), Validators.maxLength(25)]),
       theme: new FormControl(''),
       geoArea: new FormControl('')

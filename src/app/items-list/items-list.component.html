@@ -12,25 +12,25 @@
               <mat-panel-title class="mat-expansion-panel-header-title">
                 <div><a [routerLink]="['/itemsdetail', eli.uuid]">{{eli.name}}</a></div>
               </mat-panel-title>
-              <mat-panel-description class="mat-expansion-panel-header-description">
+              <!--<mat-panel-description class="mat-expansion-panel-header-description">
                 <div *ngFor="let elj of eli.metadata">
                   <div *ngIf="elj.key === 'dc.creator' || elj.key === 'dc.contributor.author'">
                     {{elj.value}}
                   </div>
                 </div>
-              </mat-panel-description>
+              </mat-panel-description>-->
             </mat-expansion-panel-header>
             <div class="container" style="height: 10rem">
               <div class="row">
-                <div class="col-md-4">
+                <!--<div class="col-md-4">
                   <div *ngFor="let elj of eli.bitstream">
                     <div *ngIf=" elj.description === 'cover' || elj.format === 'image/png'">
                       <p>"http://localhost:8080{{elj.retrieveLink}}"</p>
                       <img src="http://localhost:8080{{elj.retrieveLink}}" width="100%">
                     </div>
                   </div>
-                </div>
-                <div class="col-md-8">
+                </div>-->
+                <div class="col-md-12">
                   <mat-tab-group>
                     <mat-tab label="Autor">
                       <div *ngFor="let elj of eli.metadata">

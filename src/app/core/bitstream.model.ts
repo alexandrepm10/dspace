@@ -2,6 +2,7 @@ export class Bitstream {
   public uuid: string;
   public name: string;
   public handle: string;
+  public bundleName: string;
   public type: string;
   public link: string;
   public description: string;
@@ -14,6 +15,7 @@ export class Bitstream {
     uuid: string,
     name: string,
     handle: string,
+    bundleName: string,
     type: string,
     link: string,
     description: string,
@@ -25,6 +27,7 @@ export class Bitstream {
     this.link = link;
     this.type = type;
     this.handle = handle;
+    this.bundleName = bundleName;
     this.name = name;
     this.uuid = uuid;
     this.description = description;
