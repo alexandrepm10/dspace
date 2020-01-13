@@ -18,24 +18,23 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private api: ApiService,
-    public actRoute: ActivatedRoute,
-    public router: Router,
-    private formBuilder: FormBuilder) {
+              public actRoute: ActivatedRoute,
+              public router: Router,
+              private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
   }
 
-  onSubmit() {    
+  onSubmit() {
     const user = this.loginDetailsForm.get('user').value;
     const pass = this.loginDetailsForm.get('pass').value;
 
-    this.api.loginUser(user, pass).
-      subscribe(data => {
+    this.api.loginUser(user, pass).subscribe(data => {
         this.api.setLoggedInStatus(true);
         this.router.navigate(['admin']);
       }
-      );
+    );
 
     /*this.api.loginUser(user, pass).pipe() subscribe(data => {
       console.log("RESPOTS: " +data);
